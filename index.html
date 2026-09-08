@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sGold Platform | The Future of Gold Infrastructure</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f2ca50",
+            "primary-dim": "#d4af37",
+            "on-primary": "#3c2f00",
+            surface: "#16130b",
+            "surface-container-low": "#1f1b13",
+            "surface-container": "#231f17",
+            "surface-container-high": "#2d2a21",
+            "surface-container-highest": "#38342b",
+            "on-surface": "#eae1d4",
+            "on-surface-variant": "#d0c5af",
+            outline: "#99907c",
+            "outline-variant": "#4d4635",
+            error: "#ffb4ab"
+          },
+          fontFamily: {
+            serif: ["Newsreader", "Georgia", "serif"],
+            mono: ["JetBrains Mono", "monospace"],
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="bg-surface text-on-surface font-sans min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="w-full border-b border-surface-container-high bg-surface-container-low/80 backdrop-blur-md px-6 py-4">
+    <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <img src="assets/images/sgold-coin.webp" alt="sGold"
+          class="w-10 h-10 object-contain drop-shadow-[0_0_15px_rgba(242,202,80,0.4)]">
+        <div>
+          <span class="font-serif font-bold text-xl text-primary tracking-tight block">sGOLD TECHNOLOGY AG</span>
+          <span class="font-mono text-[10px] text-outline uppercase tracking-widest">Sovereign LBMA Digital Gold
+            Platform</span>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="pages/auth.html"
+          class="px-4 py-2 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono shadow-md hover:brightness-110">
+          Launch App / Login
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Portal -->
+  <main class="flex-1 flex items-center justify-center p-6">
+    <div class="max-w-[1200px] w-full space-y-12 py-12 text-center">
+
+      <div class="space-y-4 max-w-3xl mx-auto">
+        <div
+          class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary font-mono text-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>LIVE PROTOTYPE FLOW AVAILABLE</span>
+        </div>
+        <h1 class="font-serif text-5xl sm:text-6xl font-light text-on-surface leading-tight">
+          Sovereign Gold <span class="text-primary italic font-normal">Institutional Suite</span>
+        </h1>
+        <p class="text-on-surface-variant text-lg">
+          Complete flow: Registration & Veriff KYC/KYB & AML, Saxess Pro Biometrics, Live Dashboard, Portfolio
+          Management, Buy/Sell Terminals, and Physical Bullion Redemption.
+        </p>
+      </div>
+
+      <!-- Flow Directory Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+
+        <!-- Auth & Onboarding -->
+        <a href="pages/auth.html"
+          class="p-6 bg-surface-container-low rounded-2xl border border-surface-container-high hover:border-primary/50 transition-all group flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-1">
+          <div class="space-y-2">
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">lock_person</span>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-on-surface group-hover:text-primary">1. Auth & Onboarding</h3>
+            <p class="text-xs text-outline leading-relaxed">
+              Individual KYC & Organisation KYB (Veriff), OTP, Wallet Binding, AML Check & Saxess Pro Biometrics.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-primary font-bold flex items-center gap-1">Open Flow →</span>
+        </a>
+
+        <!-- Dashboard -->
+        <a href="pages/dashboard.html"
+          class="p-6 bg-surface-container-low rounded-2xl border border-surface-container-high hover:border-primary/50 transition-all group flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-1">
+          <div class="space-y-2">
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">dashboard</span>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-on-surface group-hover:text-primary">2. Institutional Dashboard
+            </h3>
+            <p class="text-xs text-outline leading-relaxed">
+              LBMA Spot Price ($4,950), $140M AUM, 107% Proof of Reserves, Custody Network & 30D Token Activity.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-primary font-bold flex items-center gap-1">Open Flow →</span>
+        </a>
+
+        <!-- My Gold Portfolio -->
+        <a href="pages/my-gold.html"
+          class="p-6 bg-surface-container-low rounded-2xl border border-surface-container-high hover:border-primary/50 transition-all group flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-1">
+          <div class="space-y-2">
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">savings</span>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-on-surface group-hover:text-primary">3. My Gold Portfolio</h3>
+            <p class="text-xs text-outline leading-relaxed">
+              25.8 oz Holdings, Prefunded USD ($20,500), Vault Dallas details, One-Way USD-S Swap & Tx Ledger.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-primary font-bold flex items-center gap-1">Open Flow →</span>
+        </a>
+
+        <!-- Buy Terminal -->
+        <a href="pages/buy.html"
+          class="p-6 bg-surface-container-low rounded-2xl border border-surface-container-high hover:border-primary/50 transition-all group flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-1">
+          <div class="space-y-2">
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">shopping_cart</span>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-on-surface group-hover:text-primary">4. Buy sGold Terminal</h3>
+            <p class="text-xs text-outline leading-relaxed">
+              Whole oz input, payment modes (Prefunded USD / Fiat / Crypto / 15% Settlement Discount), Biometrics &
+              Certificates.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-primary font-bold flex items-center gap-1">Open Flow →</span>
+        </a>
+
+        <!-- Sell Terminal -->
+        <a href="pages/sell.html"
+          class="p-6 bg-surface-container-low rounded-2xl border border-surface-container-high hover:border-primary/50 transition-all group flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-1">
+          <div class="space-y-2">
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">payments</span>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-on-surface group-hover:text-primary">5. Sell sGold Terminal
+            </h3>
+            <p class="text-xs text-outline leading-relaxed">
+              Whole oz liquidation, payout channel selection, quotes with rebates, and automated fund dispatch timeline.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-primary font-bold flex items-center gap-1">Open Flow →</span>
+        </a>
+
+        <!-- Redeem Bullion -->
+        <a href="pages/redeem.html"
+          class="p-6 bg-surface-container-low rounded-2xl border border-surface-container-high hover:border-primary/50 transition-all group flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-1">
+          <div class="space-y-2">
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">local_shipping</span>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-on-surface group-hover:text-primary">6. Redeem Bullion</h3>
+            <p class="text-xs text-outline leading-relaxed">
+              Physical LBMA Good Delivery bar redemption (Min 1 Kg), vault source selection, armored courier & tracking.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-primary font-bold flex items-center gap-1">Open Flow →</span>
+        </a>
+
+      </div>
+
+      <!-- Admin Suite & Keynote Section Divider -->
+      <div class="pt-8 border-t border-surface-container-high text-left space-y-4">
+        <div class="flex items-center space-x-2">
+          <span class="px-2.5 py-0.5 rounded bg-primary/20 text-primary text-[10px] font-mono font-bold tracking-wider uppercase">sGold Admin & Strategy Suite</span>
+          <span class="text-xs text-outline font-mono">FINMA Cryptographic Audit & Presentation Modules</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-on-surface">Institutional Ledger, Cap Table & Allocation Deck</h2>
+      </div>
+
+      <!-- Admin Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+        
+        <!-- Admin Card 1: Token Ledger -->
+        <a href="pages/admin-ledger.html"
+          class="p-6 bg-surface-container-low rounded-2xl border border-primary/30 hover:border-primary transition-all group flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-1">
+          <div class="space-y-2">
+            <div class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">receipt_long</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-serif font-bold text-on-surface group-hover:text-primary">A1. Token Ledger</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 font-bold">LIVE SYNC</span>
+            </div>
+            <p class="text-xs text-outline leading-relaxed">
+              Complete admin audit trail of Buy (Mint), Sell (Burn), Bullion Physical Redemptions, and USD-S conversions with bar ID mapping.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-primary font-bold flex items-center gap-1">Open Admin Ledger →</span>
+        </a>
+
+        <!-- Admin Card 2: Owners Daily Snapshot -->
+        <a href="pages/admin-snapshot.html"
+          class="p-6 bg-surface-container-low rounded-2xl border border-primary/30 hover:border-primary transition-all group flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-1">
+          <div class="space-y-2">
+            <div class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">pie_chart</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-serif font-bold text-on-surface group-hover:text-primary">A2. Owners Snapshot</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-primary/20 text-primary font-bold">DAILY 00:00 UTC</span>
+            </div>
+            <p class="text-xs text-outline leading-relaxed">
+              Everyday cap table snapshot of total 28,000 oz allocated, institutional vs HNWI breakdown, and Merkle root proof.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-primary font-bold flex items-center gap-1">Open Owners Snapshot →</span>
+        </a>
+
+        <!-- Admin Card 3: Allocation Algorithm Deck Infographic -->
+        <a href="pages/admin-allocation.html"
+          class="p-6 bg-surface-container-low rounded-2xl border border-primary/30 hover:border-primary transition-all group flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-1">
+          <div class="space-y-2">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-300 text-on-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
+              <span class="material-symbols-outlined text-2xl font-bold">grain</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-serif font-bold text-on-surface group-hover:text-primary">A3. Bar Allocation Deck</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-yellow-400/20 text-yellow-300 font-bold">DECK SLIDE</span>
+            </div>
+            <p class="text-xs text-outline leading-relaxed">
+              Interactive infographic showing Minimum Bar Segregation: 12 oz purchase = 100% of 10 oz bar + 20% of 2nd bar.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-primary font-bold flex items-center gap-1">Open Presentation Deck →</span>
+        </a>
+
+        <!-- Admin Card 4: Security Architecture & Compliance -->
+        <a href="pages/security.html"
+          class="p-6 bg-surface-container-low rounded-2xl border-2 border-emerald-400/50 hover:border-emerald-400 transition-all group flex flex-col justify-between space-y-4 shadow-xl hover:-translate-y-1 relative overflow-hidden">
+          <div class="absolute -top-12 -right-12 w-28 h-28 bg-emerald-400/10 rounded-full blur-xl pointer-events-none"></div>
+          <div class="space-y-2">
+            <div class="w-12 h-12 rounded-xl bg-emerald-400/20 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
+              <span class="material-symbols-outlined text-2xl font-bold">shield</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-serif font-bold text-on-surface group-hover:text-emerald-400">A4. Security Framework</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-400/20 text-emerald-400 font-bold">ERC-7518 DyCIST</span>
+            </div>
+            <p class="text-xs text-outline leading-relaxed">
+              Institutional security architecture: 3-tier Protocol Governance, RBAC segregation, Multi-Party Quorum (3/5), and mTLS + PKI authentication.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-emerald-400 font-bold flex items-center gap-1">Open Security Framework →</span>
+        </a>
+
+      </div>
+
+      <div class="pt-6">
+        <a href="pages/auth.html"
+          class="inline-flex items-center space-x-2 px-8 py-4 bg-primary text-on-primary font-serif font-bold text-lg rounded-xl shadow-xl shadow-primary/25 hover:brightness-110 transition-all">
+          <span>Start Full End-to-End Walkthrough</span>
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full border-t border-surface-container-high bg-surface-container-low px-6 py-4">
+    <div
+      class="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between text-xs text-outline font-mono gap-2">
+      <div>sGold Technology AG &copy; 2026. FINMA Regulated Physical Gold Tokenization.</div>
+      <div class="flex items-center space-x-4">
+        <span>Proof of Reserves: 107%</span>
+        <span>LBMA Refined 99.99%</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

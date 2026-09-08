@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sGold Admin | Token Ledger & Transaction Terminal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f2ca50",
+            "primary-dim": "#d4af37",
+            "on-primary": "#3c2f00",
+            surface: "#16130b",
+            "surface-container-low": "#1f1b13",
+            "surface-container": "#231f17",
+            "surface-container-high": "#2d2a21",
+            "surface-container-highest": "#38342b",
+            "on-surface": "#eae1d4",
+            "on-surface-variant": "#d0c5af",
+            outline: "#99907c",
+            "outline-variant": "#4d4635",
+            error: "#ffb4ab"
+          },
+          fontFamily: {
+            serif: ["Newsreader", "Georgia", "serif"],
+            mono: ["JetBrains Mono", "monospace"],
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="bg-surface text-on-surface font-sans min-h-screen">
+
+  <main class="pt-24 pb-16 px-6 max-w-[1440px] mx-auto space-y-6">
+
+    <!-- Admin Breadcrumb & Top Bar -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-surface-container-low p-6 rounded-2xl border border-surface-container-high shadow-md">
+      <div>
+        <div class="flex items-center space-x-2 mb-1">
+          <span class="px-2.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary text-[10px] font-mono uppercase tracking-wider font-bold">
+            sGold Admin Suite
+          </span>
+          <span class="px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-mono">
+            LIVE MINT & BURN SYNC
+          </span>
+          <span class="text-xs text-outline font-mono">FINMA Node #ZH-09</span>
+        </div>
+        <h1 class="text-3xl font-serif font-bold text-on-surface">Institutional Token Ledger</h1>
+        <p class="text-xs text-outline mt-1">Real-time cryptographic audit trail of all Mint (Buy), Burn (Sell), Bullion Redemption, and USD-S Currency Conversions.</p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <a href="admin-snapshot.html" class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-primary/40 text-xs font-mono flex items-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-sm text-primary">pie_chart</span>
+          <span>View Owners Snapshot</span>
+        </a>
+        <a href="admin-allocation.html" class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-primary/40 text-xs font-mono flex items-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-sm text-primary">grain</span>
+          <span>Bar Allocation Deck</span>
+        </a>
+        <a href="security.html" class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-emerald-400/40 text-xs font-mono flex items-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-sm text-emerald-400">shield</span>
+          <span>Security Framework</span>
+        </a>
+        <button onclick="exportLedgerCSV()" class="px-3.5 py-2 rounded-xl bg-primary text-on-primary font-bold text-xs font-mono flex items-center gap-2 hover:brightness-110 shadow-md">
+          <span class="material-symbols-outlined text-sm">download</span>
+          <span>Export Audit CSV</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Aggregated Stats Ribbons -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Total Mint Volume (Buys)</span>
+          <span class="material-symbols-outlined text-emerald-400 text-sm">add_circle</span>
+        </div>
+        <div class="text-2xl font-serif font-bold text-on-surface mb-1">28,450.00 oz</div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-emerald-400">
+          <span>$140,827,500 USD</span>
+          <span class="text-outline text-[11px]">• 1,420 Txns</span>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Total Burn Volume (Sells)</span>
+          <span class="material-symbols-outlined text-error text-sm">remove_circle</span>
+        </div>
+        <div class="text-2xl font-serif font-bold text-on-surface mb-1">4,210.50 oz</div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-error">
+          <span>$20,841,975 USD</span>
+          <span class="text-outline text-[11px]">• 215 Txns</span>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Physical Redeemed</span>
+          <span class="material-symbols-outlined text-primary text-sm">local_shipping</span>
+        </div>
+        <div class="text-2xl font-serif font-bold text-on-surface mb-1">1,850.00 oz</div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-primary">
+          <span>57 LBMA Bars Dispatched</span>
+          <span class="text-outline text-[11px]">• 42 Txns</span>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">USD-S Swap Conversions</span>
+          <span class="material-symbols-outlined text-sky-400 text-sm">currency_exchange</span>
+        </div>
+        <div class="text-2xl font-serif font-bold text-on-surface mb-1">$34,810,400</div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-sky-400">
+          <span>7,032.40 oz Converted</span>
+          <span class="text-outline text-[11px]">• 388 Txns</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter & Search Terminal Bar -->
+    <div class="bg-surface-container-low p-4 rounded-xl border border-surface-container-high flex flex-wrap items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-mono text-outline uppercase mr-2">Filter Txn Type:</span>
+        <button onclick="filterType('ALL')" id="tab-ALL" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono bg-primary text-on-primary font-bold shadow-sm">ALL (2,065)</button>
+        <button onclick="filterType('BUY')" id="tab-BUY" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">BUY / MINT</button>
+        <button onclick="filterType('SELL')" id="tab-SELL" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">SELL / BURN</button>
+        <button onclick="filterType('REDEEM')" id="tab-REDEEM" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">PHYSICAL REDEMPTION</button>
+        <button onclick="filterType('CONVERSION')" id="tab-CONVERSION" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">USD-S CONVERSION</button>
+      </div>
+
+      <div class="flex items-center gap-3 flex-1 max-w-md justify-end">
+        <div class="relative w-full">
+          <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-sm">search</span>
+          <input type="text" id="ledgerSearchInput" oninput="handleSearch()" placeholder="Search by Txn Hash, Entity name, Bar ID, or Wallet..."
+            class="w-full bg-surface-container border border-surface-container-high focus:border-primary rounded-lg pl-9 pr-4 py-2 text-xs text-on-surface font-mono outline-none">
+        </div>
+      </div>
+    </div>
+
+    <!-- Transactions Ledger Table -->
+    <div class="bg-surface-container-low rounded-2xl border border-surface-container-high overflow-hidden shadow-lg">
+      <div class="p-5 border-b border-surface-container-high flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
+          <h2 class="font-serif font-bold text-lg text-on-surface">Verified Global Ledger Transactions</h2>
+          <span class="text-xs font-mono text-outline bg-surface-container px-2.5 py-0.5 rounded border border-outline-variant/30">Showing 10 Most Recent Verified Blocks</span>
+        </div>
+        <div class="text-xs font-mono text-outline">
+          Synced with Ethereum / FINMA Node: <span class="text-primary font-bold">Block #20,891,421</span>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="border-b border-surface-container-high bg-surface-container/60 text-outline font-mono uppercase text-[11px]">
+              <th class="py-3 px-4">Txn Hash / Timestamp</th>
+              <th class="py-3 px-4">Type</th>
+              <th class="py-3 px-4">Entity & Category</th>
+              <th class="py-3 px-4">Quantity (oz)</th>
+              <th class="py-3 px-4">Settlement / Mode</th>
+              <th class="py-3 px-4">Allocated Bar ID(s)</th>
+              <th class="py-3 px-4">Audit Status</th>
+              <th class="py-3 px-4 text-right">Details</th>
+            </tr>
+          </thead>
+          <tbody id="ledgerTableBody" class="divide-y divide-surface-container-high font-mono">
+            <!-- Dynamic rows will be injected by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination / Footer info -->
+      <div class="p-4 border-t border-surface-container-high flex flex-col sm:flex-row items-center justify-between text-xs text-outline font-mono gap-3 bg-surface-container/30">
+        <div>Showing <span id="displayedCount" class="text-on-surface font-bold">10</span> of <span class="text-primary font-bold">2,065</span> Total Recorded Transactions</div>
+        <div class="flex items-center space-x-2">
+          <button class="px-3 py-1 rounded bg-surface-container border border-surface-container-high text-outline hover:text-on-surface cursor-pointer">Previous</button>
+          <span class="px-2 py-1 text-primary font-bold">Page 1 of 207</span>
+          <button class="px-3 py-1 rounded bg-surface-container border border-surface-container-high text-on-surface hover:border-primary cursor-pointer">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Breakdown Cards: By Settlement Mode & Custody Vaults -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Settlement Channel Activity -->
+      <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-serif font-bold text-lg text-on-surface flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+            Settlement Gateway Breakdown
+          </h3>
+          <span class="text-[11px] font-mono text-outline">30-Day Rolling</span>
+        </div>
+        <div class="space-y-3 font-mono text-xs">
+          <div>
+            <div class="flex justify-between text-on-surface mb-1">
+              <span>Prefunded Institutional USD Wallet</span>
+              <span class="text-primary font-bold">54.2% ($76.3M)</span>
+            </div>
+            <div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+              <div class="h-full bg-primary rounded-full" style="width: 54.2%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-on-surface mb-1">
+              <span>Direct Bank Fedwire / SWIFT MT103</span>
+              <span class="text-emerald-400 font-bold">26.8% ($37.7M)</span>
+            </div>
+            <div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+              <div class="h-full bg-emerald-400 rounded-full" style="width: 26.8%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-on-surface mb-1">
+              <span>Institutional USDC / USDT-S Conversion</span>
+              <span class="text-sky-400 font-bold">14.5% ($20.4M)</span>
+            </div>
+            <div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+              <div class="h-full bg-sky-400 rounded-full" style="width: 14.5%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-on-surface mb-1">
+              <span>Physical Bar Conversion & In-Kind Deposit</span>
+              <span class="text-amber-300 font-bold">4.5% ($6.3M)</span>
+            </div>
+            <div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+              <div class="h-full bg-amber-300 rounded-full" style="width: 4.5%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vault Custody Activity -->
+      <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-serif font-bold text-lg text-on-surface flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">shield_person</span>
+            Depository Vault Activity Status
+          </h3>
+          <span class="text-[11px] font-mono text-emerald-400">100% AUDITED</span>
+        </div>
+        <div class="space-y-3 font-mono text-xs">
+          <div class="p-3 bg-surface-container rounded-xl flex items-center justify-between border border-surface-container-high">
+            <div class="flex items-center space-x-3">
+              <span class="material-symbols-outlined text-primary">domain</span>
+              <div>
+                <div class="text-on-surface font-bold">Dallas Sovereign Depository (TX, USA)</div>
+                <div class="text-[11px] text-outline">12,500 oz Physical Reserves • 0 Pending Inspections</div>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-bold">ACTIVE ALLOCATION</span>
+          </div>
+
+          <div class="p-3 bg-surface-container rounded-xl flex items-center justify-between border border-surface-container-high">
+            <div class="flex items-center space-x-3">
+              <span class="material-symbols-outlined text-primary">domain</span>
+              <div>
+                <div class="text-on-surface font-bold">Zurich FreeZone Safehouse (Switzerland)</div>
+                <div class="text-[11px] text-outline">10,250 oz Physical Reserves • 1 Courier in transit</div>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-bold">ACTIVE ALLOCATION</span>
+          </div>
+
+          <div class="p-3 bg-surface-container rounded-xl flex items-center justify-between border border-surface-container-high">
+            <div class="flex items-center space-x-3">
+              <span class="material-symbols-outlined text-primary">domain</span>
+              <div>
+                <div class="text-on-surface font-bold">Singapore Le Freeport (Changi, SG)</div>
+                <div class="text-[11px] text-outline">7,270 oz Physical Reserves • Bi-Weekly Assay OK</div>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-bold">ACTIVE ALLOCATION</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Txn Details Modal -->
+  <div id="txnModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md">
+    <div class="bg-surface-container-low border border-primary/40 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative overflow-hidden">
+      <div class="flex items-center justify-between pb-4 border-b border-surface-container-high mb-4">
+        <div class="flex items-center space-x-2">
+          <span class="material-symbols-outlined text-primary">verified</span>
+          <h3 class="font-serif font-bold text-lg text-on-surface" id="modalTxnTitle">Transaction Audit Record</h3>
+        </div>
+        <button onclick="closeModal('txnModal')" class="text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-4 font-mono text-xs" id="modalTxnBody">
+        <!-- Content injected dynamically -->
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-surface-container-high flex justify-between items-center">
+        <span class="text-[11px] text-outline font-mono">FINMA Cryptographic Seal ID: 0x88F...BC12</span>
+        <button onclick="closeModal('txnModal')" class="px-4 py-2 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono hover:brightness-110">
+          Close Record
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/app-state.js"></script>
+  <script src="../assets/js/shared-ui.js"></script>
+  <script>
+    // Dummy Ledger Dataset
+    const LEDGER_TXNS = [
+      {
+        id: "TXN-99842",
+        hash: "0x8fa4...3b92",
+        fullHash: "0x8fa42091c5a77f98c2de8402f1a60037190db92a019485b",
+        timestamp: "2026-09-08 04:12:08 UTC",
+        type: "BUY",
+        entity: "Global Trust Fund",
+        entityType: "Organisation",
+        wallet: "0x71C8...8B42",
+        quantity: "12.000",
+        priceUsd: "$4,950.00",
+        totalUsd: "$59,400.00",
+        mode: "Prefunded USD",
+        bars: ["LBMA-CH-99481 (100% of 10 oz)", "LBMA-CH-99482 (20% of 10 oz)"],
+        vault: "Zurich FreeZone Safehouse",
+        status: "Confirmed & Cryptographically Sealed",
+        saxessNonce: "SP-9982-AUTH-OK"
+      },
+      {
+        id: "TXN-99841",
+        hash: "0x3e1b...99a0",
+        fullHash: "0x3e1b7829ac105e60db9378c2e177112c33890aa09347891",
+        timestamp: "2026-09-08 03:45:19 UTC",
+        type: "REDEEM",
+        entity: "Helvetia Sovereign Asset Management",
+        entityType: "Organisation",
+        wallet: "0x44D1...771B",
+        quantity: "32.150",
+        priceUsd: "Melt Equivalent",
+        totalUsd: "$159,142.50",
+        mode: "Armored Delivery (1 Kg Bar)",
+        bars: ["LBMA-US-10940 (100% of 32.15 oz / 1kg)"],
+        vault: "Dallas Sovereign Depository, USA",
+        status: "Vault Dispatch / Armored Transit",
+        saxessNonce: "SP-4412-BRINK-AUTH"
+      },
+      {
+        id: "TXN-99840",
+        hash: "0x12fc...4419",
+        fullHash: "0x12fc677890abce12876541203498bfeaa99182341902834",
+        timestamp: "2026-09-08 02:30:45 UTC",
+        type: "CONVERSION",
+        entity: "Apex Macro Fund Ltd",
+        entityType: "Organisation",
+        wallet: "0x98A1...660F",
+        quantity: "15.000",
+        priceUsd: "$4,952.00",
+        totalUsd: "$74,280.00 USD-S",
+        mode: "sGold to USD-S Stable Yield",
+        bars: ["Re-pooled into Liquidity Vaults"],
+        vault: "Singapore Le Freeport",
+        status: "Instant 1-Way Yield Conversion",
+        saxessNonce: "SP-8831-EXEC-OK"
+      },
+      {
+        id: "TXN-99839",
+        hash: "0x7a88...c401",
+        fullHash: "0x7a88910239487cdefa1029384756102938475619082341c",
+        timestamp: "2026-09-07 22:15:00 UTC",
+        type: "SELL",
+        entity: "Geneva Wealth Partners",
+        entityType: "Organisation",
+        wallet: "0x61B2...33C9",
+        quantity: "8.500",
+        priceUsd: "$4,948.50",
+        totalUsd: "$42,062.25",
+        mode: "Fedwire SWIFT MT103",
+        bars: ["LBMA-SG-88120 (Released from 85% share)"],
+        vault: "Singapore Le Freeport",
+        status: "Burned & Funds Dispatched",
+        saxessNonce: "SP-2291-SWIFT-AUTH"
+      },
+      {
+        id: "TXN-99838",
+        hash: "0x55dc...112e",
+        fullHash: "0x55dc901928374650192837465019283746501928374650a",
+        timestamp: "2026-09-07 20:04:12 UTC",
+        type: "BUY",
+        entity: "Dr. Maximilian von Berg",
+        entityType: "Individual HNWI",
+        wallet: "0x33A0...99E2",
+        quantity: "5.000",
+        priceUsd: "$4,949.00",
+        totalUsd: "$24,745.00",
+        mode: "Crypto USDC Settlement",
+        bars: ["LBMA-CH-99482 (50% of 10 oz)"],
+        vault: "Zurich FreeZone Safehouse",
+        status: "Confirmed & Cryptographically Sealed",
+        saxessNonce: "SP-5501-INDIV-AUTH"
+      },
+      {
+        id: "TXN-99837",
+        hash: "0x90ea...7710",
+        fullHash: "0x90ea661524389012384756192837465019283746501928a",
+        timestamp: "2026-09-07 18:42:30 UTC",
+        type: "BUY",
+        entity: "Nordic Sovereign Reserve Corp",
+        entityType: "Organisation",
+        wallet: "0x88C1...22D4",
+        quantity: "50.000",
+        priceUsd: "$4,947.00",
+        totalUsd: "$247,350.00",
+        mode: "Prefunded USD",
+        bars: ["LBMA-US-99101 (100%)", "LBMA-US-99102 (100%)", "LBMA-US-99103 (100%)", "LBMA-US-99104 (100%)", "LBMA-US-99105 (100%)"],
+        vault: "Dallas Sovereign Depository, USA",
+        status: "Confirmed & Cryptographically Sealed",
+        saxessNonce: "SP-7719-INST-AUTH"
+      },
+      {
+        id: "TXN-99836",
+        hash: "0x44bf...aa18",
+        fullHash: "0x44bf882736451928374650192837465019283746501928b",
+        timestamp: "2026-09-07 15:10:22 UTC",
+        type: "CONVERSION",
+        entity: "Zurich Private Banking AG",
+        entityType: "Organisation",
+        wallet: "0x11E9...00F3",
+        quantity: "20.000",
+        priceUsd: "$4,950.00",
+        totalUsd: "$99,000.00 USD-S",
+        mode: "sGold to USD-S Swap",
+        bars: ["Re-allocated to Institutional Buffer Pool"],
+        vault: "Zurich FreeZone Safehouse",
+        status: "Instant 1-Way Yield Conversion",
+        saxessNonce: "SP-1190-AUTH-OK"
+      },
+      {
+        id: "TXN-99835",
+        hash: "0x22c1...5567",
+        fullHash: "0x22c1998822334455667788990011223344556677889900c",
+        timestamp: "2026-09-07 12:20:11 UTC",
+        type: "SELL",
+        entity: "Lady Eleanor Vance",
+        entityType: "Individual HNWI",
+        wallet: "0x77F2...8831",
+        quantity: "3.000",
+        priceUsd: "$4,945.00",
+        totalUsd: "$14,835.00",
+        mode: "SEPA Euro Direct Wire",
+        bars: ["LBMA-CH-99482 (Released 30% share)"],
+        vault: "Zurich FreeZone Safehouse",
+        status: "Burned & Funds Dispatched",
+        saxessNonce: "SP-3341-SEPA-AUTH"
+      },
+      {
+        id: "TXN-99834",
+        hash: "0xbb70...8811",
+        fullHash: "0xbb70112233445566778899001122334455667788990011d",
+        timestamp: "2026-09-07 10:05:40 UTC",
+        type: "BUY",
+        entity: "Alpine Sovereign Treasury Fund",
+        entityType: "Organisation",
+        wallet: "0x55B8...119C",
+        quantity: "25.000",
+        priceUsd: "$4,942.00",
+        totalUsd: "$123,550.00",
+        mode: "15% Settlement Discount Window",
+        bars: ["LBMA-SG-77011 (100% of 10 oz)", "LBMA-SG-77012 (100% of 10 oz)", "LBMA-SG-77013 (50% of 10 oz)"],
+        vault: "Singapore Le Freeport",
+        status: "Confirmed & Cryptographically Sealed",
+        saxessNonce: "SP-8820-DISC-AUTH"
+      },
+      {
+        id: "TXN-99833",
+        hash: "0xfa39...2204",
+        fullHash: "0xfa39887766554433221100ffeeddccbbaa998877665544e",
+        timestamp: "2026-09-07 08:30:15 UTC",
+        type: "REDEEM",
+        entity: "Crestview Bullion Partners",
+        entityType: "Organisation",
+        wallet: "0x228A...44D8",
+        quantity: "64.300",
+        priceUsd: "Melt Equivalent",
+        totalUsd: "$318,285.00",
+        mode: "Vault Pick-up (2x 1kg Bars)",
+        bars: ["LBMA-US-10941 (100%)", "LBMA-US-10942 (100%)"],
+        vault: "Dallas Sovereign Depository, USA",
+        status: "Vault In-Person Handover Complete",
+        saxessNonce: "SP-9921-VAULT-PICK"
+      }
+    ];
+
+    let currentFilter = 'ALL';
+    let searchQuery = '';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSharedNav('ledger');
+      renderLedgerTable();
+    });
+
+    function filterType(type) {
+      currentFilter = type;
+      document.querySelectorAll('.filter-tab').forEach(el => {
+        el.className = "filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container transition-all";
+      });
+      const activeBtn = document.getElementById(`tab-${type}`);
+      if (activeBtn) {
+        activeBtn.className = "filter-tab px-3 py-1.5 rounded-lg text-xs font-mono bg-primary text-on-primary font-bold shadow-sm transition-all";
+      }
+      renderLedgerTable();
+    }
+
+    function handleSearch() {
+      searchQuery = document.getElementById('ledgerSearchInput').value.toLowerCase();
+      renderLedgerTable();
+    }
+
+    function renderLedgerTable() {
+      const tbody = document.getElementById('ledgerTableBody');
+      const filtered = LEDGER_TXNS.filter(tx => {
+        const matchesFilter = (currentFilter === 'ALL' || tx.type === currentFilter);
+        const matchesSearch = !searchQuery || 
+          tx.hash.toLowerCase().includes(searchQuery) ||
+          tx.entity.toLowerCase().includes(searchQuery) ||
+          tx.wallet.toLowerCase().includes(searchQuery) ||
+          tx.mode.toLowerCase().includes(searchQuery) ||
+          tx.bars.some(b => b.toLowerCase().includes(searchQuery));
+        return matchesFilter && matchesSearch;
+      });
+
+      document.getElementById('displayedCount').textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center py-8 text-outline">
+              <span class="material-symbols-outlined text-3xl mb-2 block text-outline/50">search_off</span>
+              No ledger transactions found matching filter & search query.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(tx => {
+        let badgeColor = "";
+        let badgeIcon = "";
+        if (tx.type === 'BUY') {
+          badgeColor = "bg-emerald-400/10 text-emerald-400 border-emerald-400/30";
+          badgeIcon = "add";
+        } else if (tx.type === 'SELL') {
+          badgeColor = "bg-error/10 text-error border-error/30";
+          badgeIcon = "remove";
+        } else if (tx.type === 'REDEEM') {
+          badgeColor = "bg-primary/10 text-primary border-primary/30";
+          badgeIcon = "local_shipping";
+        } else if (tx.type === 'CONVERSION') {
+          badgeColor = "bg-sky-400/10 text-sky-400 border-sky-400/30";
+          badgeIcon = "currency_exchange";
+        }
+
+        const isOrg = tx.entityType === 'Organisation';
+
+        return `
+          <tr class="hover:bg-surface-container/50 transition-colors">
+            <td class="py-3 px-4">
+              <div class="font-bold text-on-surface flex items-center gap-1.5">
+                <span class="text-primary">${tx.hash}</span>
+                <span class="text-[10px] px-1 py-0.2 rounded bg-surface-container text-outline">${tx.id}</span>
+              </div>
+              <div class="text-[10px] text-outline mt-0.5">${tx.timestamp}</div>
+            </td>
+            <td class="py-3 px-4">
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md border text-[10px] font-bold ${badgeColor}">
+                <span class="material-symbols-outlined text-[12px]">${badgeIcon}</span>
+                ${tx.type}
+              </span>
+            </td>
+            <td class="py-3 px-4">
+              <div class="font-bold text-on-surface">${tx.entity}</div>
+              <div class="text-[10px] text-outline flex items-center gap-1">
+                <span class="${isOrg ? 'text-amber-300' : 'text-sky-300'}">[${tx.entityType}]</span>
+                <span>${tx.wallet}</span>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <div class="font-bold text-on-surface">${tx.quantity} oz</div>
+              <div class="text-[10px] text-outline">${tx.totalUsd}</div>
+            </td>
+            <td class="py-3 px-4">
+              <div class="text-on-surface-variant font-medium">${tx.mode}</div>
+              <div class="text-[10px] text-outline">${tx.vault}</div>
+            </td>
+            <td class="py-3 px-4 max-w-xs">
+              <div class="truncate text-[11px] text-primary" title="${tx.bars.join(', ')}">
+                ${tx.bars[0]} ${tx.bars.length > 1 ? `+${tx.bars.length - 1} more` : ''}
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <span class="inline-flex items-center gap-1 text-[11px] text-emerald-400">
+                <span class="material-symbols-outlined text-[13px]">verified</span>
+                Verified
+              </span>
+            </td>
+            <td class="py-3 px-4 text-right">
+              <button onclick="viewTxnDetails('${tx.id}')" class="px-2.5 py-1 bg-surface-container border border-surface-container-high hover:border-primary/50 text-on-surface rounded text-[11px] hover:text-primary transition-all">
+                Audit View
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function viewTxnDetails(id) {
+      const tx = LEDGER_TXNS.find(t => t.id === id);
+      if (!tx) return;
+
+      document.getElementById('modalTxnTitle').textContent = `Transaction Audit Record: ${tx.id}`;
+      document.getElementById('modalTxnBody').innerHTML = `
+        <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high space-y-2">
+          <div class="flex justify-between">
+            <span class="text-outline">ACTION TYPE:</span>
+            <span class="font-bold text-primary">${tx.type} OPERATION</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-outline">CRYPTOGRAPHIC HASH:</span>
+            <span class="text-on-surface break-all text-[11px]">${tx.fullHash}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-outline">TIMESTAMP:</span>
+            <span class="text-on-surface">${tx.timestamp}</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high">
+            <span class="text-outline block text-[10px] uppercase">Entity Identity</span>
+            <span class="text-on-surface font-bold text-sm block">${tx.entity}</span>
+            <span class="text-primary text-[10px]">${tx.entityType} • ${tx.wallet}</span>
+          </div>
+          <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high">
+            <span class="text-outline block text-[10px] uppercase">Gold Volume & Spot</span>
+            <span class="text-on-surface font-bold text-sm block">${tx.quantity} oz Fine Gold</span>
+            <span class="text-emerald-400 text-[10px]">${tx.totalUsd} (${tx.priceUsd})</span>
+          </div>
+        </div>
+
+        <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high space-y-1.5">
+          <span class="text-outline block text-[10px] uppercase">Allocated LBMA Bar Mapping</span>
+          <ul class="space-y-1 list-disc list-inside text-on-surface-variant">
+            ${tx.bars.map(b => `<li><span class="text-primary font-bold">${b}</span></li>`).join('')}
+          </ul>
+          <div class="pt-1 text-[10px] text-outline">
+            Custody Depository: <span class="text-on-surface font-semibold">${tx.vault}</span>
+          </div>
+        </div>
+
+        <div class="p-3 bg-emerald-400/10 border border-emerald-400/30 rounded-xl flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <span class="material-symbols-outlined text-emerald-400">lock</span>
+            <div>
+              <div class="text-emerald-400 font-bold text-xs">Saxess Pro Biometric Nonce</div>
+              <div class="text-[10px] text-outline">${tx.saxessNonce}</div>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded bg-emerald-400/20 text-emerald-400 text-[10px] font-bold">FINMA AUDITED</span>
+        </div>
+      `;
+
+      document.getElementById('txnModal').classList.remove('hidden');
+    }
+
+    function exportLedgerCSV() {
+      let csv = "TxnID,Hash,Timestamp,Type,Entity,EntityType,Wallet,QuantityOz,TotalUSD,Mode,Vault,Status\n";
+      LEDGER_TXNS.forEach(t => {
+        csv += `"${t.id}","${t.fullHash}","${t.timestamp}","${t.type}","${t.entity}","${t.entityType}","${t.wallet}","${t.quantity}","${t.totalUsd}","${t.mode}","${t.vault}","${t.status}"\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.setAttribute('href', url);
+      a.setAttribute('download', `sgold-ledger-export-${new Date().toISOString().split('T')[0]}.csv`);
+      a.click();
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>

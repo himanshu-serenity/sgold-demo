@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sGold Authentication & Onboarding | Saxess Pro Sovereign Terminal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f2ca50",
+            "primary-dim": "#d4af37",
+            "on-primary": "#3c2f00",
+            surface: "#16130b",
+            "surface-container-low": "#1f1b13",
+            "surface-container": "#231f17",
+            "surface-container-high": "#2d2a21",
+            "surface-container-highest": "#38342b",
+            "on-surface": "#eae1d4",
+            "on-surface-variant": "#d0c5af",
+            outline: "#99907c",
+            "outline-variant": "#4d4635",
+            error: "#ffb4ab"
+          },
+          fontFamily: {
+            serif: ["Newsreader", "Georgia", "serif"],
+            mono: ["JetBrains Mono", "monospace"],
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="bg-surface text-on-surface font-sans min-h-screen flex flex-col justify-between">
+
+  <!-- Top Bar -->
+  <header class="w-full border-b border-surface-container-high bg-surface-container-low/80 backdrop-blur-md px-6 py-4">
+    <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <img src="../assets/images/sgold-coin.webp" alt="sGold"
+          class="w-10 h-10 object-contain drop-shadow-[0_0_15px_rgba(242,202,80,0.4)]">
+        <div>
+          <span class="font-serif font-bold text-xl text-primary tracking-tight block">sGOLD</span>
+          <span class="font-mono text-[10px] text-outline uppercase tracking-widest">Buy • Vault • Tokenize • Trade •
+            Settle Physical Gold</span>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-2 bg-surface px-3 py-1.5 rounded-full border border-primary/20">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="font-mono text-xs text-primary">SECURE ENCLAVE ACTIVE</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Auth & Onboarding Container -->
+  <main class="flex-1 flex items-center justify-center p-6">
+    <div class="max-w-[1280px] w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start my-auto">
+
+      <!-- Left Column: Editorial & Value Prop -->
+      <div class="lg:col-span-5 space-y-6 pt-2">
+        <div class="space-y-3">
+          <div
+            class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary font-mono text-xs">
+            <span class="material-symbols-outlined text-xs">verified</span>
+            <span>INSTITUTIONAL ONBOARDING</span>
+          </div>
+          <h1 class="font-serif text-4xl lg:text-5xl font-light text-on-surface leading-tight">
+            Uncompromising <br><span class="text-primary italic">Wealth Architecture</span>
+          </h1>
+          <p class="text-on-surface-variant text-base leading-relaxed">
+            Secure digital ownership of LBMA Gold Delivery physical gold bars. Backed 1:1, audited
+            24/7, and insured by Lloyd's of London.
+          </p>
+        </div>
+
+        <!-- Compliance & Security Highlights -->
+        <div class="space-y-3">
+          <div
+            class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 flex items-start space-x-3 hover:border-primary/40 transition-all">
+            <span class="material-symbols-outlined text-primary mt-1">fingerprint</span>
+            <div>
+              <h4 class="font-bold text-sm text-on-surface">Saxess Pro Biometric Authentication</h4>
+              <p class="text-xs text-on-surface-variant mt-0.5">Hardware-enclave mobile push confirmation and FIDO2
+                keys.</p>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 flex items-start space-x-3 hover:border-primary/40 transition-all">
+            <span class="material-symbols-outlined text-primary mt-1">verified_user</span>
+            <div>
+              <h4 class="font-bold text-sm text-on-surface">Veriff Automated KYC / KYB</h4>
+              <p class="text-xs text-on-surface-variant mt-0.5">Instant multi-jurisdictional verification for
+                Individuals and Sovereign Entities.</p>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/30 flex items-start space-x-3 hover:border-primary/40 transition-all">
+            <span class="material-symbols-outlined text-primary mt-1">account_balance</span>
+            <div>
+              <h4 class="font-bold text-sm text-on-surface">Real-Time Wallet AML Check</h4>
+              <p class="text-xs text-on-surface-variant mt-0.5">Continuous on-chain graph screening with FINMA
+                regulatory clearance.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reserve Stat Card -->
+        <div class="bg-surface-container-low p-4 rounded-xl border border-primary/20 flex justify-between items-center">
+          <div>
+            <span class="text-[11px] font-mono text-outline block uppercase">Total Gold Reserves</span>
+            <span class="text-xl font-serif font-bold text-primary">30,020.42 oz</span>
+          </div>
+          <div class="text-right">
+            <span class="text-[11px] font-mono text-outline block uppercase">Backing Ratio</span>
+            <span class="text-lg font-mono font-bold text-emerald-400">107% Over-collateralized</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Terminal Box -->
+      <div class="lg:col-span-7">
+        <div
+          class="bg-surface-container-low rounded-2xl p-6 sm:p-8 border border-primary/30 shadow-2xl relative overflow-hidden">
+          <div class="absolute -top-24 -right-24 w-80 h-80 bg-primary/10 rounded-full blur-3xl pointer-events-none">
+          </div>
+
+          <!-- Tab Selector -->
+          <div class="flex border-b border-surface-container-high mb-6" id="auth-tabs">
+            <button id="tab-login-btn" onclick="switchAuthTab('login')"
+              class="flex-1 pb-4 text-center font-bold text-base transition-all text-primary border-b-2 border-primary">
+              Secure Login
+            </button>
+            <button id="tab-register-btn" onclick="switchAuthTab('register')"
+              class="flex-1 pb-4 text-center font-bold text-base transition-all text-outline hover:text-on-surface border-b-2 border-transparent">
+              Registration
+            </button>
+          </div>
+
+          <!-- ================= LOGIN FLOW ================= -->
+          <div id="flow-login" class="space-y-6">
+            <!-- Login Step 1: Credentials -->
+            <div id="login-step-1" class="space-y-5">
+              <div>
+                <h3 class="text-2xl font-serif font-bold text-on-surface">Terminal Authentication</h3>
+                <p class="text-sm text-outline mt-1">Enter your registered institutional credentials to access your gold
+                  vault.</p>
+              </div>
+
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-xs font-mono text-on-surface-variant uppercase mb-1.5">Corporate / User
+                    Email</label>
+                  <input type="email" id="login-email" value="executive@sovereign-cap.ch"
+                    class="w-full bg-surface border border-outline-variant/50 rounded-lg px-4 py-3 text-on-surface font-mono text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+                </div>
+                <div>
+                  <div class="flex justify-between items-center mb-1.5">
+                    <label class="text-xs font-mono text-on-surface-variant uppercase">Master Password</label>
+                    <a href="#" class="text-xs text-primary hover:underline">Reset Hardware Key?</a>
+                  </div>
+                  <input type="password" id="login-password" value="••••••••••••••••"
+                    class="w-full bg-surface border border-outline-variant/50 rounded-lg px-4 py-3 text-on-surface font-mono text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+                </div>
+              </div>
+
+              <button onclick="startLoginBiometrics()"
+                class="w-full py-3.5 bg-primary text-on-primary font-bold rounded-lg shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
+                <span>Proceed to Biometric Check</span>
+                <span class="material-symbols-outlined text-sm">fingerprint</span>
+              </button>
+            </div>
+
+            <!-- Login Step 2: Saxess Pro Biometric Progress Simulation -->
+            <div id="login-step-2" class="space-y-6 hidden">
+              <div>
+                <h3 class="text-2xl font-serif font-bold text-on-surface">Saxess Pro Biometric Approval</h3>
+                <p class="text-sm text-outline mt-1">Please open your <strong>Saxess Pro</strong> app to approve this
+                  session challenge.</p>
+              </div>
+
+              <div
+                class="py-8 bg-surface rounded-xl border border-outline-variant/40 flex flex-col items-center justify-center space-y-4">
+                <div class="relative w-24 h-24 flex items-center justify-center">
+                  <div class="absolute inset-0 bg-primary/20 rounded-full animate-ping"></div>
+                  <div
+                    class="w-20 h-20 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-primary relative z-10 shadow-[0_0_20px_rgba(242,202,80,0.3)]">
+                    <span class="material-symbols-outlined text-4xl">fingerprint</span>
+                  </div>
+                </div>
+                <div class="text-center space-y-1">
+                  <div class="font-bold text-on-surface text-base">Waiting for Biometric Approval</div>
+                  <div class="font-mono text-xs text-primary">Challenge Nonce: #9821-ZURICH</div>
+                </div>
+              </div>
+
+              <div class="flex space-x-3">
+                <button onclick="backToLoginStep1()"
+                  class="w-1/3 py-3 bg-surface-container border border-surface-container-high rounded-lg text-sm font-medium hover:bg-surface-container-high">
+                  Back
+                </button>
+                <button onclick="executeLoginApproval()"
+                  class="w-2/3 py-3 bg-primary text-on-primary font-bold rounded-lg shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
+                  <span class="material-symbols-outlined text-sm">check_circle</span>
+                  <span>Approve in App</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Login Step 3: Terminal Loading Sequence -->
+            <div id="login-step-3" class="space-y-6 hidden">
+              <div>
+                <h3 class="text-2xl font-serif font-bold text-primary">Mounting Sovereign Vault Session</h3>
+                <p class="text-sm text-outline mt-1">Establishing encrypted enclave connection...</p>
+              </div>
+
+              <div class="p-6 bg-surface rounded-xl border border-primary/30 space-y-4">
+                <div class="flex justify-between items-center text-xs font-mono text-outline">
+                  <span id="login-load-label">CRYPTOGRAPHIC HANDSHAKE</span>
+                  <span id="login-load-pct" class="text-primary font-bold">35%</span>
+                </div>
+                <div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+                  <div id="login-load-bar" class="bg-primary h-full transition-all duration-700" style="width: 35%;">
+                  </div>
+                </div>
+                <div class="space-y-2 pt-2 font-mono text-xs">
+                  <div class="flex items-center space-x-2 text-emerald-400">
+                    <span class="material-symbols-outlined text-xs">done</span>
+                    <span>Saxess Pro Biometrics Verified</span>
+                  </div>
+                  <div id="log-stage-2" class="flex items-center space-x-2 opacity-50">
+                    <span class="material-symbols-outlined text-xs">schedule</span>
+                    <span>Decrypting Allocated Vault Compartments</span>
+                  </div>
+                  <div id="log-stage-3" class="flex items-center space-x-2 opacity-50">
+                    <span class="material-symbols-outlined text-xs">schedule</span>
+                    <span>Launching sGold Terminal</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= REGISTER / ONBOARDING FLOW ================= -->
+          <div id="flow-register" class="space-y-6 hidden">
+
+            <!-- Progress Stepper Header -->
+            <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+              <span id="reg-step-title" class="font-mono text-xs text-primary uppercase font-bold">Step 1 of 6: Email &
+                Master Key</span>
+              <div class="flex space-x-1" id="reg-step-dots">
+                <div class="w-5 h-1.5 rounded-full bg-primary" id="dot-1"></div>
+                <div class="w-5 h-1.5 rounded-full bg-surface-container-high" id="dot-2"></div>
+                <div class="w-5 h-1.5 rounded-full bg-surface-container-high" id="dot-3"></div>
+                <div class="w-5 h-1.5 rounded-full bg-surface-container-high" id="dot-4"></div>
+                <div class="w-5 h-1.5 rounded-full bg-surface-container-high" id="dot-5"></div>
+                <div class="w-5 h-1.5 rounded-full bg-surface-container-high" id="dot-6"></div>
+              </div>
+            </div>
+
+            <!-- Step 1: Email + Password (Check Exists) -->
+            <div id="reg-step-1" class="space-y-4">
+              <div>
+                <h3 class="text-xl font-serif font-bold text-on-surface">Initiate Onboarding Registration</h3>
+                <p class="text-xs text-outline mt-0.5">Enter your sovereign or corporate email to begin onboarding.</p>
+              </div>
+
+              <div class="space-y-3">
+                <div>
+                  <label class="block text-xs font-mono text-on-surface-variant uppercase mb-1">Corporate / Personal
+                    Email</label>
+                  <input type="email" id="reg-email" value="partner@geneva-wealth.com"
+                    class="w-full bg-surface border border-outline-variant/50 rounded-lg px-4 py-2.5 text-on-surface font-mono text-sm focus:outline-none focus:border-primary">
+                </div>
+                <div>
+                  <label class="block text-xs font-mono text-on-surface-variant uppercase mb-1">Create Master Vault
+                    Password</label>
+                  <input type="password" id="reg-pass" value="SecureMasterKey2026!"
+                    class="w-full bg-surface border border-outline-variant/50 rounded-lg px-4 py-2.5 text-on-surface font-mono text-sm focus:outline-none focus:border-primary">
+                </div>
+              </div>
+
+              <div
+                class="p-3 bg-surface rounded-lg border border-primary/20 text-xs text-on-surface-variant flex items-center space-x-2">
+                <span class="material-symbols-outlined text-primary text-sm">security</span>
+                <span>System will verify email uniqueness and issue a 6-digit cryptographic OTP.</span>
+              </div>
+
+              <button onclick="goToRegStep(2)"
+                class="w-full py-3.5 bg-primary text-on-primary font-bold rounded-lg hover:brightness-110 transition-all flex items-center justify-center space-x-2">
+                <span>Check & Send OTP Code</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </button>
+            </div>
+
+            <!-- Step 2: OTP Verification -->
+            <div id="reg-step-2" class="space-y-4 hidden">
+              <div>
+                <h3 class="text-xl font-serif font-bold text-on-surface">Enter Cryptographic OTP</h3>
+                <p class="text-xs text-outline mt-0.5">A 6-digit confirmation code was sent to your registered email.
+                </p>
+              </div>
+
+              <div class="flex justify-center space-x-2 py-3">
+                <input type="text" maxlength="1" value="8"
+                  class="w-11 h-12 text-center bg-surface border border-primary rounded-lg text-lg font-mono font-bold text-primary">
+                <input type="text" maxlength="1" value="4"
+                  class="w-11 h-12 text-center bg-surface border border-primary rounded-lg text-lg font-mono font-bold text-primary">
+                <input type="text" maxlength="1" value="9"
+                  class="w-11 h-12 text-center bg-surface border border-primary rounded-lg text-lg font-mono font-bold text-primary">
+                <input type="text" maxlength="1" value="2"
+                  class="w-11 h-12 text-center bg-surface border border-primary rounded-lg text-lg font-mono font-bold text-primary">
+                <input type="text" maxlength="1" value="1"
+                  class="w-11 h-12 text-center bg-surface border border-primary rounded-lg text-lg font-mono font-bold text-primary">
+                <input type="text" maxlength="1" value="7"
+                  class="w-11 h-12 text-center bg-surface border border-primary rounded-lg text-lg font-mono font-bold text-primary">
+              </div>
+
+              <div class="flex space-x-3">
+                <button onclick="goToRegStep(1)"
+                  class="w-1/3 py-3 bg-surface-container border border-surface-container-high rounded-lg text-sm">Back</button>
+                <button onclick="goToRegStep(3)"
+                  class="w-2/3 py-3 bg-primary text-on-primary font-bold rounded-lg hover:brightness-110">Verify</button>
+              </div>
+            </div>
+
+            <!-- Step 3: Entity Classification (Individual vs Organisation) -->
+            <div id="reg-step-3" class="space-y-4 hidden">
+              <div>
+                <h3 class="text-xl font-serif font-bold text-on-surface">Select Onboarding Classification</h3>
+                <p class="text-xs text-outline mt-0.5">Choose entity structure to configure Veriff verification
+                  workflows.</p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <!-- Individual Selection -->
+                <div id="card-type-individual" onclick="setEntityType('Individual')"
+                  class="cursor-pointer bg-surface border-2 border-primary rounded-xl p-4 space-y-2 hover:bg-surface-container transition-all">
+                  <div class="w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined">person</span>
+                  </div>
+                  <h4 class="font-bold text-sm text-on-surface">Individual HNW</h4>
+                  <p class="text-[11px] text-outline leading-tight">Accredited individual investor requiring Veriff KYC
+                    & Identity proof.</p>
+                </div>
+
+                <!-- Organisation Selection -->
+                <div id="card-type-organisation" onclick="setEntityType('Organisation')"
+                  class="cursor-pointer bg-surface border border-outline-variant/40 rounded-xl p-4 space-y-2 hover:border-primary transition-all">
+                  <div class="w-10 h-10 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined">corporate_fare</span>
+                  </div>
+                  <h4 class="font-bold text-sm text-on-surface">Organisation / Fund</h4>
+                  <p class="text-[11px] text-outline leading-tight">Corporate treasury, Family Office, or Sovereign Fund
+                    requiring KYB.</p>
+                </div>
+              </div>
+
+              <div class="flex space-x-3">
+                <button onclick="goToRegStep(2)"
+                  class="w-1/3 py-3 bg-surface-container border border-surface-container-high rounded-lg text-sm">Back</button>
+                <button onclick="goToRegStep(4)"
+                  class="w-2/3 py-3 bg-primary text-on-primary font-bold rounded-lg hover:brightness-110">Continue with
+                  <span id="btn-chosen-entity">Individual</span></button>
+              </div>
+            </div>
+
+            <!-- Step 4: Connect Wallet & Sign Cryptographic Challenge -->
+            <div id="reg-step-4" class="space-y-4 hidden">
+              <div>
+                <h3 class="text-xl font-serif font-bold text-on-surface">Connect Custody Wallet & Sign</h3>
+                <p class="text-xs text-outline mt-0.5">Bind your institutional Web3 custody wallet to the account.</p>
+              </div>
+
+              <div class="p-4 bg-surface rounded-xl border border-outline-variant/40 space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-3">
+                    <span class="material-symbols-outlined text-primary text-2xl">account_balance_wallet</span>
+                    <div>
+                      <div class="text-xs font-bold text-on-surface">MetaMask Institutional / Fireblocks</div>
+                      <div class="font-mono text-[11px] text-primary">0x71C8...8B42 (Connected)</div>
+                    </div>
+                  </div>
+                  <span
+                    class="px-2 py-0.5 bg-emerald-400/10 text-emerald-400 text-[10px] font-mono rounded">CONNECTED</span>
+                </div>
+
+                <div
+                  class="p-3 bg-surface-container-low rounded-lg border border-surface-container-high text-left font-mono text-[11px] text-outline space-y-1">
+                  <div class="text-primary font-bold">CHALLENGE MESSAGE TO SIGN:</div>
+                  <div class="truncate text-on-surface">"sGold-Sovereign-Binding: nonces-88192-2026-auth"</div>
+                </div>
+              </div>
+
+              <div class="flex space-x-3">
+                <button onclick="goToRegStep(3)"
+                  class="w-1/3 py-3 bg-surface-container border border-surface-container-high rounded-lg text-sm">Back</button>
+                <button onclick="signWalletAndContinue()"
+                  class="w-2/3 py-3 bg-primary text-on-primary font-bold rounded-lg hover:brightness-110 flex items-center justify-center space-x-2">
+                  <span class="material-symbols-outlined text-sm">draw</span>
+                  <span>Sign Challenge & Continue</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 5: Payment Mode Selection (Fiat vs Crypto Settlement) -->
+            <div id="reg-step-5" class="space-y-4 hidden">
+              <div>
+                <h3 class="text-xl font-serif font-bold text-on-surface">Select Payment Mode</h3>
+                <p class="text-xs text-outline mt-0.5">Configure preferred funding method for future sGold allocations.
+                </p>
+              </div>
+
+              <div class="space-y-3">
+                <!-- Fiat Option -->
+                <div id="opt-pay-fiat" onclick="selectPaymentMode('fiat')"
+                  class="cursor-pointer p-3.5 bg-surface border-2 border-primary rounded-xl flex items-center justify-between">
+                  <div class="flex items-center space-x-3">
+                    <span class="material-symbols-outlined text-primary">account_balance</span>
+                    <div>
+                      <div class="text-sm font-bold text-on-surface">Fiat Wire Transfer (USD / CHF / EUR)</div>
+                      <div class="text-xs text-outline">Direct segregated bank settlement via UBS Zurich.</div>
+                    </div>
+                  </div>
+                  <input type="radio" name="pay-mode" checked class="accent-primary">
+                </div>
+
+                <!-- Fiat Bank details sub-form (shown if fiat) -->
+                <div id="fiat-bank-subform"
+                  class="p-3 bg-surface rounded-lg border border-outline-variant/30 space-y-2">
+                  <div class="text-[11px] font-mono text-primary font-bold">PRIMARY INSTITUTIONAL BANK ACCOUNT:</div>
+                  <input type="text" value="UBS Switzerland AG - IBAN: CH93 0024 0240 1234 5678 9"
+                    class="w-full bg-surface-container-low border border-surface-container-high rounded px-3 py-2 text-xs font-mono text-on-surface">
+                </div>
+
+                <!-- Crypto Option -->
+                <div id="opt-pay-crypto" onclick="selectPaymentMode('crypto')"
+                  class="cursor-pointer p-3.5 bg-surface border border-outline-variant/40 rounded-xl flex items-center justify-between">
+                  <div class="flex items-center space-x-3">
+                    <span class="material-symbols-outlined text-primary">token</span>
+                    <div>
+                      <div class="text-sm font-bold text-on-surface">Crypto Stablecoin (USDT / USDC)</div>
+                      <div class="text-xs text-outline">Near Instant Settlement</div>
+                    </div>
+                  </div>
+                  <input type="radio" name="pay-mode" class="accent-primary">
+                </div>
+
+                <!-- Settlement token Option -->
+                <div id="opt-pay-crypto2" onclick="selectPaymentMode('crypto2')"
+                  class="cursor-pointer p-3.5 bg-surface border border-outline-variant/40 rounded-xl flex items-center justify-between">
+                  <div class="flex items-center space-x-3">
+                    <span class="material-symbols-outlined text-primary">token</span>
+                    <div>
+                      <div class="text-sm font-bold text-on-surface">Settlement Token</div>
+                      <div class="text-xs text-outline">Instant atomic on-chain settlement with 15% Fee Discount.</div>
+                    </div>
+                  </div>
+                  <input type="radio" name="pay-mode" class="accent-primary">
+                </div>
+
+              </div>
+
+              <div class="flex space-x-3">
+                <button onclick="goToRegStep(4)"
+                  class="w-1/3 py-3 bg-surface-container border border-surface-container-high rounded-lg text-sm">Back</button>
+                <button onclick="goToRegStep(6)"
+                  class="w-2/3 py-3 bg-primary text-on-primary font-bold rounded-lg hover:brightness-110">Proceed to
+                  Compliance</button>
+              </div>
+            </div>
+
+            <!-- Step 6: Veriff KYC / KYB & AML Screening -->
+            <div id="reg-step-6" class="space-y-4 hidden">
+              <div>
+                <h3 class="text-xl font-serif font-bold text-on-surface">Veriff Compliance & AML Check</h3>
+                <p class="text-xs text-outline mt-0.5" id="veriff-desc">Automated identity verification & on-chain
+                  sanctions graph audit.</p>
+              </div>
+
+              <!-- Dynamic KYC/KYB Checklist based on chosen entity -->
+              <div id="kyc-checklist-box" class="p-4 bg-surface rounded-xl border border-primary/30 space-y-3">
+                <!-- Checklist items will be populated via JS -->
+              </div>
+
+              <div
+                class="p-3 bg-surface-container rounded-lg border border-outline-variant/30 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="material-symbols-outlined text-emerald-400 text-sm">shield</span>
+                  <span class="text-xs text-on-surface font-mono">FINMA REGULATORY CLEARANCE</span>
+                </div>
+                <span
+                  class="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-400/10 px-2 py-0.5 rounded">PASSED</span>
+              </div>
+
+              <div class="flex space-x-3">
+                <button onclick="goToRegStep(5)"
+                  class="w-1/3 py-3 bg-surface-container border border-surface-container-high rounded-lg text-sm">Back</button>
+                <button onclick="completeOnboardingToDashboard()"
+                  class="w-2/3 py-3 bg-primary text-on-primary font-bold rounded-lg shadow-lg shadow-primary/20 hover:brightness-110 flex items-center justify-center space-x-2">
+                  <span class="material-symbols-outlined text-sm">rocket_launch</span>
+                  <span>Initialize Dashboard</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Bottom Footer -->
+  <footer class="w-full border-t border-surface-container-high bg-surface-container-low px-6 py-4">
+    <div
+      class="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between text-xs text-outline font-mono gap-2">
+      <div>sGold Technology AG &copy; 2026. Swiss Regulated LBMA Custody Provider.</div>
+      <div class="flex items-center space-x-4">
+        <span>Proof of Reserves: 107%</span>
+        <span>Audit Hash: 0x4F9B...8E21</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app-state.js"></script>
+  <script src="../assets/js/shared-ui.js"></script>
+  <script>
+    let currentRegStep = 1;
+    let selectedEntity = "Individual";
+
+    function switchAuthTab(tab) {
+      const loginBtn = document.getElementById('tab-login-btn');
+      const regBtn = document.getElementById('tab-register-btn');
+      const loginFlow = document.getElementById('flow-login');
+      const regFlow = document.getElementById('flow-register');
+
+      if (tab === 'login') {
+        loginBtn.className = "flex-1 pb-4 text-center font-bold text-base transition-all text-primary border-b-2 border-primary";
+        regBtn.className = "flex-1 pb-4 text-center font-bold text-base transition-all text-outline hover:text-on-surface border-b-2 border-transparent";
+        loginFlow.classList.remove('hidden');
+        regFlow.classList.add('hidden');
+      } else {
+        regBtn.className = "flex-1 pb-4 text-center font-bold text-base transition-all text-primary border-b-2 border-primary";
+        loginBtn.className = "flex-1 pb-4 text-center font-bold text-base transition-all text-outline hover:text-on-surface border-b-2 border-transparent";
+        regFlow.classList.remove('hidden');
+        loginFlow.classList.add('hidden');
+      }
+    }
+
+    // Login Flow Controls
+    function startLoginBiometrics() {
+      document.getElementById('login-step-1').classList.add('hidden');
+      document.getElementById('login-step-2').classList.remove('hidden');
+    }
+
+    function backToLoginStep1() {
+      document.getElementById('login-step-2').classList.add('hidden');
+      document.getElementById('login-step-1').classList.remove('hidden');
+    }
+
+    function executeLoginApproval() {
+      document.getElementById('login-step-2').classList.add('hidden');
+      document.getElementById('login-step-3').classList.remove('hidden');
+
+      const bar = document.getElementById('login-load-bar');
+      const pct = document.getElementById('login-load-pct');
+      const log2 = document.getElementById('log-stage-2');
+      const log3 = document.getElementById('log-stage-3');
+
+      setTimeout(() => {
+        bar.style.width = '70%';
+        pct.innerText = '70%';
+        log2.classList.remove('opacity-50');
+        log2.className = 'flex items-center space-x-2 text-emerald-400';
+        log2.querySelector('span:first-child').innerText = 'done';
+      }, 700);
+
+      setTimeout(() => {
+        bar.style.width = '100%';
+        pct.innerText = '100%';
+        log3.classList.remove('opacity-50');
+        log3.className = 'flex items-center space-x-2 text-emerald-400';
+        log3.querySelector('span:first-child').innerText = 'done';
+      }, 1400);
+
+      setTimeout(() => {
+        window.location.href = 'dashboard.html';
+      }, 2000);
+    }
+
+    // Registration Flow Controls
+    function goToRegStep(step) {
+      currentRegStep = step;
+      for (let i = 1; i <= 6; i++) {
+        const el = document.getElementById(`reg-step-${i}`);
+        const dot = document.getElementById(`dot-${i}`);
+        if (el) el.classList.add('hidden');
+        if (dot) {
+          dot.className = i <= step ? "w-5 h-1.5 rounded-full bg-primary" : "w-5 h-1.5 rounded-full bg-surface-container-high";
+        }
+      }
+
+      const target = document.getElementById(`reg-step-${step}`);
+      if (target) target.classList.remove('hidden');
+
+      const titles = [
+        "Step 1 of 6: Email & Master Key",
+        "Step 2 of 6: OTP Code Verification",
+        "Step 3 of 6: Entity Classification",
+        "Step 4 of 6: Wallet Connection & Signing",
+        "Step 5 of 6: Settlement Funding Method",
+        "Step 6 of 6: Veriff Compliance & AML Audit"
+      ];
+      document.getElementById('reg-step-title').innerText = titles[step - 1];
+
+      if (step === 6) {
+        renderComplianceChecklist();
+      }
+    }
+
+    function setEntityType(type) {
+      selectedEntity = type;
+      const cardInd = document.getElementById('card-type-individual');
+      const cardOrg = document.getElementById('card-type-organisation');
+      const btnChosen = document.getElementById('btn-chosen-entity');
+
+      btnChosen.innerText = type;
+
+      if (type === 'Individual') {
+        cardInd.className = "cursor-pointer bg-surface border-2 border-primary rounded-xl p-4 space-y-2 hover:bg-surface-container transition-all";
+        cardOrg.className = "cursor-pointer bg-surface border border-outline-variant/40 rounded-xl p-4 space-y-2 hover:border-primary transition-all";
+      } else {
+        cardOrg.className = "cursor-pointer bg-surface border-2 border-primary rounded-xl p-4 space-y-2 hover:bg-surface-container transition-all";
+        cardInd.className = "cursor-pointer bg-surface border border-outline-variant/40 rounded-xl p-4 space-y-2 hover:border-primary transition-all";
+      }
+    }
+
+    function signWalletAndContinue() {
+      triggerSaxessProBiometrics({
+        title: "Sign Custody Wallet Nonce",
+        subtitle: "Confirm challenge signature on your hardware device to bind 0x71C8...8B42",
+        challenge: "0x71C-BIND-NONCE",
+        onApproved: () => {
+          goToRegStep(5);
+        }
+      });
+    }
+
+    function selectPaymentMode(mode) {
+      const optFiat = document.getElementById('opt-pay-fiat');
+      const optCrypto = document.getElementById('opt-pay-crypto');
+      const optCrypto2 = document.getElementById('opt-pay-crypto2');
+      const subform = document.getElementById('fiat-bank-subform');
+
+      if (mode === 'fiat') {
+        optFiat.className = "cursor-pointer p-3.5 bg-surface border-2 border-primary rounded-xl flex items-center justify-between";
+        optCrypto.className = "cursor-pointer p-3.5 bg-surface border border-outline-variant/40 rounded-xl flex items-center justify-between";
+        subform.classList.remove('hidden');
+        optFiat.querySelector('input').checked = true;
+      } else if (mode === 'crypto') {
+        optCrypto.className = "cursor-pointer p-3.5 bg-surface border-2 border-primary rounded-xl flex items-center justify-between";
+        optFiat.className = "cursor-pointer p-3.5 bg-surface border border-outline-variant/40 rounded-xl flex items-center justify-between";
+        subform.classList.add('hidden');
+        optCrypto.querySelector('input').checked = true;
+      } else {
+        optCrypto.className = "cursor-pointer p-3.5 bg-surface border-2 border-primary rounded-xl flex items-center justify-between";
+        optFiat.className = "cursor-pointer p-3.5 bg-surface border border-outline-variant/40 rounded-xl flex items-center justify-between";
+        subform.classList.add('hidden');
+        optCrypto2.querySelector('input').checked = true;
+      }
+    }
+
+    function renderComplianceChecklist() {
+      const box = document.getElementById('kyc-checklist-box');
+      if (selectedEntity === 'Individual') {
+        box.innerHTML = `
+          <div class="text-xs font-mono text-primary font-bold">START KYC FROM VERIFF (INDIVIDUAL):</div>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high">
+              <span class="text-on-surface">1. Legal Full Name & DOB</span>
+              <span class="text-emerald-400 font-mono">VERIFIED</span>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high">
+              <span class="text-on-surface">2. Residential Address & Nationality</span>
+              <span class="text-emerald-400 font-mono">SWISS RESIDENCY</span>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high">
+              <span class="text-on-surface">3. Government ID / Passport Liveness</span>
+              <span class="text-emerald-400 font-mono">BIOMETRIC MATCH</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-on-surface">4. Real-Time Wallet AML Check</span>
+              <span class="text-emerald-400 font-mono">13.50 RISK SCORE</span>
+            </div>
+          </div>
+        `;
+      } else {
+        box.innerHTML = `
+          <div class="text-xs font-mono text-primary font-bold">START KYB FROM VERIFF (ORGANISATION):</div>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high">
+              <span class="text-on-surface">1. Commercial Register & Legal Entity ID</span>
+              <span class="text-emerald-400 font-mono">CH-660-1284-9</span>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high">
+              <span class="text-on-surface">2. Authorised Signatory Mandate</span>
+              <span class="text-emerald-400 font-mono">ATTESTED</span>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high">
+              <span class="text-on-surface">3. Ultimate Beneficial Owners (UBO >25%)</span>
+              <span class="text-emerald-400 font-mono">CLEARED</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-on-surface">4. Institutional Wallet AML Graph Screening</span>
+              <span class="text-emerald-400 font-mono">7.35 RISK SCORE</span>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function completeOnboardingToDashboard() {
+      const state = getSGoldState();
+      state.user.entityType = selectedEntity;
+      state.user.name = selectedEntity === 'Individual' ? 'Alexander von Bern' : 'Global Trust Fund';
+      saveSGoldState(state);
+      window.location.href = 'dashboard.html';
+    }
+  </script>
+</body>
+
+</html>

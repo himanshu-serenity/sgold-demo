@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sGold Admin | Token Owners Daily Snapshot & Cap Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f2ca50",
+            "primary-dim": "#d4af37",
+            "on-primary": "#3c2f00",
+            surface: "#16130b",
+            "surface-container-low": "#1f1b13",
+            "surface-container": "#231f17",
+            "surface-container-high": "#2d2a21",
+            "surface-container-highest": "#38342b",
+            "on-surface": "#eae1d4",
+            "on-surface-variant": "#d0c5af",
+            outline: "#99907c",
+            "outline-variant": "#4d4635",
+            error: "#ffb4ab"
+          },
+          fontFamily: {
+            serif: ["Newsreader", "Georgia", "serif"],
+            mono: ["JetBrains Mono", "monospace"],
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="bg-surface text-on-surface font-sans min-h-screen">
+
+  <main class="pt-24 pb-16 px-6 max-w-[1440px] mx-auto space-y-6">
+
+    <!-- Admin Top Bar & Snapshot Selector -->
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-surface-container-low p-6 rounded-2xl border border-surface-container-high shadow-md">
+      <div>
+        <div class="flex items-center space-x-2 mb-1">
+          <span class="px-2.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary text-[10px] font-mono uppercase tracking-wider font-bold">
+            sGold Admin Suite
+          </span>
+          <span class="px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-mono">
+            DAILY 00:00 UTC PROOF SNAPSHOT
+          </span>
+          <span class="text-xs text-outline font-mono">FINMA Compliant Cap Table</span>
+        </div>
+        <h1 class="text-3xl font-serif font-bold text-on-surface">Token Owners & Allocation Snapshot</h1>
+        <p class="text-xs text-outline mt-1">Daily cryptographic cap table breakdown of all allocated sGold tokens, institutional vs HNWI ownership distribution, and bar fraction percentages.</p>
+      </div>
+
+      <!-- Snapshot Date Switcher & Links -->
+      <div class="flex flex-wrap items-center gap-3">
+        <div class="flex items-center space-x-2 bg-surface-container px-3 py-1.5 rounded-xl border border-surface-container-high">
+          <span class="material-symbols-outlined text-sm text-primary">calendar_today</span>
+          <span class="text-xs font-mono text-outline">Snapshot Date:</span>
+          <select id="snapshotDateSelect" onchange="switchSnapshotDate(this.value)" class="bg-transparent text-xs font-mono text-on-surface font-bold outline-none cursor-pointer">
+            <option value="2026-09-08" class="bg-surface-container text-on-surface">Today (Sep 08, 2026 00:00 UTC)</option>
+            <option value="2026-09-07" class="bg-surface-container text-on-surface">Sep 07, 2026 00:00 UTC</option>
+            <option value="2026-09-06" class="bg-surface-container text-on-surface">Sep 06, 2026 00:00 UTC</option>
+            <option value="2026-09-01" class="bg-surface-container text-on-surface">Sep 01, 2026 (Monthly Open)</option>
+          </select>
+        </div>
+
+        <a href="admin-ledger.html" class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-primary/40 text-xs font-mono flex items-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-sm text-primary">receipt_long</span>
+          <span>Token Ledger</span>
+        </a>
+        <a href="admin-allocation.html" class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-primary/40 text-xs font-mono flex items-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-sm text-primary">grain</span>
+          <span>Bar Allocation Deck</span>
+        </a>
+        <a href="security.html" class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-emerald-400/40 text-xs font-mono flex items-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-sm text-emerald-400">shield</span>
+          <span>Security Framework</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Snapshot KPI Aggregates -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Total Allocated Tokens</span>
+          <span class="material-symbols-outlined text-primary text-sm">toll</span>
+        </div>
+        <div class="text-2xl font-serif font-bold text-on-surface mb-1" id="kpiTotalAllocated">28,000.000 oz</div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-emerald-400">
+          <span>$138,600,000 USD Value</span>
+          <span class="text-outline text-[11px]">• 93.3% of Vaults</span>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Physical Gold In Reserve</span>
+          <span class="material-symbols-outlined text-amber-400 text-sm">shield</span>
+        </div>
+        <div class="text-2xl font-serif font-bold text-on-surface mb-1">30,000.000 oz</div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-amber-400">
+          <span>107.14% Over-Collateralized</span>
+          <span class="text-outline text-[11px]">• 2,000 oz Buffer</span>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Active Unique Holders</span>
+          <span class="material-symbols-outlined text-sky-400 text-sm">group</span>
+        </div>
+        <div class="text-2xl font-serif font-bold text-on-surface mb-1">214 Entities</div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-sky-400">
+          <span>142 Institutional / 72 HNWI</span>
+          <span class="text-outline text-[11px]">• 100% KYC/KYB</span>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Top 10 Ownership Ratio</span>
+          <span class="material-symbols-outlined text-purple-400 text-sm">donut_large</span>
+        </div>
+        <div class="text-2xl font-serif font-bold text-on-surface mb-1">68.45%</div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-purple-400">
+          <span>19,166.00 oz in Top 10</span>
+          <span class="text-outline text-[11px]">• Diversified</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual Distribution Chart & Category Breakdown -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Entity Category Share (Pie/Bar Representation) -->
+      <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-serif font-bold text-lg text-on-surface">Holder Classification</h3>
+          <span class="text-xs font-mono text-outline">By AUM Volume</span>
+        </div>
+        
+        <div class="space-y-4 font-mono text-xs">
+          <!-- Institutional Sovereign & Treasury -->
+          <div>
+            <div class="flex justify-between text-on-surface mb-1">
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-primary"></span> Sovereign & Pension Funds</span>
+              <span class="font-bold text-primary">52.4% (14,672 oz)</span>
+            </div>
+            <div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+              <div class="h-full bg-primary rounded-full" style="width: 52.4%"></div>
+            </div>
+          </div>
+
+          <!-- Private Banks & Family Offices -->
+          <div>
+            <div class="flex justify-between text-on-surface mb-1">
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-emerald-400"></span> Private Banks & Family Offices</span>
+              <span class="font-bold text-emerald-400">28.1% (7,868 oz)</span>
+            </div>
+            <div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+              <div class="h-full bg-emerald-400 rounded-full" style="width: 28.1%"></div>
+            </div>
+          </div>
+
+          <!-- High-Net-Worth Individuals (HNWI) -->
+          <div>
+            <div class="flex justify-between text-on-surface mb-1">
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-sky-400"></span> Verified HNWI Individuals</span>
+              <span class="font-bold text-sky-400">12.8% (3,584 oz)</span>
+            </div>
+            <div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+              <div class="h-full bg-sky-400 rounded-full" style="width: 12.8%"></div>
+            </div>
+          </div>
+
+          <!-- Protocol Liquidity & Buffer Reserve -->
+          <div>
+            <div class="flex justify-between text-on-surface mb-1">
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-purple-400"></span> Treasury Liquidity Buffer</span>
+              <span class="font-bold text-purple-400">6.7% (1,876 oz)</span>
+            </div>
+            <div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+              <div class="h-full bg-purple-400 rounded-full" style="width: 6.7%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high text-[11px] font-mono text-outline space-y-1">
+          <div class="flex justify-between text-on-surface">
+            <span>FINMA Minimum Holding:</span>
+            <span class="text-primary font-bold">1.000 oz</span>
+          </div>
+          <div class="flex justify-between text-on-surface">
+            <span>Largest Single Holder:</span>
+            <span class="text-on-surface font-bold">Alpine Sovereign Reserve (14.28%)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Snapshot Details & Audited Vault Mapping -->
+      <div class="lg:col-span-2 bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <div>
+            <h3 class="font-serif font-bold text-lg text-on-surface">Cryptographic Proof-of-Reserve Snapshot</h3>
+            <p class="text-xs text-outline font-mono">Merkle Root: <span class="text-primary font-bold" id="merkleRootHash">0x9a8f4c2e11893dbe024987f21a0049c811234901</span></p>
+          </div>
+          <button onclick="verifyMerkleRoot()" class="px-3 py-1.5 bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 font-mono text-xs rounded-lg hover:bg-emerald-400/20 transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">verified</span>
+            <span>Verify Merkle Tree</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs">
+          <div class="p-3.5 bg-surface-container rounded-xl border border-surface-container-high space-y-1">
+            <span class="text-outline text-[10px] uppercase">Dallas Sovereign Depository</span>
+            <div class="text-base font-bold text-on-surface">12,500.00 oz</div>
+            <div class="text-primary text-[11px]">41.67% of Reserves • 390 Bars</div>
+            <div class="text-emerald-400 text-[10px] flex items-center gap-1">
+              <span class="material-symbols-outlined text-[12px]">check_circle</span> Allocated: 11,800 oz
+            </div>
+          </div>
+
+          <div class="p-3.5 bg-surface-container rounded-xl border border-surface-container-high space-y-1">
+            <span class="text-outline text-[10px] uppercase">Zurich FreeZone Safehouse</span>
+            <div class="text-base font-bold text-on-surface">10,250.00 oz</div>
+            <div class="text-primary text-[11px]">34.17% of Reserves • 320 Bars</div>
+            <div class="text-emerald-400 text-[10px] flex items-center gap-1">
+              <span class="material-symbols-outlined text-[12px]">check_circle</span> Allocated: 9,650 oz
+            </div>
+          </div>
+
+          <div class="p-3.5 bg-surface-container rounded-xl border border-surface-container-high space-y-1">
+            <span class="text-outline text-[10px] uppercase">Singapore Le Freeport</span>
+            <div class="text-base font-bold text-on-surface">7,250.00 oz</div>
+            <div class="text-primary text-[11px]">24.16% of Reserves • 225 Bars</div>
+            <div class="text-emerald-400 text-[10px] flex items-center gap-1">
+              <span class="material-symbols-outlined text-[12px]">check_circle</span> Allocated: 6,550 oz
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 bg-surface-container/60 rounded-xl border border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono">
+          <div class="flex items-center space-x-3">
+            <span class="material-symbols-outlined text-primary text-2xl">security</span>
+            <div>
+              <div class="text-on-surface font-bold">Zero-Knowledge Ownership Validation</div>
+              <div class="text-outline text-[11px]">All entity identities mapped with FINMA KYC/KYB & Saxess Pro Hardware Enclaves.</div>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 rounded bg-primary/20 text-primary text-[11px] font-bold border border-primary/30 shrink-0">
+            AUDIT PASSED 100%
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter & Search Controls -->
+    <div class="bg-surface-container-low p-4 rounded-xl border border-surface-container-high flex flex-wrap items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-mono text-outline uppercase mr-2">Filter Category:</span>
+        <button onclick="filterOwnerType('ALL')" id="tab-owners-ALL" class="owner-filter-tab px-3 py-1.5 rounded-lg text-xs font-mono bg-primary text-on-primary font-bold shadow-sm">ALL (214)</button>
+        <button onclick="filterOwnerType('Organisation')" id="tab-owners-ORG" class="owner-filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">ORGANISATIONS (142)</button>
+        <button onclick="filterOwnerType('Individual')" id="tab-owners-INDIV" class="owner-filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">INDIVIDUAL HNWI (72)</button>
+      </div>
+
+      <div class="flex items-center gap-3 flex-1 max-w-md justify-end">
+        <div class="relative w-full">
+          <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-sm">search</span>
+          <input type="text" id="ownerSearchInput" oninput="handleOwnerSearch()" placeholder="Search owner name, entity, wallet, or jurisdiction..."
+            class="w-full bg-surface-container border border-surface-container-high focus:border-primary rounded-lg pl-9 pr-4 py-2 text-xs text-on-surface font-mono outline-none">
+        </div>
+      </div>
+    </div>
+
+    <!-- Token Owners Snapshot Cap Table -->
+    <div class="bg-surface-container-low rounded-2xl border border-surface-container-high overflow-hidden shadow-lg">
+      <div class="p-5 border-b border-surface-container-high flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <div class="flex items-center space-x-3">
+          <span class="material-symbols-outlined text-primary">analytics</span>
+          <h2 class="font-serif font-bold text-lg text-on-surface">Daily Token Owners Cap Table</h2>
+          <span class="text-xs font-mono text-outline bg-surface-container px-2.5 py-0.5 rounded border border-outline-variant/30" id="snapshotBadge">Snapshot: Sep 08, 2026</span>
+        </div>
+        <div class="text-xs font-mono text-outline">
+          Total Circulating Cap: <span class="text-primary font-bold">28,000.000 sGold</span> ($138.60M)
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="border-b border-surface-container-high bg-surface-container/60 text-outline font-mono uppercase text-[11px]">
+              <th class="py-3 px-4">Rank & Entity Name</th>
+              <th class="py-3 px-4">Entity Type</th>
+              <th class="py-3 px-4">Jurisdiction & KYC</th>
+              <th class="py-3 px-4">Allocated Gold (oz)</th>
+              <th class="py-3 px-4">Cap Table %</th>
+              <th class="py-3 px-4">USD Value ($4,950/oz)</th>
+              <th class="py-3 px-4">Assigned Bars Status</th>
+              <th class="py-3 px-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="ownersTableBody" class="divide-y divide-surface-container-high font-mono">
+            <!-- Dynamic rows will be injected by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination / Footer info -->
+      <div class="p-4 border-t border-surface-container-high flex flex-col sm:flex-row items-center justify-between text-xs text-outline font-mono gap-3 bg-surface-container/30">
+        <div>Showing <span id="displayedOwnersCount" class="text-on-surface font-bold">10</span> Top Allocated Entities</div>
+        <div class="flex items-center space-x-2">
+          <button class="px-3 py-1 rounded bg-surface-container border border-surface-container-high text-outline hover:text-on-surface cursor-pointer">Previous</button>
+          <span class="px-2 py-1 text-primary font-bold">Page 1 of 22</span>
+          <button class="px-3 py-1 rounded bg-surface-container border border-surface-container-high text-on-surface hover:border-primary cursor-pointer">Next</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Entity Deep-Dive Modal -->
+  <div id="ownerModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md">
+    <div class="bg-surface-container-low border border-primary/40 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative overflow-hidden">
+      <div class="flex items-center justify-between pb-4 border-b border-surface-container-high mb-4">
+        <div class="flex items-center space-x-2">
+          <span class="material-symbols-outlined text-primary">account_balance</span>
+          <h3 class="font-serif font-bold text-lg text-on-surface" id="ownerModalTitle">Entity Ownership Profile</h3>
+        </div>
+        <button onclick="closeModal('ownerModal')" class="text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-4 font-mono text-xs" id="ownerModalBody">
+        <!-- Content injected dynamically -->
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-surface-container-high flex justify-between items-center">
+        <a id="btnViewAllocModal" href="admin-allocation.html" class="text-primary text-xs font-mono hover:underline flex items-center gap-1">
+          <span>View in Allocation Deck</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+        <button onclick="closeModal('ownerModal')" class="px-4 py-2 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono hover:brightness-110">
+          Close Profile
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/app-state.js"></script>
+  <script src="../assets/js/shared-ui.js"></script>
+  <script>
+    // Dummy Snapshot Dataset
+    const OWNERS_DATA = [
+      {
+        rank: 1,
+        name: "Alpine Sovereign Treasury Fund",
+        type: "Organisation",
+        category: "Sovereign Fund",
+        jurisdiction: "Switzerland (FINMA)",
+        kycStatus: "VERIFIED",
+        wallet: "0x55B8...119C",
+        holdingOz: 4000.000,
+        holdingPct: 14.286,
+        usdValue: "$19,800,000",
+        barsAssigned: "400x 10 oz Bars (100% Whole Allocation)",
+        primaryVault: "Zurich FreeZone Safehouse",
+        joinedDate: "2025-11-12"
+      },
+      {
+        rank: 2,
+        name: "Helvetia Sovereign Asset Management",
+        type: "Organisation",
+        category: "Pension & Asset Manager",
+        jurisdiction: "Liechtenstein",
+        kycStatus: "VERIFIED",
+        wallet: "0x44D1...771B",
+        holdingOz: 3500.000,
+        holdingPct: 12.500,
+        usdValue: "$17,325,000",
+        barsAssigned: "350x 10 oz Bars (100% Whole)",
+        primaryVault: "Zurich FreeZone Safehouse",
+        joinedDate: "2026-01-08"
+      },
+      {
+        rank: 3,
+        name: "Nordic Sovereign Reserve Corp",
+        type: "Organisation",
+        category: "Institutional Reserve",
+        jurisdiction: "Norway / Sweden",
+        kycStatus: "VERIFIED",
+        wallet: "0x88C1...22D4",
+        holdingOz: 3000.000,
+        holdingPct: 10.714,
+        usdValue: "$14,850,000",
+        barsAssigned: "300x 10 oz Bars (100% Whole)",
+        primaryVault: "Dallas Sovereign Depository, USA",
+        joinedDate: "2026-02-15"
+      },
+      {
+        rank: 4,
+        name: "Zurich Private Banking AG",
+        type: "Organisation",
+        category: "Private Bank",
+        jurisdiction: "Switzerland (FINMA)",
+        kycStatus: "VERIFIED",
+        wallet: "0x11E9...00F3",
+        holdingOz: 2500.000,
+        holdingPct: 8.929,
+        usdValue: "$12,375,000",
+        barsAssigned: "250x 10 oz Bars (100% Whole)",
+        primaryVault: "Zurich FreeZone Safehouse",
+        joinedDate: "2025-12-01"
+      },
+      {
+        rank: 5,
+        name: "Singapore Apex Custody Ltd",
+        type: "Organisation",
+        category: "Family Office Custodian",
+        jurisdiction: "Singapore (MAS Regulated)",
+        kycStatus: "VERIFIED",
+        wallet: "0x98A1...660F",
+        holdingOz: 2200.000,
+        holdingPct: 7.857,
+        usdValue: "$10,890,000",
+        barsAssigned: "220x 10 oz Bars (100% Whole)",
+        primaryVault: "Singapore Le Freeport",
+        joinedDate: "2026-03-20"
+      },
+      {
+        rank: 6,
+        name: "Global Trust Fund (Demo User)",
+        type: "Organisation",
+        category: "Family Office Trust",
+        jurisdiction: "Switzerland",
+        kycStatus: "VERIFIED",
+        wallet: "0x71C8...8B42",
+        holdingOz: 25.800,
+        holdingPct: 0.092,
+        usdValue: "$127,710",
+        barsAssigned: "2x 10 oz Whole + 58% of Bar LBMA-CH-99482",
+        primaryVault: "Dallas Sovereign Depository, USA",
+        joinedDate: "2026-04-10"
+      },
+      {
+        rank: 7,
+        name: "Dr. Maximilian von Berg",
+        type: "Individual",
+        category: "HNWI Tier-1",
+        jurisdiction: "Germany / Monaco",
+        kycStatus: "VERIFIED",
+        wallet: "0x33A0...99E2",
+        holdingOz: 150.000,
+        holdingPct: 0.536,
+        usdValue: "$742,500",
+        barsAssigned: "15x 10 oz Bars (100% Whole)",
+        primaryVault: "Zurich FreeZone Safehouse",
+        joinedDate: "2026-05-02"
+      },
+      {
+        rank: 8,
+        name: "Lady Eleanor Vance",
+        type: "Individual",
+        category: "HNWI Tier-1",
+        jurisdiction: "United Kingdom",
+        kycStatus: "VERIFIED",
+        wallet: "0x77F2...8831",
+        holdingOz: 85.000,
+        holdingPct: 0.304,
+        usdValue: "$420,750",
+        barsAssigned: "8x 10 oz Whole + 50% of Bar LBMA-CH-99483",
+        primaryVault: "Zurich FreeZone Safehouse",
+        joinedDate: "2026-05-18"
+      },
+      {
+        rank: 9,
+        name: "Geneva Wealth Partners",
+        type: "Organisation",
+        category: "Asset Management",
+        jurisdiction: "Switzerland (FINMA)",
+        kycStatus: "VERIFIED",
+        wallet: "0x61B2...33C9",
+        holdingOz: 1800.000,
+        holdingPct: 6.429,
+        usdValue: "$8,910,000",
+        barsAssigned: "180x 10 oz Bars (100% Whole)",
+        primaryVault: "Zurich FreeZone Safehouse",
+        joinedDate: "2026-01-22"
+      },
+      {
+        rank: 10,
+        name: "Crestview Bullion Partners",
+        type: "Organisation",
+        category: "Physical Arbitrage",
+        jurisdiction: "United States (Delaware)",
+        kycStatus: "VERIFIED",
+        wallet: "0x228A...44D8",
+        holdingOz: 1200.000,
+        holdingPct: 4.286,
+        usdValue: "$5,940,000",
+        barsAssigned: "120x 10 oz Bars (100% Whole)",
+        primaryVault: "Dallas Sovereign Depository, USA",
+        joinedDate: "2026-02-28"
+      }
+    ];
+
+    let currentOwnerFilter = 'ALL';
+    let ownerSearchQuery = '';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSharedNav('snapshot');
+      renderOwnersTable();
+    });
+
+    function filterOwnerType(type) {
+      currentOwnerFilter = type;
+      document.querySelectorAll('.owner-filter-tab').forEach(el => {
+        el.className = "owner-filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container transition-all";
+      });
+      const activeBtn = type === 'ALL' ? document.getElementById('tab-owners-ALL') :
+                        type === 'Organisation' ? document.getElementById('tab-owners-ORG') :
+                        document.getElementById('tab-owners-INDIV');
+      if (activeBtn) {
+        activeBtn.className = "owner-filter-tab px-3 py-1.5 rounded-lg text-xs font-mono bg-primary text-on-primary font-bold shadow-sm transition-all";
+      }
+      renderOwnersTable();
+    }
+
+    function handleOwnerSearch() {
+      ownerSearchQuery = document.getElementById('ownerSearchInput').value.toLowerCase();
+      renderOwnersTable();
+    }
+
+    function switchSnapshotDate(dateStr) {
+      document.getElementById('snapshotBadge').textContent = `Snapshot: ${dateStr}`;
+      // Trigger a subtle refresh animation
+      renderOwnersTable();
+    }
+
+    function verifyMerkleRoot() {
+      alert("✅ FINMA Cryptographic Proof Verified!\n\nAll 214 entity leaf nodes match Root Hash: 0x9a8f4c2e11893dbe024987f21a0049c811234901.\nZero discrepancies across Dallas, Zurich, and Singapore depositories.");
+    }
+
+    function renderOwnersTable() {
+      const tbody = document.getElementById('ownersTableBody');
+      const filtered = OWNERS_DATA.filter(o => {
+        const matchesFilter = (currentOwnerFilter === 'ALL' || o.type === currentOwnerFilter);
+        const matchesSearch = !ownerSearchQuery ||
+          o.name.toLowerCase().includes(ownerSearchQuery) ||
+          o.wallet.toLowerCase().includes(ownerSearchQuery) ||
+          o.jurisdiction.toLowerCase().includes(ownerSearchQuery) ||
+          o.category.toLowerCase().includes(ownerSearchQuery);
+        return matchesFilter && matchesSearch;
+      });
+
+      document.getElementById('displayedOwnersCount').textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" class="text-center py-8 text-outline">
+              <span class="material-symbols-outlined text-3xl mb-2 block text-outline/50">search_off</span>
+              No owners found matching filter & search query.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(o => {
+        const isOrg = o.type === 'Organisation';
+        return `
+          <tr class="hover:bg-surface-container/50 transition-colors">
+            <td class="py-3 px-4">
+              <div class="flex items-center space-x-3">
+                <span class="w-6 h-6 rounded-full bg-surface-container border border-surface-container-high flex items-center justify-center font-bold text-xs text-primary">
+                  #${o.rank}
+                </span>
+                <div>
+                  <div class="font-bold text-on-surface">${o.name}</div>
+                  <div class="text-[10px] text-outline">${o.category} • <span class="font-mono text-primary/80">${o.wallet}</span></div>
+                </div>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md border text-[10px] font-bold ${isOrg ? 'bg-amber-400/10 text-amber-300 border-amber-400/30' : 'bg-sky-400/10 text-sky-300 border-sky-400/30'}">
+                <span class="material-symbols-outlined text-[12px]">${isOrg ? 'corporate_fare' : 'person'}</span>
+                ${o.type}
+              </span>
+            </td>
+            <td class="py-3 px-4">
+              <div class="text-on-surface font-medium">${o.jurisdiction}</div>
+              <div class="text-[10px] text-emerald-400 flex items-center gap-1">
+                <span class="material-symbols-outlined text-[12px]">verified</span>
+                ${o.kycStatus}
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <div class="font-bold text-on-surface text-sm">${o.holdingOz.toLocaleString('en-US', {minimumFractionDigits: 3})} oz</div>
+              <div class="text-[10px] text-outline">Pure 99.99% Gold</div>
+            </td>
+            <td class="py-3 px-4">
+              <div class="font-bold text-primary">${o.holdingPct.toFixed(3)}%</div>
+              <div class="w-24 h-1.5 bg-surface-container rounded-full overflow-hidden mt-1">
+                <div class="h-full bg-primary rounded-full" style="width: ${Math.min(100, o.holdingPct * 5)}%"></div>
+              </div>
+            </td>
+            <td class="py-3 px-4">
+              <div class="font-bold text-on-surface">${o.usdValue}</div>
+              <div class="text-[10px] text-outline">Spot MTM</div>
+            </td>
+            <td class="py-3 px-4 max-w-xs">
+              <div class="truncate text-[11px] text-on-surface-variant font-mono" title="${o.barsAssigned}">
+                ${o.barsAssigned}
+              </div>
+              <div class="text-[10px] text-outline">${o.primaryVault}</div>
+            </td>
+            <td class="py-3 px-4 text-right">
+              <button onclick="viewOwnerDetails(${o.rank})" class="px-2.5 py-1 bg-surface-container border border-surface-container-high hover:border-primary/50 text-on-surface rounded text-[11px] hover:text-primary transition-all">
+                Audit Profile
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function viewOwnerDetails(rank) {
+      const o = OWNERS_DATA.find(x => x.rank === rank);
+      if (!o) return;
+
+      document.getElementById('ownerModalTitle').textContent = `Ownership Audit: ${o.name}`;
+      document.getElementById('ownerModalBody').innerHTML = `
+        <div class="p-3.5 bg-surface-container rounded-xl border border-surface-container-high space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="text-outline">CAP TABLE RANK:</span>
+            <span class="font-bold text-primary text-sm">#${o.rank} of 214 Holders</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-outline">WALLET ADDRESS:</span>
+            <span class="text-on-surface font-bold">${o.wallet}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-outline">ENTITY CLASSIFICATION:</span>
+            <span class="text-on-surface">${o.type} (${o.category})</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high">
+            <span class="text-outline block text-[10px] uppercase">Allocated Gold Holding</span>
+            <span class="text-on-surface font-bold text-base block">${o.holdingOz.toLocaleString()} oz</span>
+            <span class="text-primary text-xs font-bold">${o.holdingPct.toFixed(3)}% Total Supply</span>
+          </div>
+          <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high">
+            <span class="text-outline block text-[10px] uppercase">Mark-To-Market USD</span>
+            <span class="text-emerald-400 font-bold text-base block">${o.usdValue}</span>
+            <span class="text-outline text-[10px]">At $4,950.00 / oz Spot</span>
+          </div>
+        </div>
+
+        <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high space-y-1.5">
+          <span class="text-outline block text-[10px] uppercase">Allocated Bar Segregation & Custody</span>
+          <div class="text-on-surface font-bold">${o.barsAssigned}</div>
+          <div class="text-[11px] text-primary">Depository: ${o.primaryVault}</div>
+          <div class="text-[10px] text-outline">Segregation Algorithm: Minimum Bar Fragmentation (Certified FINMA standard)</div>
+        </div>
+
+        <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high flex items-center justify-between">
+          <div>
+            <div class="text-xs text-on-surface font-bold">FINMA & Veriff KYC/KYB Record</div>
+            <div class="text-[10px] text-outline">Jurisdiction: ${o.jurisdiction} • Onboarded: ${o.joinedDate}</div>
+          </div>
+          <span class="px-2 py-0.5 rounded bg-emerald-400/20 text-emerald-400 text-[10px] font-bold border border-emerald-400/30">
+            COMPLIANCE OK
+          </span>
+        </div>
+      `;
+
+      document.getElementById('ownerModal').classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    }
+  </script>
+</body>
+</html>

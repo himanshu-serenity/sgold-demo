@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redeem Bullion | Physical London Good Delivery Gold Delivery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f2ca50",
+            "primary-dim": "#d4af37",
+            "on-primary": "#3c2f00",
+            surface: "#16130b",
+            "surface-container-low": "#1f1b13",
+            "surface-container": "#231f17",
+            "surface-container-high": "#2d2a21",
+            "surface-container-highest": "#38342b",
+            "on-surface": "#eae1d4",
+            "on-surface-variant": "#d0c5af",
+            outline: "#99907c",
+            "outline-variant": "#4d4635",
+            error: "#ffb4ab"
+          },
+          fontFamily: {
+            serif: ["Newsreader", "Georgia", "serif"],
+            mono: ["JetBrains Mono", "monospace"],
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="bg-surface text-on-surface font-sans min-h-screen">
+
+  <main class="pt-24 pb-16 px-6 max-w-[1440px] mx-auto space-y-6">
+
+    <!-- Header & Spot Indicator -->
+    <div
+      class="flex flex-col md:flex-row justify-between items-start md:items-end pb-4 border-b border-surface-container-high gap-4">
+      <div>
+        <div class="flex items-center space-x-2 mb-1">
+          <span
+            class="font-mono text-xs text-primary px-2.5 py-0.5 rounded bg-surface-container border border-primary/20">PHYSICAL
+            REDEMPTION</span>
+          <span class="font-mono text-xs text-outline">LBMA STANDARD BARS (MIN 1 KG)</span>
+        </div>
+        <h1 class="text-3xl font-serif font-bold text-on-surface">Sovereign Bullion Physical Redemption</h1>
+      </div>
+
+      <div
+        class="flex items-center space-x-4 bg-surface-container-low p-3.5 rounded-xl border border-surface-container-high">
+        <div>
+          <div class="text-[10px] font-mono text-outline">1 KG LBMA BAR EQUIV</div>
+          <div class="text-xl font-serif font-bold text-primary">32.1507 oz <span
+              class="text-xs text-on-surface font-mono font-normal">($159,146)</span></div>
+        </div>
+        <div class="h-8 w-px bg-surface-container-high"></div>
+        <div>
+          <div class="text-[10px] font-mono text-outline">ARMORED COURIER</div>
+          <div class="text-base font-serif font-bold text-emerald-400">BRINKS / MALCA-AMIT</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- Left Column: Redemption Form (7 cols) -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-5">
+
+          <div>
+            <h3 class="text-xl font-serif font-bold text-on-surface">Bullion Specification & Bar Weight</h3>
+            <p class="text-xs text-outline mt-0.5">Physical redemption is fulfilled in whole kilograms (Minimum 1 Kg =
+              ~32.15 oz).</p>
+          </div>
+
+          <!-- Quantity Input (Whole Kg) -->
+          <div class="space-y-1.5">
+            <div class="flex justify-between text-xs font-mono">
+              <span class="text-outline uppercase font-bold">Gold Quantity in Whole Kilograms (Min 1 Kg)</span>
+              <span class="text-primary font-bold">1 Kg = 32.15 Troy Ounces</span>
+            </div>
+            <div class="relative flex items-center">
+              <input type="number" id="redeem-kg-input" value="1" min="1" step="1" oninput="calculateRedeemFees()"
+                class="w-full bg-surface border border-outline-variant/50 rounded-xl px-4 py-3.5 text-2xl font-mono font-bold text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+              <div class="absolute right-4 flex items-center space-x-2">
+                <span class="font-mono text-xs font-bold text-primary px-2 py-1 rounded bg-surface-container">WHOLE
+                  KG</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Source Vault Depository -->
+          <div class="space-y-1.5">
+            <label class="block font-mono text-xs text-outline uppercase font-bold">Select Source Vault
+              Depository</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label
+                class="p-3 bg-surface border-2 border-primary rounded-xl flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="source-vault" checked class="accent-primary">
+                <div>
+                  <div class="text-xs font-bold text-on-surface">Zurich, Switzerland</div>
+                  <div class="text-[10px] text-outline font-mono">Gotthard Subterranean Depository</div>
+                </div>
+              </label>
+              <label
+                class="p-3 bg-surface border border-outline-variant/40 rounded-xl flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="source-vault" class="accent-primary">
+                <div>
+                  <div class="text-xs font-bold text-on-surface">Singapore Freeport</div>
+                  <div class="text-[10px] text-outline font-mono">Changi High-Security Bullion Hub</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Select Delivery Address -->
+          <div class="space-y-1.5">
+            <label class="block font-mono text-xs text-outline uppercase font-bold">Select Secured Delivery Destination
+              Address</label>
+            <select
+              class="w-full bg-surface border border-outline-variant/50 rounded-xl px-4 py-3 text-xs font-mono text-on-surface focus:outline-none focus:border-primary">
+              <option>Default: Geneva Private Wealth HQ - Rue du Rhône 42, 1204 Geneva, Switzerland</option>
+              <option>London Family Office - 14 Berkeley Square, Mayfair, London W1J 6BQ, UK</option>
+              <option>Custom Insured Armored Depository Handover Address...</option>
+            </select>
+          </div>
+
+          <!-- Fee Payment Mode Selection -->
+          <div class="space-y-1.5">
+            <label class="block font-mono text-xs text-outline uppercase font-bold">Select Payment Mode for Redemption &
+              Logistics Fee</label>
+            <select id="redeem-fee-mode" onchange="calculateRedeemFees()"
+              class="w-full bg-surface border border-outline-variant/50 rounded-xl px-4 py-3 text-sm font-mono text-on-surface focus:outline-none focus:border-primary">
+              <option value="prefunded">Prefunded USD Account (Instant Clearance)</option>
+              <option value="fiat">Fiat USD / CHF Wire</option>
+              <option value="crypto">Crypto USDC / USDT</option>
+              <option value="settlement">Settlement Token (15% Fee Discount)</option>
+            </select>
+          </div>
+
+          <!-- Checkboxes: T&C and Biometrics -->
+          <div class="space-y-2 pt-1 text-xs">
+            <label class="flex items-center space-x-2.5 cursor-pointer text-on-surface-variant">
+              <input type="checkbox" id="redeem-tc-checkbox" checked class="accent-primary w-4 h-4 rounded">
+              <span>I accept the Physical Delivery Terms & Armored Transport Insurance Protocols.</span>
+            </label>
+            <label class="flex items-center space-x-2.5 cursor-pointer text-on-surface-variant">
+              <input type="checkbox" id="redeem-bio-checkbox" checked class="accent-primary w-4 h-4 rounded">
+              <span>Require Saxess Pro Biometric Approval before bar unsealing.</span>
+            </label>
+          </div>
+
+          <!-- Dynamic Quote Breakdown -->
+          <div class="p-4 rounded-xl bg-surface space-y-2 border border-surface-container-high font-mono text-xs">
+            <div class="flex justify-between text-outline">
+              <span>Physical Melt Equivalent</span>
+              <span class="text-on-surface" id="redeem-oz-equiv">32.15 oz sGold Burned</span>
+            </div>
+
+            <div class="flex justify-between text-outline">
+              <span>Platform Fee</span>
+              <span class="text-on-surface" id="redeem-logistics">$500.00</span>
+            </div>
+            <div class="flex justify-between text-outline">
+              <span>Fee Settlement Discount</span>
+              <span class="text-emerald-400" id="redeem-discount">-$0.00</span>
+            </div>
+            <div class="pt-3 border-t border-surface-container-high flex justify-between items-center text-sm">
+              <span class="font-serif font-bold text-on-surface text-base">Net Redemption Handling Fee</span>
+              <span class="text-2xl font-serif font-bold text-primary" id="redeem-total-fee">$500.00</span>
+            </div>
+          </div>
+
+          <!-- Get Quote & Submit Button -->
+          <button onclick="submitRedeemOrder()"
+            class="w-full py-4 bg-primary text-on-primary font-bold font-mono text-base rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
+            <span class="material-symbols-outlined text-sm">local_shipping</span>
+            <span>Confirm Physical Transfer</span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Right Column: Order Lifecycle Simulator (5 cols) -->
+      <div class="lg:col-span-5 space-y-6">
+
+        <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-5">
+          <div class="flex justify-between items-center pb-3 border-b border-surface-container-high">
+            <div class="flex items-center space-x-2">
+              <span class="material-symbols-outlined text-primary text-sm">inventory_2</span>
+              <h3 class="font-serif font-bold text-lg text-on-surface">Redemption & Logistics Lifecycle</h3>
+            </div>
+            <span class="text-[10px] font-mono text-outline uppercase">Tracking</span>
+          </div>
+
+          <!-- 3 Lifecycle Steps -->
+          <div class="space-y-4 text-xs font-mono">
+            <!-- Step 1: Placed -->
+            <div id="red-step-placed" class="p-3 bg-surface rounded-xl border border-surface-container-high space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-on-surface flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-outline"></span> 1. Order Placed Email
+                </span>
+                <span id="red-badge-placed" class="text-outline text-[10px]">Awaiting Submit</span>
+              </div>
+              <p class="text-outline text-[11px]">User receives formal vault order confirmation & token burn receipt.
+              </p>
+            </div>
+
+            <!-- Step 2: Admin Dispatch -->
+            <div id="red-step-admin" class="p-3 bg-surface rounded-xl border border-surface-container-high space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-on-surface flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-outline"></span> 2. Admin Bar Extraction & Courier Handover
+                </span>
+                <span id="red-badge-admin" class="text-outline text-[10px]">Pending Extraction</span>
+              </div>
+              <p class="text-outline text-[11px]">Vault custodian extracts sealed LBMA bars and transfers to Brinks
+                Armored Courier.</p>
+            </div>
+
+            <!-- Step 3: Shipping & Tracking Details -->
+            <div id="red-step-complete"
+              class="p-3 bg-surface rounded-xl border border-surface-container-high space-y-1">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-on-surface flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-outline"></span> 3. Shipping & Airway Bill Email
+                </span>
+                <span id="red-badge-complete" class="text-outline text-[10px]">Queued</span>
+              </div>
+              <p class="text-outline text-[11px]">User receives live GPS airway tracking ID and biometric handover pin.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="../assets/js/app-state.js"></script>
+  <script src="../assets/js/shared-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSharedNav('redeem');
+      calculateRedeemFees();
+    });
+
+    function calculateRedeemFees() {
+      const kg = Math.max(1, parseInt(document.getElementById('redeem-kg-input').value) || 1);
+      const ozEquiv = (kg * 32.1507).toFixed(2);
+      const baseFee = 700.00 * kg;
+      const mode = document.getElementById('redeem-fee-mode').value;
+
+      let discount = 0;
+      if (mode === 'settlement') {
+        discount = baseFee * 0.15; // 15% discount
+      }
+
+      const total = baseFee - discount;
+
+      document.getElementById('redeem-oz-equiv').innerText = `${ozEquiv} oz sGold Burned (${kg} Kg Bar)`;
+      document.getElementById('redeem-logistics').innerText = formatUSD(450 * kg);
+      document.getElementById('redeem-discount').innerText = discount > 0 ? `-${formatUSD(discount)} (15% Off)` : '-$0.00';
+      document.getElementById('redeem-total-fee').innerText = formatUSD(total);
+    }
+
+    function submitRedeemOrder() {
+      const tc = document.getElementById('redeem-tc-checkbox').checked;
+      if (!tc) {
+        alert("Please accept the Physical Delivery Terms & Conditions.");
+        return;
+      }
+
+      const kg = parseInt(document.getElementById('redeem-kg-input').value) || 1;
+      const ozEquiv = kg * 32.15;
+      const state = getSGoldState();
+      if (ozEquiv > state.portfolio.ownedGoldOz) {
+        alert(`Insufficient sGold balance. ${kg} Kg requires ${ozEquiv} oz sGold (You own ${formatOz(state.portfolio.ownedGoldOz)}).`);
+        return;
+      }
+
+      const mode = document.getElementById('redeem-fee-mode').value;
+      const requireBio = document.getElementById('redeem-bio-checkbox').checked;
+
+      const proceedWithSimulation = () => {
+        // Step 1: Placed
+        const step1 = document.getElementById('red-step-placed');
+        const badge1 = document.getElementById('red-badge-placed');
+        step1.className = "p-3 bg-surface rounded-xl border border-primary space-y-1";
+        badge1.className = "text-emerald-400 font-bold text-[10px]";
+        badge1.innerText = "Email Sent";
+
+        // Step 2: Admin Dispatch
+        setTimeout(() => {
+          const step2 = document.getElementById('red-step-admin');
+          const badge2 = document.getElementById('red-badge-admin');
+          step2.className = "p-3 bg-surface rounded-xl border border-primary space-y-1";
+          badge2.className = "text-emerald-400 font-bold text-[10px]";
+          badge2.innerText = "Courier Handover Completed";
+        }, 1200);
+
+        // Step 3: Tracking details
+        setTimeout(() => {
+          const step3 = document.getElementById('red-step-complete');
+          const badge3 = document.getElementById('red-badge-complete');
+          step3.className = "p-3 bg-surface rounded-xl border border-emerald-400 space-y-1";
+          badge3.className = "text-emerald-400 font-bold text-[10px]";
+          badge3.innerText = "Tracking Dispatched: BRK-9921-CH";
+
+          // Update State
+          state.portfolio.ownedGoldOz -= ozEquiv;
+          state.activities.unshift({
+            id: `TXN-${Math.floor(10000 + Math.random() * 90000)}`,
+            date: new Date().toISOString().replace('T', ' ').substring(0, 19) + " UTC",
+            action: "Physical Bullion Redeem",
+            quantity: `-${kg} Kg (${ozEquiv.toFixed(1)} oz)`,
+            price: document.getElementById('redeem-total-fee').innerText + " Fee",
+            status: "Pending Delivery",
+            mode: "Armored Transport"
+          });
+          saveSGoldState(state);
+          alert(`Redemption initiated! Armored courier tracking number #BRK-9921-CH dispatched to your email.`);
+        }, 2500);
+      };
+
+      if (requireBio) {
+        triggerSaxessProBiometrics({
+          title: "Approve Bullion Bar Extraction",
+          subtitle: `Confirm release of ${kg} Kg LBMA Good Delivery gold bar from subterranean vault.`,
+          challenge: `0xREDEEM-${kg}KG-VAULT`,
+          onApproved: proceedWithSimulation
+        });
+      } else {
+        proceedWithSimulation();
+      }
+    }
+  </script>
+</body>
+
+</html>

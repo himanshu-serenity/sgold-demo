@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sGold Security | Institutional Security Architecture & Compliance Framework</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f2ca50",
+            "primary-dim": "#d4af37",
+            "on-primary": "#3c2f00",
+            surface: "#16130b",
+            "surface-container-low": "#1f1b13",
+            "surface-container": "#231f17",
+            "surface-container-high": "#2d2a21",
+            "surface-container-highest": "#38342b",
+            "on-surface": "#eae1d4",
+            "on-surface-variant": "#d0c5af",
+            outline: "#99907c",
+            "outline-variant": "#4d4635",
+            error: "#ffb4ab"
+          },
+          fontFamily: {
+            serif: ["Newsreader", "Georgia", "serif"],
+            mono: ["JetBrains Mono", "monospace"],
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="bg-surface text-on-surface font-sans min-h-screen">
+
+  <main class="pt-24 pb-16 px-6 max-w-[1440px] mx-auto space-y-8">
+
+    <!-- Top Banner & Navigation Header -->
+    <div
+      class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-surface-container-low p-6 rounded-2xl border border-surface-container-high shadow-md">
+      <div>
+        <div class="flex items-center space-x-2 mb-1">
+          <span
+            class="px-2.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary text-[10px] font-mono uppercase tracking-wider font-bold">
+            Institutional Trust & Security
+          </span>
+          <span class="px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-mono">
+            ERC-7518 / DyCIST COMPLIANT
+          </span>
+          <span class="text-xs text-outline font-mono">FINMA Standard</span>
+        </div>
+        <h1 class="text-3xl font-serif font-bold text-on-surface">Institutional Security Architecture</h1>
+        <p class="text-xs text-outline mt-1">Multi-layered defense with ERC-7518 compliance, 3-tier protocol governance, role-based access control, mTLS+PKI, and multi-party quorum authorization.</p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <a href="admin-ledger.html"
+          class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-primary/40 text-xs font-mono flex items-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-sm text-primary">receipt_long</span>
+          <span>Token Ledger</span>
+        </a>
+        <a href="admin-snapshot.html"
+          class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-primary/40 text-xs font-mono flex items-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-sm text-primary">pie_chart</span>
+          <span>Owners Snapshot</span>
+        </a>
+        <a href="admin-allocation.html"
+          class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-primary/40 text-xs font-mono flex items-center gap-2 transition-all">
+          <span class="material-symbols-outlined text-sm text-primary">grain</span>
+          <span>Allocation Engine</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Live Security Status Ribbon -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Smart Contract Standard</span>
+          <span class="material-symbols-outlined text-primary text-sm">token</span>
+        </div>
+        <div class="text-xl font-serif font-bold text-on-surface mb-1">ERC-7518 / DyCIST</div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Dynamic Compliance Engine</span>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Multi-Party Quorum</span>
+          <span class="material-symbols-outlined text-emerald-400 text-sm">group_work</span>
+        </div>
+        <div class="text-xl font-serif font-bold text-on-surface mb-1">3 of 5 Signature Threshold</div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-emerald-400">
+          <span>Zero Single Point of Failure</span>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Transport & Auth</span>
+          <span class="material-symbols-outlined text-sky-400 text-sm">vpn_key</span>
+        </div>
+        <div class="text-xl font-serif font-bold text-on-surface mb-1">mTLS + Hardware PKI</div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-sky-400">
+          <span>Saxess Pro HSM Enclave</span>
+        </div>
+      </div>
+
+      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Audit & Invariance</span>
+          <span class="material-symbols-outlined text-amber-400 text-sm">verified_user</span>
+        </div>
+        <div class="text-xl font-serif font-bold text-on-surface mb-1">100% On-Chain Logs</div>
+        <div class="flex items-center space-x-2 text-xs font-mono text-amber-400">
+          <span>Tamper-Proof Audit Nonce</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. Token-Level Security & Compliance (ERC-7518 / DyCIST) -->
+    <div class="bg-surface-container-low rounded-2xl border border-surface-container-high p-6 space-y-6 shadow-lg">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 border-b border-surface-container-high pb-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-primary/20 text-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl">verified</span>
+          </div>
+          <div>
+            <h2 class="text-2xl font-serif font-bold text-on-surface">1. Token-Level Security & Compliance</h2>
+            <p class="text-xs text-outline font-mono">ERC-7518 / DyCIST (Dynamic Compliance Identity Standard Token)</p>
+          </div>
+        </div>
+        <span class="px-3 py-1 rounded bg-primary/10 border border-primary/30 text-primary font-mono text-xs font-bold">
+          LAYER 1 ENFORCEMENT
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 font-mono text-xs">
+        <!-- Core Feature 1 -->
+        <div class="p-4 bg-surface-container rounded-xl border border-surface-container-high space-y-2.5">
+          <div class="flex items-center justify-between text-primary">
+            <span class="material-symbols-outlined text-xl">token</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-primary/20 font-bold">STANDARD</span>
+          </div>
+          <h3 class="font-serif font-bold text-sm text-on-surface">ERC-7518 / DyCIST Architecture</h3>
+          <p class="text-outline text-[11px] leading-relaxed">
+            Standardized smart contract interface ensuring all transfers comply dynamically with institutional rules and physical asset backing restrictions.
+          </p>
+          <div class="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">check_circle</span> Active on Mainnet & Zurich L2
+          </div>
+        </div>
+
+        <!-- Core Feature 2 -->
+        <div class="p-4 bg-surface-container rounded-xl border border-surface-container-high space-y-2.5">
+          <div class="flex items-center justify-between text-emerald-400">
+            <span class="material-symbols-outlined text-xl">how_to_reg</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-400/20 font-bold">REAL-TIME</span>
+          </div>
+          <h3 class="font-serif font-bold text-sm text-on-surface">On-Chain Compliance & KYC</h3>
+          <p class="text-outline text-[11px] leading-relaxed">
+            Every transaction checks sender and receiver against on-chain FINMA whitelist registries before bytecode execution. Non-KYC wallets revert automatically.
+          </p>
+          <div class="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">check_circle</span> Veriff & LexisNexis Oracle
+          </div>
+        </div>
+
+        <!-- Core Feature 3 -->
+        <div class="p-4 bg-surface-container rounded-xl border border-surface-container-high space-y-2.5">
+          <div class="flex items-center justify-between text-amber-400">
+            <span class="material-symbols-outlined text-xl">ac_unit</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-400/20 font-bold">SANCTION CTRL</span>
+          </div>
+          <h3 class="font-serif font-bold text-sm text-on-surface">Address Freeze / Unfreeze</h3>
+          <p class="text-outline text-[11px] leading-relaxed">
+            Regulatory compliance hooks permit designated Compliance Officers (via multi-sig quorum) to freeze addresses under judicial warrant or OFAC sanctions.
+          </p>
+          <div class="text-[10px] text-primary font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">security</span> Requires Multi-Party Quorum
+          </div>
+        </div>
+
+        <!-- Core Feature 4 -->
+        <div class="p-4 bg-surface-container rounded-xl border border-surface-container-high space-y-2.5">
+          <div class="flex items-center justify-between text-sky-400">
+            <span class="material-symbols-outlined text-xl">history_edu</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-400/20 font-bold">IMMUTABLE</span>
+          </div>
+          <h3 class="font-serif font-bold text-sm text-on-surface">Immutable Audit Events</h3>
+          <p class="text-outline text-[11px] leading-relaxed">
+            Every mint, burn, transfer, and regulatory override emits cryptographically signed event topics indexed for real-time regulator dashboards.
+          </p>
+          <div class="text-[10px] text-sky-400 font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">fingerprint</span> Merkle Root Proof Verified
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Protocol Governance Mechanism (3 Pillars) -->
+    <div class="bg-surface-container-low rounded-2xl border border-surface-container-high p-6 space-y-6 shadow-lg">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 border-b border-surface-container-high pb-4">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-primary/20 text-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl">account_tree</span>
+          </div>
+          <div>
+            <h2 class="text-2xl font-serif font-bold text-on-surface">2. Protocol Governance Framework</h2>
+            <p class="text-xs text-outline font-mono">Tripartite institutional governance dividing operating rules, integrity, and risk assurance</p>
+          </div>
+        </div>
+        <span class="px-3 py-1 rounded bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 font-mono text-xs font-bold">
+          TRIPARTITE PILLARS
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Pillar 1 -->
+        <div class="bg-surface-container p-6 rounded-2xl border border-surface-container-high space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined text-2xl">settings_system_daydream</span>
+            </div>
+            <div>
+              <div class="text-[10px] font-mono text-primary font-bold uppercase">Pillar I</div>
+              <h3 class="font-serif font-bold text-lg text-on-surface">Protocol Operating System</h3>
+            </div>
+          </div>
+          <p class="text-xs text-outline font-mono leading-relaxed">
+            Governs deterministic protocol rules, consensus engine, cross-chain bridge parameters, node synchronization, and scheduled smart contract bytecode upgrades.
+          </p>
+          <div class="p-3 bg-surface-container-low rounded-xl border border-surface-container-high space-y-1.5 font-mono text-xs">
+            <div class="text-on-surface font-bold text-[11px]">• Protocol Rules & Consensus</div>
+            <div class="text-on-surface font-bold text-[11px]">• Network & Node Operations</div>
+            <div class="text-on-surface font-bold text-[11px]">• Timelocked Contract Upgrades (48h Delay)</div>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="bg-surface-container p-6 rounded-2xl border border-surface-container-high space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 rounded-xl bg-emerald-400/20 text-emerald-400 flex items-center justify-center">
+              <span class="material-symbols-outlined text-2xl">shield_locked</span>
+            </div>
+            <div>
+              <div class="text-[10px] font-mono text-emerald-400 font-bold uppercase">Pillar II</div>
+              <h3 class="font-serif font-bold text-lg text-on-surface">Protocol Integrity Framework</h3>
+            </div>
+          </div>
+          <p class="text-xs text-outline font-mono leading-relaxed">
+            Guarantees 100% physical gold vault & reserve verification, coordinates bi-weekly independent physical vault assays (BDO / Alex Stewart), and reconciles on-chain proof of reserves.
+          </p>
+          <div class="p-3 bg-surface-container-low rounded-xl border border-surface-container-high space-y-1.5 font-mono text-xs">
+            <div class="text-on-surface font-bold text-[11px]">• Real-time Vault Proof of Reserves (107%)</div>
+            <div class="text-on-surface font-bold text-[11px]">• Independent Vault Assays & Inspections</div>
+            <div class="text-on-surface font-bold text-[11px]">• Minimum Bar Segregation Invariant Verifier</div>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="bg-surface-container p-6 rounded-2xl border border-surface-container-high space-y-4 hover:border-primary/40 transition-all">
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 rounded-xl bg-sky-400/20 text-sky-400 flex items-center justify-center">
+              <span class="material-symbols-outlined text-2xl">gavel</span>
+            </div>
+            <div>
+              <div class="text-[10px] font-mono text-sky-400 font-bold uppercase">Pillar III</div>
+              <h3 class="font-serif font-bold text-lg text-on-surface">Protocol Assurance Authority</h3>
+            </div>
+          </div>
+          <p class="text-xs text-outline font-mono leading-relaxed">
+            Oversees regulatory assurance, FINMA compliance enforcement, ongoing AML / counter-terrorist financing screening, real-time risk telemetry, and institutional ecosystem insurance policies.
+          </p>
+          <div class="p-3 bg-surface-container-low rounded-xl border border-surface-container-high space-y-1.5 font-mono text-xs">
+            <div class="text-on-surface font-bold text-[11px]">• FINMA AML & Sanctions Monitoring</div>
+            <div class="text-on-surface font-bold text-[11px]">• Lloyd's of London Custody Insurance Bond</div>
+            <div class="text-on-surface font-bold text-[11px]">• Ecosystem Emergency Circuit Breakers</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Role-Based Access Control (RBAC) & Multi-Party Authorization -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      <!-- RBAC: Segregation of Duties & Least Privilege -->
+      <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-5 shadow-lg">
+        <div class="flex items-center justify-between border-b border-surface-container-high pb-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-400/20 text-amber-400 flex items-center justify-center">
+              <span class="material-symbols-outlined text-2xl">admin_panel_settings</span>
+            </div>
+            <div>
+              <h2 class="text-xl font-serif font-bold text-on-surface">3. Role-Based Access Control (RBAC)</h2>
+              <p class="text-xs text-outline font-mono">Segregation of duties & least-privilege administration</p>
+            </div>
+          </div>
+          <span class="px-2.5 py-0.5 rounded bg-amber-400/10 text-amber-400 text-[10px] font-mono font-bold">STRICT SEPARATION</span>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs">
+          <!-- Role 1 -->
+          <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high flex items-start justify-between">
+            <div class="space-y-0.5">
+              <div class="font-bold text-on-surface flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span>ISSUANCE_MINTER_ROLE</span>
+              </div>
+              <div class="text-outline text-[11px]">Authorized only to mint tokens against verified custodian deposit receipts.</div>
+            </div>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-surface-container-high text-primary font-bold shrink-0">Custody Node</span>
+          </div>
+
+          <!-- Role 2 -->
+          <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high flex items-start justify-between">
+            <div class="space-y-0.5">
+              <div class="font-bold text-on-surface flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span>COMPLIANCE_OFFICER_ROLE</span>
+              </div>
+              <div class="text-outline text-[11px]">Can manage KYC whitelist registry, address freezes, and AML reporting.</div>
+            </div>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-surface-container-high text-emerald-400 font-bold shrink-0">Legal / FINMA</span>
+          </div>
+
+          <!-- Role 3 -->
+          <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high flex items-start justify-between">
+            <div class="space-y-0.5">
+              <div class="font-bold text-on-surface flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+                <span>OPERATIONS_OPERATOR_ROLE</span>
+              </div>
+              <div class="text-outline text-[11px]">Handles daily spot price oracle telemetry feeds and gas refuel pipelines.</div>
+            </div>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-surface-container-high text-sky-400 font-bold shrink-0">Automated Bot</span>
+          </div>
+
+          <!-- Role 4 -->
+          <div class="p-3 bg-surface-container rounded-xl border border-surface-container-high flex items-start justify-between">
+            <div class="space-y-0.5">
+              <div class="font-bold text-on-surface flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                <span>UPGRADE_TIMELOCK_ADMIN_ROLE</span>
+              </div>
+              <div class="text-outline text-[11px]">Proposes smart contract upgrades subject to mandatory 48-hour delay window.</div>
+            </div>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-surface-container-high text-purple-400 font-bold shrink-0">Governance Quorum</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-Party Authorization & Enterprise Authentication -->
+      <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-5 shadow-lg flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b border-surface-container-high pb-4 mb-5">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-xl bg-sky-400/20 text-sky-400 flex items-center justify-center">
+                <span class="material-symbols-outlined text-2xl">key</span>
+              </div>
+              <div>
+                <h2 class="text-xl font-serif font-bold text-on-surface">4. Multi-Party Authorization & Enterprise Auth</h2>
+                <p class="text-xs text-outline font-mono">No single-party control + mTLS + PKI-based authentication</p>
+              </div>
+            </div>
+            <span class="px-2.5 py-0.5 rounded bg-sky-400/10 text-sky-400 text-[10px] font-mono font-bold">mTLS + HSM</span>
+          </div>
+
+          <div class="space-y-4 font-mono text-xs">
+            <!-- Multi-Party Quorum -->
+            <div class="p-4 bg-surface-container rounded-xl border border-primary/30 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-primary flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-base">lock</span>
+                  Multi-Party Threshold Quorum (M-of-N)
+                </span>
+                <span class="px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 font-bold text-[10px]">3 of 5 Required</span>
+              </div>
+              <p class="text-outline text-[11px]">
+                Critical state transitions (large bullion releases, treasury mints, contract migration) require consensus from independent geographically segregated signatories across Zurich, London, and Singapore.
+              </p>
+              <div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden flex">
+                <div class="bg-emerald-400 h-full" style="width: 60%"></div>
+                <div class="bg-outline-variant h-full" style="width: 40%"></div>
+              </div>
+              <div class="flex justify-between text-[10px] text-outline">
+                <span class="text-emerald-400">3 Signatures Captured</span>
+                <span>2 Optional Threshold</span>
+              </div>
+            </div>
+
+            <!-- Enterprise mTLS + PKI -->
+            <div class="p-4 bg-surface-container rounded-xl border border-sky-400/30 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-sky-400 flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-base">vpn_lock</span>
+                  Mutual TLS (mTLS) + PKI Hardware Enclave
+                </span>
+                <span class="px-2 py-0.5 rounded bg-sky-400/10 text-sky-400 font-bold text-[10px]">X.509 + YubiKey</span>
+              </div>
+              <p class="text-outline text-[11px]">
+                All administrative RPC connections and terminal actions authenticate via client-side X.509 PKI certificates anchored in FIPS 140-2 Level 3 Hardware Security Modules (HSM) with biometric verification.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-3.5 bg-emerald-400/10 border border-emerald-400/30 rounded-xl flex items-center justify-between font-mono text-xs mt-4">
+          <div class="flex items-center space-x-2">
+            <span class="material-symbols-outlined text-emerald-400 text-lg">verified</span>
+            <span class="text-emerald-400 font-bold">Zero Trust Defense In-Depth</span>
+          </div>
+          <span class="text-outline text-[10px]">Saxess Pro Key Protocol v2.8</span>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="../assets/js/app-state.js"></script>
+  <script src="../assets/js/shared-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSharedNav('security');
+    });
+  </script>
+</body>
+
+</html>

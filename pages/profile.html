@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Institutional Profile & Compliance | sGold Terminal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f2ca50",
+            "primary-dim": "#d4af37",
+            "on-primary": "#3c2f00",
+            surface: "#16130b",
+            "surface-container-low": "#1f1b13",
+            "surface-container": "#231f17",
+            "surface-container-high": "#2d2a21",
+            "surface-container-highest": "#38342b",
+            "on-surface": "#eae1d4",
+            "on-surface-variant": "#d0c5af",
+            outline: "#99907c",
+            "outline-variant": "#4d4635",
+            error: "#ffb4ab"
+          },
+          fontFamily: {
+            serif: ["Newsreader", "Georgia", "serif"],
+            mono: ["JetBrains Mono", "monospace"],
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+<body class="bg-surface text-on-surface font-sans min-h-screen">
+
+  <main class="pt-24 pb-16 px-6 max-w-[1440px] mx-auto space-y-6">
+
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-4 border-b border-surface-container-high gap-4">
+      <div>
+        <div class="flex items-center space-x-2 mb-1">
+          <span class="font-mono text-xs text-primary px-2.5 py-0.5 rounded bg-surface-container border border-primary/20">SOVEREIGN MANDATE</span>
+          <span class="font-mono text-xs text-emerald-400 font-bold">VERIFIED TIER-1 INSTITUTION</span>
+        </div>
+        <h1 class="text-3xl font-serif font-bold text-on-surface">Institution & Custody Profile</h1>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <a href="auth.html" class="px-4 py-2 bg-surface-container hover:bg-error/20 hover:text-error text-on-surface rounded-xl border border-surface-container-high text-xs font-mono transition-all flex items-center space-x-1.5">
+          <span class="material-symbols-outlined text-sm">logout</span>
+          <span>Disconnect Session</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Entity Details (7 cols) -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-5">
+          <div class="flex items-center space-x-4">
+            <div class="w-16 h-16 rounded-2xl bg-primary/20 border-2 border-primary flex items-center justify-center text-primary font-serif font-bold text-2xl shadow-lg shadow-primary/10">
+              GT
+            </div>
+            <div>
+              <h3 class="text-2xl font-serif font-bold text-on-surface" id="profile-name">Global Trust Fund</h3>
+              <div class="flex items-center space-x-2 font-mono text-xs text-outline mt-0.5">
+                <span class="text-primary font-bold">Tier-1 Institutional</span>
+                <span>&bull;</span>
+                <span>CH-660-1284-9</span>
+                <span>&bull;</span>
+                <span class="text-emerald-400">FINMA Cleared</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-3 pt-2 text-xs font-mono">
+            <div class="p-3.5 bg-surface rounded-xl flex justify-between items-center">
+              <span class="text-outline">Primary Corporate Email</span>
+              <span class="text-on-surface font-bold">executive@sovereign-cap.ch</span>
+            </div>
+            <div class="p-3.5 bg-surface rounded-xl flex justify-between items-center">
+              <span class="text-outline">Saxess Pro Biometric ID</span>
+              <span class="text-primary font-bold">SP-9982-ZURICH (Enclave Bound)</span>
+            </div>
+            <div class="p-3.5 bg-surface rounded-xl flex justify-between items-center">
+              <span class="text-outline">Whitelisted Custody Wallet</span>
+              <span class="text-on-surface font-bold">0x71C8390b12A4F891B00E3189FA8842</span>
+            </div>
+            <div class="p-3.5 bg-surface rounded-xl flex justify-between items-center">
+              <span class="text-outline">Registered Depository Bank</span>
+              <span class="text-on-surface font-bold">UBS Switzerland AG (Geneva Branch)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Authorized Signatories -->
+        <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-4">
+          <div class="flex justify-between items-center">
+            <h3 class="text-lg font-serif font-bold text-on-surface">Authorized Signatories & Keys</h3>
+            <span class="text-[10px] font-mono text-primary font-bold">2 OF 3 MULTI-SIG MANDATE</span>
+          </div>
+
+          <div class="space-y-2 text-xs font-mono">
+            <div class="p-3 bg-surface rounded-xl flex justify-between items-center">
+              <div>
+                <div class="text-on-surface font-bold">Marc-Andre Zimmermann (Managing Director)</div>
+                <div class="text-outline text-[10px]">FIDO2 YubiKey 5Ci &bull; Verified</div>
+              </div>
+              <span class="text-emerald-400 font-bold">ACTIVE</span>
+            </div>
+            <div class="p-3 bg-surface rounded-xl flex justify-between items-center">
+              <div>
+                <div class="text-on-surface font-bold">Dr. Elena Rostova (Chief Investment Officer)</div>
+                <div class="text-outline text-[10px]">Saxess Pro FaceID &bull; Verified</div>
+              </div>
+              <span class="text-emerald-400 font-bold">ACTIVE</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Compliance Telemetry (5 cols) -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-5">
+          <div class="flex justify-between items-center pb-3 border-b border-surface-container-high">
+            <div class="flex items-center space-x-2">
+              <span class="material-symbols-outlined text-primary text-sm">verified_user</span>
+              <h3 class="font-serif font-bold text-lg text-on-surface">Compliance Telemetry</h3>
+            </div>
+            <span class="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-400/10 px-2 py-0.5 rounded">PASSED</span>
+          </div>
+
+          <div class="space-y-3 text-xs font-mono">
+            <div class="p-3 bg-surface rounded-xl space-y-1">
+              <div class="flex justify-between text-on-surface font-bold">
+                <span>Veriff KYB Certificate</span>
+                <span class="text-emerald-400">PASSED</span>
+              </div>
+              <p class="text-outline text-[11px]">Corporate registry, beneficial owners (>25%), and statutory representation cleared.</p>
+            </div>
+
+            <div class="p-3 bg-surface rounded-xl space-y-1">
+              <div class="flex justify-between text-on-surface font-bold">
+                <span>Chainalysis On-Chain AML</span>
+                <span class="text-emerald-400">0.00 RISK SCORE</span>
+              </div>
+              <p class="text-outline text-[11px]">Continuous sanctions list scanning and address hop risk scoring.</p>
+            </div>
+
+            <div class="p-3 bg-surface rounded-xl space-y-1">
+              <div class="flex justify-between text-on-surface font-bold">
+                <span>Annual Allocation Limit</span>
+                <span class="text-primary font-bold">$100,000,000 USD</span>
+              </div>
+              <p class="text-outline text-[11px]">Tier-1 Sovereign unlimited OTC execution quota.</p>
+            </div>
+          </div>
+
+          <button onclick="alert('Exporting Full Compliance Pack (PDF)...')" class="w-full py-3 bg-surface-container border border-surface-container-high hover:border-primary/50 text-primary font-mono text-xs font-bold rounded-xl transition-all flex items-center justify-center space-x-1.5">
+            <span class="material-symbols-outlined text-sm">download</span>
+            <span>Download Compliance Dossier (PDF)</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="../assets/js/app-state.js"></script>
+  <script src="../assets/js/shared-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSharedNav('profile');
+      const state = getSGoldState();
+      document.getElementById('profile-name').innerText = state.user.name;
+    });
+  </script>
+</body>
+</html>

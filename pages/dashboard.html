@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sGold Dashboard | LBMA Digital Gold Terminal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#f2ca50",
+            "primary-dim": "#d4af37",
+            "on-primary": "#3c2f00",
+            surface: "#16130b",
+            "surface-container-low": "#1f1b13",
+            "surface-container": "#231f17",
+            "surface-container-high": "#2d2a21",
+            "surface-container-highest": "#38342b",
+            "on-surface": "#eae1d4",
+            "on-surface-variant": "#d0c5af",
+            outline: "#99907c",
+            "outline-variant": "#4d4635",
+            error: "#ffb4ab"
+          },
+          fontFamily: {
+            serif: ["Newsreader", "Georgia", "serif"],
+            mono: ["JetBrains Mono", "monospace"],
+            sans: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="bg-surface text-on-surface font-sans min-h-screen">
+
+  <main class="pt-24 pb-16 px-6 max-w-[1440px] mx-auto space-y-6">
+
+    <!-- Top Live Ticker Ribbon -->
+    <div
+      class="w-full bg-surface-container-low border border-surface-container-high rounded-xl px-5 py-3 flex flex-wrap items-center justify-between gap-4 font-mono text-xs shadow-sm">
+      <div class="flex flex-wrap items-center gap-6">
+        <div class="flex items-center space-x-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+          <span class="text-outline">LBMA SPOT:</span>
+          <span class="text-primary font-bold text-sm">$4,950.00 / oz</span>
+          <span class="text-emerald-400 font-bold bg-emerald-400/10 px-1.5 py-0.5 rounded text-[11px]">+1.18% 24H</span>
+        </div>
+        <div class="flex items-center space-x-2 text-outline">
+          <span>GLOBAL VAULT STATUS:</span>
+          <span class="text-on-surface font-semibold">OPTIMAL (107% OVER-COLLATERALIZED)</span>
+        </div>
+        <div class="hidden xl:flex items-center space-x-2 text-outline">
+          <span>AUDIT HASH:</span>
+          <span class="text-primary">0x4F9B...8E21</span>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3 text-[11px] text-outline">
+        <span class="px-2 py-0.5 rounded bg-surface-container border border-primary/20 text-primary">SECURE CHANNEL
+          ACTIVE</span>
+
+      </div>
+    </div>
+
+    <!-- 4 High-Level KPI Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- KPI 1: Gold Price USD/oz -->
+      <div
+        class="bg-surface-container-low rounded-xl p-5 border border-surface-container-high relative overflow-hidden group hover:border-primary/40 transition-all">
+        <div
+          class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-all">
+        </div>
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">USD / oz Spot Price</span>
+          <span class="material-symbols-outlined text-primary text-sm">trending_up</span>
+        </div>
+        <div class="text-3xl font-serif font-bold text-on-surface mb-1">$4,950.00</div>
+        <div class="flex items-center space-x-2">
+          <span class="px-1.5 py-0.5 rounded bg-emerald-400/10 text-emerald-400 text-xs font-mono font-bold">+1.18%
+            24H</span>
+          <span class="text-xs text-outline">24H High $4,985</span>
+        </div>
+      </div>
+
+      <!-- KPI 2: Gold AUM -->
+      <div
+        class="bg-surface-container-low rounded-xl p-5 border border-surface-container-high relative overflow-hidden group hover:border-primary/40 transition-all">
+        <div
+          class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-all">
+        </div>
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Gold AUM</span>
+          <span class="material-symbols-outlined text-primary text-sm">account_balance</span>
+        </div>
+        <div class="text-3xl font-serif font-bold text-on-surface mb-1">$140 Mn</div>
+        <div class="flex items-center space-x-2">
+          <span class="text-xs font-mono font-bold text-primary">30,020 oz</span>
+          <span class="text-xs text-outline">Total Vaulted</span>
+        </div>
+      </div>
+
+      <!-- KPI 3: Gold Token Circulating Supply -->
+      <div
+        class="bg-surface-container-low rounded-xl p-5 border border-surface-container-high relative overflow-hidden group hover:border-primary/40 transition-all">
+        <div
+          class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-all">
+        </div>
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Circulating Supply</span>
+          <span class="material-symbols-outlined text-primary text-sm">token</span>
+        </div>
+        <div class="text-3xl font-serif font-bold text-on-surface mb-1">30,020.42 oz</div>
+        <div class="flex items-center space-x-2">
+          <span class="text-xs text-outline">1:1 Physical Backed sGold</span>
+        </div>
+      </div>
+
+      <!-- KPI 4: Gold Backing & Reserve Link -->
+      <div onclick="openModal('proofModal')"
+        class="bg-surface-container-low rounded-xl p-5 border border-surface-container-high relative overflow-hidden group hover:border-primary/50 transition-all cursor-pointer">
+        <div
+          class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-all">
+        </div>
+        <div class="flex justify-between items-start mb-2">
+          <span class="font-mono text-xs text-outline uppercase">Gold Backing Ratio</span>
+          <span class="material-symbols-outlined text-primary text-sm">verified_user</span>
+        </div>
+        <div class="text-3xl font-serif font-bold text-primary mb-1">107%</div>
+        <div class="flex items-center justify-between text-xs">
+          <span class="text-outline">Physical: 30k oz | Issued: 28k</span>
+          <span class="text-primary underline font-bold group-hover:translate-x-0.5 transition-transform">VIEW PROOF OF
+            RESERVE →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Chart Section with Timeframe Parameters -->
+    <div class="bg-surface-container-low rounded-xl p-6 border border-surface-container-high space-y-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-serif font-bold text-on-surface">Gold Price & Index Chart</h2>
+          <p class="text-xs text-outline mt-0.5">
+            Real-time LBMA spot benchmark and historical tokenized valuation curves.
+          </p>
+        </div>
+
+        <div
+          class="flex items-center space-x-1 bg-surface-container p-1 rounded-lg border border-surface-container-high">
+          <button id="btn-24H" onclick="setChartPeriod('24H')"
+            class="px-3 py-1 rounded font-mono text-xs bg-primary text-on-primary font-bold transition-all">24H</button>
+          <button id="btn-7D" onclick="setChartPeriod('7D')"
+            class="px-3 py-1 rounded font-mono text-xs text-outline hover:text-on-surface transition-all">7D</button>
+          <button id="btn-30D" onclick="setChartPeriod('30D')"
+            class="px-3 py-1 rounded font-mono text-xs text-outline hover:text-on-surface transition-all">30D</button>
+          <button id="btn-1Y" onclick="setChartPeriod('1Y')"
+            class="px-3 py-1 rounded font-mono text-xs text-outline hover:text-on-surface transition-all">1Y</button>
+          <button id="btn-ALL" onclick="setChartPeriod('ALL')"
+            class="px-3 py-1 rounded font-mono text-xs text-outline hover:text-on-surface transition-all">ALL</button>
+        </div>
+      </div>
+
+      <!-- Chart -->
+      <div class="w-full h-72 relative flex items-end pt-4 pb-2">
+
+        <!-- Y Axis -->
+        <div class="w-16 h-full flex flex-col justify-between py-1 pr-3 text-right shrink-0">
+          <span class="text-[10px] font-mono text-outline">$4,700</span>
+          <span class="text-[10px] font-mono text-outline">$4,350</span>
+          <span class="text-[10px] font-mono text-outline">$4,100</span>
+          <span class="text-[10px] font-mono text-outline">$3,850</span>
+          <span class="text-[10px] font-mono text-outline">$3,500</span>
+        </div>
+
+        <!-- Graph Area -->
+        <div class="relative flex-1 h-full">
+
+          <svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 300">
+
+            <defs>
+              <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#f2ca50" stop-opacity="0.35" />
+                <stop offset="100%" stop-color="#f2ca50" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+
+            <!-- Horizontal Grid Lines -->
+            <g opacity="0.15" stroke="currentColor">
+              <line x1="0" y1="0" x2="1000" y2="0" class="text-outline-variant" />
+              <line x1="0" y1="75" x2="1000" y2="75" class="text-outline-variant" />
+              <line x1="0" y1="150" x2="1000" y2="150" class="text-outline-variant" />
+              <line x1="0" y1="225" x2="1000" y2="225" class="text-outline-variant" />
+              <line x1="0" y1="300" x2="1000" y2="300" class="text-outline-variant" />
+            </g>
+
+            <!-- Gold Price Area -->
+            <path id="chart-area" d="M 0 205
+             Q 60 190, 120 198
+             T 200 180
+             T 280 188
+             T 360 195
+             T 440 185
+             T 520 142
+             T 600 150
+             T 680 145
+             T 760 130
+             T 840 92
+             T 920 105
+             T 1000 72
+             L 1000 300
+             L 0 300 Z" fill="url(#chartGrad)">
+            </path>
+
+            <!-- Gold Price Line -->
+            <path id="chart-line" d="M 0 205
+             Q 60 190, 120 198
+             T 200 180
+             T 280 188
+             T 360 195
+             T 440 185
+             T 520 142
+             T 600 150
+             T 680 145
+             T 760 130
+             T 840 92
+             T 920 105
+             T 1000 72" fill="none" stroke="#f2ca50" stroke-width="3">
+            </path>
+
+          </svg>
+
+          <!-- Vertical Grid Lines -->
+          <div class="absolute inset-0 flex items-center justify-between pointer-events-none opacity-20">
+            <div class="h-full w-px bg-outline-variant"></div>
+            <div class="h-full w-px bg-outline-variant"></div>
+            <div class="h-full w-px bg-outline-variant"></div>
+            <div class="h-full w-px bg-outline-variant"></div>
+            <div class="h-full w-px bg-outline-variant"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-Column Section: Gold Under Management Pie Chart, Custody Network, Gold Token Activity -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- 1. Gold Under Management (Distribution Breakdown) -->
+      <div
+        class="bg-surface-container-low rounded-xl p-6 border border-surface-container-high flex flex-col justify-between space-y-5">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-mono text-xs text-primary uppercase">Portfolio Allocation</span>
+            <span class="material-symbols-outlined text-primary text-sm">pie_chart</span>
+          </div>
+          <h3 class="text-xl font-serif font-bold text-on-surface">Gold Under Management</h3>
+        </div>
+
+        <!-- SVG Donut Chart -->
+        <div class="flex items-center justify-center relative py-2">
+          <svg class="w-44 h-44 -rotate-90" viewBox="0 0 100 100">
+            <!-- Background circle -->
+            <circle cx="50" cy="50" r="40" stroke="#2d2a21" stroke-width="14" fill="none" />
+            <!-- Project Gold (33.33%) -->
+            <circle cx="50" cy="50" r="40" stroke="#f2ca50" stroke-width="14" fill="none" stroke-dasharray="83.8 251.2"
+              stroke-dashoffset="0" />
+            <!-- Client Gold (33.33%) -->
+            <circle cx="50" cy="50" r="40" stroke="#d4af37" stroke-width="14" fill="none" stroke-dasharray="83.8 251.2"
+              stroke-dashoffset="-83.8" />
+            <!-- Institutional Gold (33.33%) -->
+            <circle cx="50" cy="50" r="40" stroke="#99907c" stroke-width="14" fill="none" stroke-dasharray="83.8 251.2"
+              stroke-dashoffset="-167.6" />
+          </svg>
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+            <span class="text-xs font-mono text-outline">TOTAL OZ</span>
+            <span class="text-lg font-serif font-bold text-primary">24,075 oz</span>
+          </div>
+        </div>
+
+        <!-- Legend Items -->
+        <div class="space-y-2 text-xs font-mono">
+          <div class="flex justify-between items-center p-2 rounded bg-surface-container">
+            <div class="flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+              <span class="text-on-surface font-semibold">PROJECT GOLD</span>
+            </div>
+            <span class="text-primary font-bold">8,025 oz ($140 Mn)</span>
+          </div>
+          <div class="flex justify-between items-center p-2 rounded bg-surface-container">
+            <div class="flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-primary-dim"></span>
+              <span class="text-on-surface font-semibold">CLIENT GOLD</span>
+            </div>
+            <span class="text-on-surface font-bold">8,025 oz ($140 Mn)</span>
+          </div>
+          <div class="flex justify-between items-center p-2 rounded bg-surface-container">
+            <div class="flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-outline"></span>
+              <span class="text-on-surface font-semibold">INSTITUTIONAL GOLD</span>
+            </div>
+            <span class="text-on-surface font-bold">8,025 oz ($140 Mn)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Custody Network -->
+      <div
+        class="bg-surface-container-low rounded-xl p-6 border border-surface-container-high flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-mono text-xs text-primary uppercase">Global Vaults</span>
+            <span class="material-symbols-outlined text-primary text-sm">shield</span>
+          </div>
+          <h3 class="text-xl font-serif font-bold text-on-surface">Custody Network</h3>
+          <p class="text-xs text-outline mt-0.5">Segregated tier-1 international depository locations.</p>
+        </div>
+
+        <div class="space-y-3">
+          <div class="p-3 bg-surface-container rounded-lg flex items-center justify-between text-xs">
+            <div>
+              <div class="font-bold text-on-surface text-sm">USA Depository</div>
+              <div class="text-outline font-mono">5,500 oz Secured</div>
+            </div>
+            <span
+              class="px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 font-mono font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">check_circle</span> Verified
+            </span>
+          </div>
+
+          <div class="p-3 bg-surface-container rounded-lg flex items-center justify-between text-xs">
+            <div>
+              <div class="font-bold text-on-surface text-sm">LIECHTENSTEIN Vaults</div>
+              <div class="text-outline font-mono">8,200 oz Secured</div>
+            </div>
+            <span
+              class="px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 font-mono font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">check_circle</span> Verified
+            </span>
+          </div>
+
+          <div class="p-3 bg-surface-container rounded-lg flex items-center justify-between text-xs">
+            <div>
+              <div class="font-bold text-on-surface text-sm">SINGAPORE Le Freeport</div>
+              <div class="text-outline font-mono">11,100 oz Secured</div>
+            </div>
+            <span
+              class="px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 font-mono font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">check_circle</span> Verified
+            </span>
+          </div>
+        </div>
+
+        <button onclick="openModal('custodyModal')"
+          class="w-full py-2.5 bg-surface-container border border-surface-container-high hover:border-primary/50 rounded-lg text-xs font-mono text-primary font-bold transition-all flex items-center justify-center space-x-1">
+          <span>VIEW CUSTODY & GOLD RECORDS</span>
+          <span class="material-symbols-outlined text-xs">arrow_forward</span>
+        </button>
+      </div>
+
+      <!-- 3. Gold Token Activity (30D) -->
+      <div
+        class="bg-surface-container-low rounded-xl p-6 border border-surface-container-high flex flex-col justify-between space-y-4">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-mono text-xs text-primary uppercase">On-Chain Flow</span>
+            <span class="material-symbols-outlined text-primary text-sm">swap_horiz</span>
+          </div>
+          <h3 class="text-xl font-serif font-bold text-on-surface">30D Gold Token Activity</h3>
+          <p class="text-xs text-outline mt-0.5">Rolling token issuance, sale, buyback & physical burns.</p>
+        </div>
+
+        <div class="space-y-2 text-xs font-mono">
+          <div class="flex justify-between items-center p-2.5 bg-surface-container rounded-lg">
+            <span class="text-outline">30D New Gold Tokenised</span>
+            <span class="text-emerald-400 font-bold">+284 oz</span>
+          </div>
+          <div class="flex justify-between items-center p-2.5 bg-surface-container rounded-lg">
+            <span class="text-outline">30D Gold Token Sold</span>
+            <span class="text-on-surface font-bold">110 oz</span>
+          </div>
+          <div class="flex justify-between items-center p-2.5 bg-surface-container rounded-lg">
+            <span class="text-outline">30D Gold Token Repurchased</span>
+            <span class="text-primary font-bold">17 oz</span>
+          </div>
+          <div class="flex justify-between items-center p-2.5 bg-surface-container rounded-lg">
+            <span class="text-outline">30D Gold Token Redeemed</span>
+            <span class="text-error font-bold">0 oz</span>
+          </div>
+        </div>
+
+        <button onclick="openModal('activityModal')"
+          class="w-full py-2.5 bg-surface-container border border-surface-container-high hover:border-primary/50 rounded-lg text-xs font-mono text-primary font-bold transition-all flex items-center justify-center space-x-1">
+          <span>VIEW ALL ACTIVITY</span>
+          <span class="material-symbols-outlined text-xs">arrow_forward</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Quick Action Launchpad -->
+    <div
+      class="p-6 rounded-2xl bg-gradient-to-r from-surface-container-low via-surface-container to-surface-container-low border border-primary/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-4">
+        <img src="../assets/images/sgold-coin-flat.png" alt="sGold" class="w-14 h-14 object-contain">
+        <div>
+          <h4 class="text-lg font-serif font-bold text-on-surface">Institutional Execution Terminals</h4>
+          <p class="text-xs text-outline">Allocate whole ounces of sGold with zero slippage or request physical bullion
+            delivery.</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3 w-full sm:w-auto">
+        <a href="buy.html"
+          class="flex-1 sm:flex-none px-5 py-2.5 bg-primary text-on-primary rounded-lg text-xs font-bold font-mono hover:brightness-110 shadow-lg shadow-primary/20 text-center">
+          + BUY SGOLD
+        </a>
+        <a href="sell.html"
+          class="flex-1 sm:flex-none px-5 py-2.5 bg-surface-container-high text-on-surface rounded-lg text-xs font-bold font-mono hover:bg-surface-container-highest text-center border border-outline-variant/40">
+          SELL SGOLD
+        </a>
+        <a href="redeem.html"
+          class="flex-1 sm:flex-none px-5 py-2.5 bg-surface-container-high text-primary rounded-lg text-xs font-bold font-mono hover:bg-surface-container-highest text-center border border-primary/30">
+          REDEEM BULLION
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- 1. Proof of Reserve Modal -->
+  <div id="proofModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
+    <div
+      class="bg-surface-container-low border border-primary/40 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+        <div class="flex items-center space-x-2 text-primary">
+          <span class="material-symbols-outlined">verified_user</span>
+          <h3 class="text-xl font-serif font-bold text-on-surface">Proof of Reserves Audit</h3>
+        </div>
+        <button onclick="closeModal('proofModal')" class="text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs font-mono">
+        <div class="p-3 bg-surface rounded-lg flex justify-between">
+          <span class="text-outline">Physical Vaulted Gold:</span>
+          <span class="text-primary font-bold">30,000.00 oz (933.1 kg)</span>
+        </div>
+        <div class="p-3 bg-surface rounded-lg flex justify-between">
+          <span class="text-outline">Total Tokens Issued:</span>
+          <span class="text-on-surface font-bold">28,000.00 sGold</span>
+        </div>
+        <div class="p-3 bg-surface rounded-lg flex justify-between">
+          <span class="text-outline">Over-Collateralization Ratio:</span>
+          <span class="text-emerald-400 font-bold">107.14% Backed</span>
+        </div>
+        <div class="p-3 bg-surface rounded-lg flex justify-between">
+          <span class="text-outline">Cryptographic Merkle Root:</span>
+          <span class="text-primary truncate">0x994821a4f891b00e3189fa</span>
+        </div>
+      </div>
+
+      <div class="pt-2 flex justify-end space-x-3">
+        <button onclick="closeModal('proofModal')"
+          class="px-4 py-2 bg-surface-container rounded-lg text-xs">Close</button>
+        <button onclick="alert('Full Audit Report Downloaded (PDF)'); closeModal('proofModal')"
+          class="px-4 py-2 bg-primary text-on-primary font-bold rounded-lg text-xs">Download Auditor Letter
+          (PDF)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Custody Records Modal -->
+  <div id="custodyModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
+    <div
+      class="bg-surface-container-low border border-surface-container-high rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+        <div class="flex items-center space-x-2 text-primary">
+          <span class="material-symbols-outlined">account_balance</span>
+          <h3 class="text-xl font-serif font-bold text-on-surface">Custody & Gold Vault Records</h3>
+        </div>
+        <button onclick="closeModal('custodyModal')" class="text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 max-h-72 overflow-y-auto text-xs font-mono">
+        <div class="p-3 bg-surface rounded-lg space-y-1">
+          <div class="flex justify-between font-bold text-on-surface">
+            <span>USA - Delaware Depository</span>
+            <span class="text-primary">5,500 oz</span>
+          </div>
+          <div class="text-outline text-[11px]">Bars: US-88291 through US-90100 (LBMA Standard 400oz / 1kg)</div>
+          <div class="text-emerald-400 text-[10px]">Audit Status: Verified by Bureau Veritas</div>
+        </div>
+
+        <div class="p-3 bg-surface rounded-lg space-y-1">
+          <div class="flex justify-between font-bold text-on-surface">
+            <span>LIECHTENSTEIN - Princely Vaults</span>
+            <span class="text-primary">8,200 oz</span>
+          </div>
+          <div class="text-outline text-[11px]">Bars: LI-11029 through LI-13000 (Allocated Segregated Storage)</div>
+          <div class="text-emerald-400 text-[10px]">Audit Status: Verified by Swiss Gold Audit AG</div>
+        </div>
+
+        <div class="p-3 bg-surface rounded-lg space-y-1">
+          <div class="flex justify-between font-bold text-on-surface">
+            <span>SINGAPORE - Le Freeport Changi</span>
+            <span class="text-primary">11,100 oz</span>
+          </div>
+          <div class="text-outline text-[11px]">Bars: SG-55201 through SG-57000 (Tax-Free Freezone Custody)</div>
+          <div class="text-emerald-400 text-[10px]">Audit Status: Verified by Malca-Amit</div>
+        </div>
+      </div>
+
+      <div class="pt-2 flex justify-end space-x-3">
+        <button onclick="closeModal('custodyModal')"
+          class="px-4 py-2 bg-surface-container rounded-lg text-xs">Close</button>
+        <button onclick="alert('Exporting CSV Ledger of All 37,500 oz Bars...')"
+          class="px-4 py-2 bg-primary text-on-primary font-bold rounded-lg text-xs">Export CSV Bar Ledger</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. All Token Activity Modal -->
+  <div id="activityModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
+    <div
+      class="bg-surface-container-low border border-surface-container-high rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+        <div class="flex items-center space-x-2 text-primary">
+          <span class="material-symbols-outlined">history</span>
+          <h3 class="text-xl font-serif font-bold text-on-surface">Token Activity Logs</h3>
+        </div>
+        <button onclick="closeModal('activityModal')" class="text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-2.5 max-h-72 overflow-y-auto text-xs font-mono">
+        <div class="flex justify-between items-center p-3 bg-surface rounded-lg">
+          <div>
+            <div class="text-on-surface font-bold">Token Mint (New Gold Tokenised)</div>
+            <div class="text-[11px] text-outline">Tx: 0x82f...91ab &bull; 2026-09-07 14:10 UTC</div>
+          </div>
+          <span class="text-primary font-bold text-sm">+284 oz</span>
+        </div>
+        <div class="flex justify-between items-center p-3 bg-surface rounded-lg">
+          <div>
+            <div class="text-on-surface font-bold">Institutional Primary Sale</div>
+            <div class="text-[11px] text-outline">Tx: 0x33c...10ff &bull; 2026-09-05 11:20 UTC</div>
+          </div>
+          <span class="text-on-surface font-bold text-sm">-110 oz</span>
+        </div>
+        <div class="flex justify-between items-center p-3 bg-surface rounded-lg">
+          <div>
+            <div class="text-on-surface font-bold">Treasury Repurchase</div>
+            <div class="text-[11px] text-outline">Tx: 0x11a...e4bc &bull; 2026-09-02 09:45 UTC</div>
+          </div>
+          <span class="text-primary font-bold text-sm">+17 oz</span>
+        </div>
+        <div class="flex justify-between items-center p-3 bg-surface rounded-lg">
+          <div>
+            <div class="text-on-surface font-bold">Bullion Physical Redemption</div>
+            <div class="text-[11px] text-outline">Tx: 0x99e...4321 &bull; 2026-08-30 16:15 UTC</div>
+          </div>
+          <span class="text-error font-bold text-sm">0 oz</span>
+        </div>
+      </div>
+
+      <div class="pt-2 flex justify-end">
+        <button onclick="closeModal('activityModal')"
+          class="px-4 py-2 bg-surface-container rounded-lg text-xs">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/app-state.js"></script>
+  <script src="../assets/js/shared-ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSharedNav('dashboard');
+    });
+
+    function setChartPeriod(p) {
+      ['24H', '7D', '30D', '1Y', 'ALL'].forEach(period => {
+        const btn = document.getElementById(`btn-${period}`);
+        if (btn) {
+          if (period === p) {
+            btn.className = "px-3 py-1 rounded font-mono text-xs bg-primary text-on-primary font-bold transition-all";
+          } else {
+            btn.className = "px-3 py-1 rounded font-mono text-xs text-outline hover:text-on-surface transition-all";
+          }
+        }
+      });
+
+      // Interactive curve changes
+      const line = document.getElementById('chart-line');
+      const area = document.getElementById('chart-area');
+      if (p === '24H') {
+        line.setAttribute('d', 'M 0 240 Q 150 200, 300 170 T 600 110 T 850 60 L 1000 30');
+        area.setAttribute('d', 'M 0 240 Q 150 200, 300 170 T 600 110 T 850 60 L 1000 30 L 1000 300 L 0 300 Z');
+      } else if (p === '7D') {
+        line.setAttribute('d', 'M 0 200 Q 250 260, 500 140 T 750 90 L 1000 40');
+        area.setAttribute('d', 'M 0 200 Q 250 260, 500 140 T 750 90 L 1000 40 L 1000 300 L 0 300 Z');
+      } else {
+        line.setAttribute('d', 'M 0 270 Q 200 180, 400 220 T 700 80 L 1000 20');
+        area.setAttribute('d', 'M 0 270 Q 200 180, 400 220 T 700 80 L 1000 20 L 1000 300 L 0 300 Z');
+      }
+    }
+
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    }
+  </script>
+</body>
+
+</html>
