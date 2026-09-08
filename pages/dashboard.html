@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -8,23 +8,23 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
           colors: {
-            primary: "#f2ca50",
-            "primary-dim": "#d4af37",
-            "on-primary": "#3c2f00",
-            surface: "#16130b",
-            "surface-container-low": "#1f1b13",
-            "surface-container": "#231f17",
-            "surface-container-high": "#2d2a21",
-            "surface-container-highest": "#38342b",
-            "on-surface": "#eae1d4",
-            "on-surface-variant": "#d0c5af",
-            outline: "#99907c",
-            "outline-variant": "#4d4635",
-            error: "#ffb4ab"
+            primary: "#b88a10",
+            "primary-dim": "#9a710a",
+            "primary-light": "#fff8e4",
+            "on-primary": "#ffffff",
+            surface: "#ffffff",
+            "surface-container-low": "#fafaf5",
+            "surface-container": "#f4efe4",
+            "surface-container-high": "#eae4d4",
+            "surface-container-highest": "#ded6c2",
+            "on-surface": "#1a1810",
+            "on-surface-variant": "#706858",
+            outline: "#8c826e",
+            "outline-variant": "#e8e3d8",
+            error: "#dc2626"
           },
           fontFamily: {
             serif: ["Newsreader", "Georgia", "serif"],
@@ -186,8 +186,8 @@
 
             <defs>
               <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#f2ca50" stop-opacity="0.35" />
-                <stop offset="100%" stop-color="#f2ca50" stop-opacity="0" />
+                <stop offset="0%" stop-color="#b88a10" stop-opacity="0.35" />
+                <stop offset="100%" stop-color="#b88a10" stop-opacity="0" />
               </linearGradient>
             </defs>
 
@@ -231,7 +231,7 @@
              T 760 130
              T 840 92
              T 920 105
-             T 1000 72" fill="none" stroke="#f2ca50" stroke-width="3">
+             T 1000 72" fill="none" stroke="#b88a10" stroke-width="3">
             </path>
 
           </svg>
@@ -267,15 +267,15 @@
         <div class="flex items-center justify-center relative py-2">
           <svg class="w-44 h-44 -rotate-90" viewBox="0 0 100 100">
             <!-- Background circle -->
-            <circle cx="50" cy="50" r="40" stroke="#2d2a21" stroke-width="14" fill="none" />
+            <circle cx="50" cy="50" r="40" stroke="#eae4d4" stroke-width="14" fill="none" />
             <!-- Project Gold (33.33%) -->
-            <circle cx="50" cy="50" r="40" stroke="#f2ca50" stroke-width="14" fill="none" stroke-dasharray="83.8 251.2"
+            <circle cx="50" cy="50" r="40" stroke="#b88a10" stroke-width="14" fill="none" stroke-dasharray="83.8 251.2"
               stroke-dashoffset="0" />
             <!-- Client Gold (33.33%) -->
-            <circle cx="50" cy="50" r="40" stroke="#d4af37" stroke-width="14" fill="none" stroke-dasharray="83.8 251.2"
+            <circle cx="50" cy="50" r="40" stroke="#9a710a" stroke-width="14" fill="none" stroke-dasharray="83.8 251.2"
               stroke-dashoffset="-83.8" />
             <!-- Institutional Gold (33.33%) -->
-            <circle cx="50" cy="50" r="40" stroke="#99907c" stroke-width="14" fill="none" stroke-dasharray="83.8 251.2"
+            <circle cx="50" cy="50" r="40" stroke="#8c826e" stroke-width="14" fill="none" stroke-dasharray="83.8 251.2"
               stroke-dashoffset="-167.6" />
           </svg>
           <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
@@ -410,7 +410,7 @@
       <div class="flex items-center space-x-4">
         <img src="../assets/images/sgold-coin-flat.png" alt="sGold" class="w-14 h-14 object-contain">
         <div>
-          <h4 class="text-lg font-serif font-bold text-on-surface">Institutional Execution Terminals</h4>
+          <h4 class="text-lg font-serif font-bold text-on-surface">Execution Terminals</h4>
           <p class="text-xs text-outline">Allocate whole ounces of sGold with zero slippage or request physical bullion
             delivery.</p>
         </div>

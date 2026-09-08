@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -8,23 +8,23 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
           colors: {
-            primary: "#f2ca50",
-            "primary-dim": "#d4af37",
-            "on-primary": "#3c2f00",
-            surface: "#16130b",
-            "surface-container-low": "#1f1b13",
-            "surface-container": "#231f17",
-            "surface-container-high": "#2d2a21",
-            "surface-container-highest": "#38342b",
-            "on-surface": "#eae1d4",
-            "on-surface-variant": "#d0c5af",
-            outline: "#99907c",
-            "outline-variant": "#4d4635",
-            error: "#ffb4ab"
+            primary: "#b88a10",
+            "primary-dim": "#9a710a",
+            "primary-light": "#fff8e4",
+            "on-primary": "#ffffff",
+            surface: "#ffffff",
+            "surface-container-low": "#fafaf5",
+            "surface-container": "#f4efe4",
+            "surface-container-high": "#eae4d4",
+            "surface-container-highest": "#ded6c2",
+            "on-surface": "#1a1810",
+            "on-surface-variant": "#706858",
+            outline: "#8c826e",
+            "outline-variant": "#e8e3d8",
+            error: "#dc2626"
           },
           fontFamily: {
             serif: ["Newsreader", "Georgia", "serif"],
@@ -47,10 +47,10 @@
     <div class="max-w-[1440px] mx-auto flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <img src="assets/images/sgold-coin.webp" alt="sGold"
-          class="w-10 h-10 object-contain drop-shadow-[0_0_15px_rgba(242,202,80,0.4)]">
+          class="w-10 h-10 object-contain drop-shadow-[0_0_12px_rgba(184,138,16,0.3)]">
         <div>
           <span class="font-serif font-bold text-xl text-primary tracking-tight block">sGOLD TECHNOLOGY AG</span>
-          <span class="font-mono text-[10px] text-outline uppercase tracking-widest">Sovereign LBMA Digital Gold
+          <span class="font-mono text-[10px] text-outline uppercase tracking-widest">LBMA Digital Gold
             Platform</span>
         </div>
       </div>
@@ -74,7 +74,7 @@
           <span>LIVE PROTOTYPE FLOW AVAILABLE</span>
         </div>
         <h1 class="font-serif text-5xl sm:text-6xl font-light text-on-surface leading-tight">
-          Sovereign Gold <span class="text-primary italic font-normal">Institutional Suite</span>
+          sGold <span class="text-primary italic font-normal">Institutional Suite</span>
         </h1>
         <p class="text-on-surface-variant text-lg">
           Complete flow: Registration & Veriff KYC/KYB & AML, Saxess Pro Biometrics, Live Dashboard, Portfolio
@@ -189,28 +189,34 @@
       <!-- Admin Suite & Keynote Section Divider -->
       <div class="pt-8 border-t border-surface-container-high text-left space-y-4">
         <div class="flex items-center space-x-2">
-          <span class="px-2.5 py-0.5 rounded bg-primary/20 text-primary text-[10px] font-mono font-bold tracking-wider uppercase">sGold Admin & Strategy Suite</span>
+          <span
+            class="px-2.5 py-0.5 rounded bg-primary/20 text-primary text-[10px] font-mono font-bold tracking-wider uppercase">sGold
+            Admin & Strategy Suite</span>
           <span class="text-xs text-outline font-mono">TVTG Cryptographic Audit & Presentation Modules</span>
         </div>
-        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-on-surface">Institutional Ledger, Cap Table & Allocation Deck</h2>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-on-surface">Institutional Ledger, Cap Table &
+          Allocation Deck</h2>
       </div>
 
       <!-- Admin Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-        
+
         <!-- Admin Card 1: Token Ledger -->
         <a href="pages/admin-ledger.html"
           class="p-6 bg-surface-container-low rounded-2xl border border-primary/30 hover:border-primary transition-all group flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-1">
           <div class="space-y-2">
-            <div class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
               <span class="material-symbols-outlined text-2xl">receipt_long</span>
             </div>
             <div class="flex items-center justify-between">
               <h3 class="text-lg font-serif font-bold text-on-surface group-hover:text-primary">A1. Token Ledger</h3>
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 font-bold">LIVE SYNC</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 font-bold">LIVE
+                SYNC</span>
             </div>
             <p class="text-xs text-outline leading-relaxed">
-              Complete admin audit trail of Buy (Mint), Sell (Burn), Bullion Physical Redemptions, and Settlement Token conversions with bar ID mapping.
+              Complete admin audit trail of Buy (Mint), Sell (Burn), Bullion Physical Redemptions, and Settlement Token
+              conversions with bar ID mapping.
             </p>
           </div>
           <span class="text-xs font-mono text-primary font-bold flex items-center gap-1">Open Admin Ledger →</span>
@@ -220,15 +226,18 @@
         <a href="pages/admin-snapshot.html"
           class="p-6 bg-surface-container-low rounded-2xl border border-primary/30 hover:border-primary transition-all group flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-1">
           <div class="space-y-2">
-            <div class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
               <span class="material-symbols-outlined text-2xl">pie_chart</span>
             </div>
             <div class="flex items-center justify-between">
               <h3 class="text-lg font-serif font-bold text-on-surface group-hover:text-primary">A2. Owners Snapshot</h3>
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-primary/20 text-primary font-bold">DAILY 00:00 UTC</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-primary/20 text-primary font-bold">DAILY 00:00
+                UTC</span>
             </div>
             <p class="text-xs text-outline leading-relaxed">
-              Everyday cap table snapshot of total 28,000 oz allocated, institutional vs HNWI breakdown, and Merkle root proof.
+              Everyday cap table snapshot of total 28,000 oz allocated, institutional vs HNWI breakdown, and Merkle root
+              proof.
             </p>
           </div>
           <span class="text-xs font-mono text-primary font-bold flex items-center gap-1">Open Owners Snapshot →</span>
@@ -238,12 +247,15 @@
         <a href="pages/admin-allocation.html"
           class="p-6 bg-surface-container-low rounded-2xl border border-primary/30 hover:border-primary transition-all group flex flex-col justify-between space-y-4 shadow-lg hover:-translate-y-1">
           <div class="space-y-2">
-            <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-300 text-on-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
+            <div
+              class="w-12 h-12 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-300 text-on-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
               <span class="material-symbols-outlined text-2xl font-bold">grain</span>
             </div>
             <div class="flex items-center justify-between">
-              <h3 class="text-lg font-serif font-bold text-on-surface group-hover:text-primary">A3. Bar Allocation Deck</h3>
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-yellow-400/20 text-yellow-300 font-bold">Algorithm</span>
+              <h3 class="text-lg font-serif font-bold text-on-surface group-hover:text-primary">A3. Bar Allocation Deck
+              </h3>
+              <span
+                class="text-[10px] font-mono px-2 py-0.5 rounded bg-yellow-400/20 text-yellow-300 font-bold">Algorithm</span>
             </div>
             <p class="text-xs text-outline leading-relaxed">
               Minimum Bar Segregation Algorithm
@@ -255,20 +267,27 @@
         <!-- Admin Card 4: Security Architecture & Compliance -->
         <a href="pages/security.html"
           class="p-6 bg-surface-container-low rounded-2xl border-2 border-emerald-400/50 hover:border-emerald-400 transition-all group flex flex-col justify-between space-y-4 shadow-xl hover:-translate-y-1 relative overflow-hidden">
-          <div class="absolute -top-12 -right-12 w-28 h-28 bg-emerald-400/10 rounded-full blur-xl pointer-events-none"></div>
+          <div class="absolute -top-12 -right-12 w-28 h-28 bg-emerald-400/10 rounded-full blur-xl pointer-events-none">
+          </div>
           <div class="space-y-2">
-            <div class="w-12 h-12 rounded-xl bg-emerald-400/20 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
+            <div
+              class="w-12 h-12 rounded-xl bg-emerald-400/20 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
               <span class="material-symbols-outlined text-2xl font-bold">shield</span>
             </div>
             <div class="flex items-center justify-between">
-              <h3 class="text-lg font-serif font-bold text-on-surface group-hover:text-emerald-400">A4. Security Framework</h3>
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-400/20 text-emerald-400 font-bold">ERC-7518 DyCIST</span>
+              <h3 class="text-lg font-serif font-bold text-on-surface group-hover:text-emerald-400">A4. Security
+                Framework</h3>
+              <span
+                class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-400/20 text-emerald-400 font-bold">ERC-7518
+                DyCIST</span>
             </div>
             <p class="text-xs text-outline leading-relaxed">
-              Institutional security architecture: 3-tier Protocol Governance, RBAC segregation, Multi-Party Quorum (3/5), and mTLS + PKI authentication.
+              Institutional security architecture: 3-tier Protocol Governance, RBAC segregation, Multi-Party Quorum
+              (3/5), and mTLS + PKI authentication.
             </p>
           </div>
-          <span class="text-xs font-mono text-emerald-400 font-bold flex items-center gap-1">Open Security Framework →</span>
+          <span class="text-xs font-mono text-emerald-400 font-bold flex items-center gap-1">Open Security Framework
+            →</span>
         </a>
 
       </div>

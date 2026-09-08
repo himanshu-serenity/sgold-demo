@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sGold Authentication & Onboarding | Saxess Pro Sovereign Terminal</title>
+  <title>sGold Authentication & Onboarding | Saxess Pro Auth</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
           colors: {
-            primary: "#f2ca50",
-            "primary-dim": "#d4af37",
-            "on-primary": "#3c2f00",
-            surface: "#16130b",
-            "surface-container-low": "#1f1b13",
-            "surface-container": "#231f17",
-            "surface-container-high": "#2d2a21",
-            "surface-container-highest": "#38342b",
-            "on-surface": "#eae1d4",
-            "on-surface-variant": "#d0c5af",
-            outline: "#99907c",
-            "outline-variant": "#4d4635",
-            error: "#ffb4ab"
+            primary: "#b88a10",
+            "primary-dim": "#9a710a",
+            "primary-light": "#fff8e4",
+            "on-primary": "#ffffff",
+            surface: "#ffffff",
+            "surface-container-low": "#fafaf5",
+            "surface-container": "#f4efe4",
+            "surface-container-high": "#eae4d4",
+            "surface-container-highest": "#ded6c2",
+            "on-surface": "#1a1810",
+            "on-surface-variant": "#706858",
+            outline: "#8c826e",
+            "outline-variant": "#e8e3d8",
+            error: "#dc2626"
           },
           fontFamily: {
             serif: ["Newsreader", "Georgia", "serif"],
@@ -47,7 +47,7 @@
     <div class="max-w-[1440px] mx-auto flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <img src="../assets/images/sgold-coin.webp" alt="sGold"
-          class="w-10 h-10 object-contain drop-shadow-[0_0_15px_rgba(242,202,80,0.4)]">
+          class="w-10 h-10 object-contain drop-shadow-[0_0_15px_rgba(184,138,16,0.3)]">
         <div>
           <span class="font-serif font-bold text-2xl text-primary tracking-tight block">sGOLD</span>
           <span class="font-mono text-[10px] text-outline uppercase tracking-widest">Buy • Vault • Tokenize • Trade •
@@ -57,7 +57,7 @@
       <div class="flex items-center space-x-4">
         <div class="flex items-center space-x-2 bg-surface px-3 py-1.5 rounded-full border border-primary/20">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="font-mono text-xs text-primary">SECURE ENCLAVE ACTIVE</span>
+          <!-- <span class="font-mono text-xs text-primary">SECURE ENCLAVE ACTIVE</span> -->
         </div>
       </div>
     </div>
@@ -75,9 +75,9 @@
             <span class="material-symbols-outlined text-xs">verified</span>
             <span>ONBOARDING</span>
           </div>
-          <h1 class="font-serif text-4xl lg:text-5xl font-light text-on-surface leading-tight">
+          <!-- <h1 class="font-serif text-4xl lg:text-5xl font-light text-on-surface leading-tight">
             Uncompromising <br><span class="text-primary italic">Wealth Architecture</span>
-          </h1>
+          </h1> -->
           <p class="text-on-surface-variant text-base leading-relaxed">
             Secure digital ownership of LBMA Gold Delivery physical gold bars. Backed 1:1, audited
             24/7, and insured by Lloyd's of London.
@@ -101,7 +101,7 @@
             <div>
               <h4 class="font-bold text-sm text-on-surface">Veriff Automated KYC / KYB</h4>
               <p class="text-xs text-on-surface-variant mt-0.5">Instant multi-jurisdictional verification for
-                Individuals and Sovereign Entities.</p>
+                Individuals and Legal Entities.</p>
             </div>
           </div>
           <div
@@ -139,7 +139,7 @@
           <div class="flex border-b border-surface-container-high mb-6" id="auth-tabs">
             <button id="tab-login-btn" onclick="switchAuthTab('login')"
               class="flex-1 pb-4 text-center font-bold text-base transition-all text-primary border-b-2 border-primary">
-              Secure Login
+              Login
             </button>
             <button id="tab-register-btn" onclick="switchAuthTab('register')"
               class="flex-1 pb-4 text-center font-bold text-base transition-all text-outline hover:text-on-surface border-b-2 border-transparent">
@@ -152,7 +152,7 @@
             <!-- Login Step 1: Credentials -->
             <div id="login-step-1" class="space-y-5">
               <div>
-                <h3 class="text-2xl font-serif font-bold text-on-surface">Terminal Authentication</h3>
+                <!-- <h3 class="text-2xl font-serif font-bold text-on-surface">Terminal Authentication</h3> -->
                 <p class="text-sm text-outline mt-1">Enter your registered institutional credentials to access your gold
                   vault.</p>
               </div>
@@ -194,7 +194,7 @@
                 <div class="relative w-24 h-24 flex items-center justify-center">
                   <div class="absolute inset-0 bg-primary/20 rounded-full animate-ping"></div>
                   <div
-                    class="w-20 h-20 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-primary relative z-10 shadow-[0_0_20px_rgba(242,202,80,0.3)]">
+                    class="w-20 h-20 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-primary relative z-10 shadow-[0_0_20px_rgba(184,138,16,0.3)]">
                     <span class="material-symbols-outlined text-4xl">fingerprint</span>
                   </div>
                 </div>
@@ -220,7 +220,7 @@
             <!-- Login Step 3: Terminal Loading Sequence -->
             <div id="login-step-3" class="space-y-6 hidden">
               <div>
-                <h3 class="text-2xl font-serif font-bold text-primary">Mounting Sovereign Vault Session</h3>
+                <h3 class="text-2xl font-serif font-bold text-primary">Starting Vault Session</h3>
                 <p class="text-sm text-outline mt-1">Establishing encrypted enclave connection...</p>
               </div>
 
@@ -298,7 +298,7 @@
 
               <button onclick="goToRegStep(2)"
                 class="w-full py-3.5 bg-primary text-on-primary font-bold rounded-lg hover:brightness-110 transition-all flex items-center justify-center space-x-2">
-                <span>Check & Send OTP Code</span>
+                <span>Send Email OTP</span>
                 <span class="material-symbols-outlined text-sm">arrow_forward</span>
               </button>
             </div>
@@ -306,7 +306,7 @@
             <!-- Step 2: OTP Verification -->
             <div id="reg-step-2" class="space-y-4 hidden">
               <div>
-                <h3 class="text-xl font-serif font-bold text-on-surface">Enter Cryptographic OTP</h3>
+                <h3 class="text-xl font-serif font-bold text-on-surface">Verify Email OTP</h3>
                 <p class="text-xs text-outline mt-0.5">A 6-digit confirmation code was sent to your registered email.
                 </p>
               </div>
@@ -698,7 +698,7 @@
             </div>
             <div class="flex justify-between items-center py-1 border-b border-surface-container-high">
               <span class="text-on-surface">3. Government ID / Passport Liveness</span>
-              <span class="text-emerald-400 font-mono">BIOMETRIC MATCH</span>
+              <span class="text-emerald-400 font-mono">ID MATCH</span>
             </div>
             <div class="flex justify-between items-center py-1">
               <span class="text-on-surface">4. Real-Time Wallet AML Check</span>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -8,23 +8,23 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
           colors: {
-            primary: "#f2ca50",
-            "primary-dim": "#d4af37",
-            "on-primary": "#3c2f00",
-            surface: "#16130b",
-            "surface-container-low": "#1f1b13",
-            "surface-container": "#231f17",
-            "surface-container-high": "#2d2a21",
-            "surface-container-highest": "#38342b",
-            "on-surface": "#eae1d4",
-            "on-surface-variant": "#d0c5af",
-            outline: "#99907c",
-            "outline-variant": "#4d4635",
-            error: "#ffb4ab"
+            primary: "#b88a10",
+            "primary-dim": "#9a710a",
+            "primary-light": "#fff8e4",
+            "on-primary": "#ffffff",
+            surface: "#ffffff",
+            "surface-container-low": "#fafaf5",
+            "surface-container": "#f4efe4",
+            "surface-container-high": "#eae4d4",
+            "surface-container-highest": "#ded6c2",
+            "on-surface": "#1a1810",
+            "on-surface-variant": "#706858",
+            outline: "#8c826e",
+            "outline-variant": "#e8e3d8",
+            error: "#dc2626"
           },
           fontFamily: {
             serif: ["Newsreader", "Georgia", "serif"],
@@ -194,7 +194,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
               <div class="flex items-center space-x-3">
                 <div
-                  class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-amber-500 to-yellow-300 text-on-primary font-bold font-mono text-xs flex items-center gap-1 shadow-md">
+                  class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-bold font-mono text-xs flex items-center gap-1 shadow-sm">
                   <span class="material-symbols-outlined text-sm">workspace_premium</span>
                   <span>PHYSICAL BAR #1</span>
                 </div>
@@ -202,7 +202,7 @@
                 <span class="text-[10px] font-mono text-outline">(10.00 oz Bar)</span>
               </div>
               <span
-                class="px-2.5 py-0.5 rounded-full bg-primary/20 text-primary border border-primary/40 font-mono text-xs font-bold flex items-center gap-1 w-fit">
+                class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/30 font-mono text-xs font-bold flex items-center gap-1 w-fit">
                 <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
                 100% (10.00 oz)
               </span>
@@ -212,12 +212,12 @@
             <div
               class="w-full h-9 bg-surface-container-high rounded-xl overflow-hidden p-1 border border-surface-container-highest flex">
               <div
-                class="h-full w-full bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-300 rounded-lg flex items-center justify-between px-3 text-on-primary font-mono font-bold text-xs shadow-inner transition-all duration-500">
+                class="h-full w-full bg-gradient-to-r from-primary to-primary-dim rounded-lg flex items-center justify-between px-3 text-white font-mono font-bold text-xs shadow-inner transition-all duration-500">
                 <span class="flex items-center gap-1">
                   <span class="material-symbols-outlined text-sm">lock</span>
                   <span> (10.00 oz Allocated)</span>
                 </span>
-                <span class="text-[11px] bg-black/20 px-2 py-0.5 rounded">100.0% Whole Ownership</span>
+                <span class="text-[11px] bg-black/25 px-2 py-0.5 rounded">100.0% Whole Ownership</span>
               </div>
             </div>
 
@@ -233,7 +233,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
               <div class="flex items-center space-x-3">
                 <div
-                  class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-amber-600 to-amber-400 text-on-primary font-bold font-mono text-xs flex items-center gap-1 shadow-md">
+                  class="px-3 py-1.5 rounded-lg bg-primary-dim text-white font-bold font-mono text-xs flex items-center gap-1 shadow-sm">
                   <span class="material-symbols-outlined text-sm">splitscreen</span>
                   <span>PHYSICAL BAR #2</span>
                 </div>
@@ -459,26 +459,26 @@
           <div class="bg-surface-container p-5 rounded-2xl border-2 border-primary relative overflow-hidden shadow-lg transition-all animate-in fade-in duration-300">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
               <div class="flex items-center space-x-3">
-                <div class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-amber-500 to-yellow-300 text-on-primary font-bold font-mono text-xs flex items-center gap-1 shadow-md">
+                <div class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-bold font-mono text-xs flex items-center gap-1 shadow-sm">
                   <span class="material-symbols-outlined text-sm">workspace_premium</span>
                   <span>PHYSICAL BAR #${i}</span>
                 </div>
                 <span class="font-mono text-xs font-bold text-on-surface">Serial: LBMA-CH-9948${i}</span>
                 <span class="text-[10px] font-mono text-outline">(10.00 oz Bar)</span>
               </div>
-              <span class="px-2.5 py-0.5 rounded-full bg-primary/20 text-primary border border-primary/40 font-mono text-xs font-bold flex items-center gap-1 w-fit">
+              <span class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/30 font-mono text-xs font-bold flex items-center gap-1 w-fit">
                 <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
                 100%  (10.00 oz)
               </span>
             </div>
 
             <div class="w-full h-9 bg-surface-container-high rounded-xl overflow-hidden p-1 border border-surface-container-highest flex">
-              <div class="h-full w-full bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-300 rounded-lg flex items-center justify-between px-3 text-on-primary font-mono font-bold text-xs shadow-inner">
+              <div class="h-full w-full bg-gradient-to-r from-primary to-primary-dim rounded-lg flex items-center justify-between px-3 text-white font-mono font-bold text-xs shadow-inner">
                 <span class="flex items-center gap-1">
                   <span class="material-symbols-outlined text-sm">lock</span>
                   <span> (10.00 oz Whole Bar Dedicated)</span>
                 </span>
-                <span class="text-[11px] bg-black/20 px-2 py-0.5 rounded">100.0% Ownership</span>
+                <span class="text-[11px] bg-black/25 px-2 py-0.5 rounded">100.0% Whole Ownership</span>
               </div>
             </div>
 

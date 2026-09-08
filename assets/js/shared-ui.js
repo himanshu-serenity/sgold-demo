@@ -7,12 +7,12 @@ function renderSharedNav(activePage = 'dashboard') {
   const portfolioVal = state.portfolio.ownedGoldOz * state.market.spotPrice;
 
   const navHtml = `
-  <header class="fixed top-0 left-0 right-0 h-20 bg-surface/90 backdrop-blur-xl shadow-[0_1px_12px_rgba(0,0,0,0.3)] z-40 border-b border-surface-container-high">
+  <header class="fixed top-0 left-0 right-0 h-20 bg-surface/90 backdrop-blur-xl shadow-sm z-40 border-b border-surface-container-high">
     <div class="max-w-[1440px] mx-auto h-full px-6 flex items-center justify-between">
       <!-- Left: Brand Logo & Links -->
       <div class="flex items-center space-x-8">
         <a href="dashboard.html" class="flex items-center space-x-3 group">
-          <img src="../assets/images/sgold-coin.webp" alt="sGold" class="w-9 h-9 object-contain drop-shadow-[0_0_12px_rgba(242,202,80,0.4)] group-hover:scale-105 transition-transform" />
+          <img src="../assets/images/sgold-coin.webp" alt="sGold" class="w-9 h-9 object-contain drop-shadow-[0_0_12px_rgba(184,138,16,0.3)] group-hover:scale-105 transition-transform" />
           <div class="flex flex-col">
             <span class="font-bold text-2xl text-primary tracking-tight font-serif">sGold</span>
           </div>
@@ -39,11 +39,7 @@ function renderSharedNav(activePage = 'dashboard') {
 
       <!-- Right: Ticker & Profile Menu -->
       <div class="flex items-center space-x-4">
-        <div class="hidden lg:flex items-center space-x-3 bg-surface-container-low px-3.5 py-1.5 rounded-lg border border-outline-variant/30">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="text-[11px] font-mono text-outline">LBMA SPOT:</span>
-          <span class="text-xs font-mono font-bold text-primary">$4,950.00 / oz</span>
-        </div>
+      
 
         <div class="hidden sm:flex flex-col items-end">
           <span class="text-[10px] font-mono text-outline uppercase tracking-wider">Portfolio Holdings</span>
@@ -149,7 +145,7 @@ function triggerSaxessProBiometrics({ title, subtitle, challenge, onApproved }) 
       <div class="py-6 text-center space-y-4" id="bio-state-waiting">
         <div class="relative w-24 h-24 mx-auto flex items-center justify-center">
           <div class="absolute inset-0 bg-primary/20 rounded-full animate-ping"></div>
-          <div class="w-20 h-20 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-primary relative z-10 shadow-[0_0_20px_rgba(242,202,80,0.3)]">
+          <div class="w-20 h-20 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-primary relative z-10 shadow-[0_0_20px_rgba(184,138,16,0.3)]">
             <span class="material-symbols-outlined text-4xl">fingerprint</span>
           </div>
         </div>
