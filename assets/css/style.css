@@ -5,31 +5,31 @@
 :root {
   --color-primary: #b88a10;
   --color-primary-light: #fff8e4;
-  --color-primary-dim: #9a710a;
-  --color-primary-dark: #7a5c00;
+  --color-primary-dim: #8f6805;
+  --color-primary-dark: #6b4d00;
   --color-surface: #ffffff;
   --color-surface-low: #fafaf5;
   --color-surface-high: #f4efe4;
   --color-surface-highest: #eae4d4;
-  --color-on-surface: #1a1810;
-  --color-on-surface-variant: #706858;
-  --color-outline: #8c826e;
-  --color-outline-variant: #e8e3d8;
-  --color-emerald: #1a1810;
+  --color-on-surface: #0a0a08;
+  --color-on-surface-variant: #262420;
+  --color-outline: #47433b;
+  --color-outline-variant: #d6cfbe;
+  --color-emerald: #0a0a08;
   --color-emerald-bg: #f4efe4;
-  --color-error: #dc2626;
-  --color-error-bg: rgba(220, 38, 38, 0.08);
+  --color-error: #b91c1c;
+  --color-error-bg: rgba(185, 28, 28, 0.08);
 }
 
 /* Institutional Contrast Overrides for Emerald Badges & Texts */
 .text-emerald-400 {
-  color: #1a1810 !important;
+  color: #0a0a08 !important;
 }
 
 .bg-emerald-400\/10,
 .bg-emerald-400\/20 {
   background-color: #f4efe4 !important;
-  color: #1a1810 !important;
+  color: #0a0a08 !important;
 }
 
 .border-emerald-400,
@@ -42,7 +42,7 @@
 }
 
 .bg-emerald-400 {
-  background-color: #1a1810 !important;
+  background-color: #0a0a08 !important;
 }
 
 * {
@@ -63,13 +63,39 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* Enhanced Professional Typography Scale */
+/* Enhanced High-Readability Typography Scale */
 h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
+  color: var(--color-on-surface);
 }
 
 .font-mono {
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
+}
+
+/* Bump smallest micro-copy font sizes by 1 step for effortless readability */
+.text-\[10px\] {
+  font-size: 0.75rem !important; /* 12px instead of 10px */
+  line-height: 1rem !important;
+}
+
+.text-\[11px\] {
+  font-size: 0.8125rem !important; /* 13px instead of 11px */
+  line-height: 1.125rem !important;
+}
+
+.text-xs {
+  font-size: 0.84rem !important; /* 13.5px instead of 12px */
+  line-height: 1.25rem !important;
+}
+
+.text-outline {
+  color: var(--color-outline) !important;
+  font-weight: 500;
+}
+
+.text-on-surface-variant {
+  color: var(--color-on-surface-variant) !important;
 }
 
 /* Custom Scrollbar */
