@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buy sGold | Sovereign Digital Gold Execution Terminal</title>
+  <title>Buy sGold | Digital Gold Execution Terminal</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -222,7 +222,7 @@
               <span class="material-symbols-outlined text-primary text-sm">mail</span>
               <h3 class="font-serif font-bold text-lg text-on-surface">Order Lifecycle</h3>
             </div>
-            <span class="text-[10px] font-mono text-outline uppercase">Simulated Flow</span>
+            <!-- <span class="text-[10px] font-mono text-outline uppercase"></span> -->
           </div>
 
           <!-- 4 Lifecycle Steps -->
@@ -333,8 +333,8 @@
       <div class="flex space-x-3">
         <button onclick="closeModal('certificateModal')"
           class="w-1/2 py-2.5 bg-surface-container rounded-lg text-xs font-mono">Close</button>
-        <button onclick="alert('Downloading Cryptographic PDF Certificate...'); closeModal('certificateModal')"
-          class="w-1/2 py-2.5 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono">Download PDF</button>
+        <a href="../assets/images/cert.png" download="cert.png" onclick="closeModal('certificateModal')"
+          class="w-1/2 py-2.5 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono inline-flex items-center justify-center">Download PDF</a>
       </div>
     </div>
   </div>
