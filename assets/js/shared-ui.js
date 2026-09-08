@@ -14,7 +14,7 @@ function renderSharedNav(activePage = 'dashboard') {
         <a href="dashboard.html" class="flex items-center space-x-3 group">
           <img src="../assets/images/sgold-coin.webp" alt="sGold" class="w-9 h-9 object-contain drop-shadow-[0_0_12px_rgba(242,202,80,0.4)] group-hover:scale-105 transition-transform" />
           <div class="flex flex-col">
-            <span class="font-bold text-xl text-primary tracking-tight font-serif">sGold</span>
+            <span class="font-bold text-2xl text-primary tracking-tight font-serif">sGold</span>
           </div>
         </a>
 
