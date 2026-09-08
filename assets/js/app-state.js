@@ -13,7 +13,7 @@ const DEFAULT_SGOLD_STATE = {
     saxessProId: "SP-9982-ZURICH",
     kycStatus: "VERIFIED",
     amlScore: "0.00 Risk (Pristine)",
-    jurisdiction: "Switzerland (FINMA Approved)"
+    jurisdiction: "Liechtenstein (TVTG Approved)"
   },
   market: {
     spotPrice: 4950.00,
