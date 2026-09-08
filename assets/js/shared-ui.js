@@ -26,13 +26,13 @@ function renderSharedNav(activePage = 'dashboard') {
             My Gold
           </a>
           <a href="buy.html" class="px-3.5 py-2 rounded-lg transition-all ${activePage === 'buy' ? 'bg-primary text-on-primary font-semibold shadow-sm' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'}">
-            Buy sGold
+            Buy Gold
           </a>
           <a href="sell.html" class="px-3.5 py-2 rounded-lg transition-all ${activePage === 'sell' ? 'bg-primary text-on-primary font-semibold shadow-sm' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'}">
-            Sell sGold
+            Sell Gold
           </a>
           <a href="redeem.html" class="px-3.5 py-2 rounded-lg transition-all ${activePage === 'redeem' ? 'bg-primary text-on-primary font-semibold shadow-sm' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'}">
-            Redeem Bullion
+            Redeem Gold
           </a>
         </nav>
       </div>

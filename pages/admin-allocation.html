@@ -252,7 +252,7 @@
               class="w-full h-9 bg-surface-container-high rounded-xl overflow-hidden p-1 border border-surface-container-highest flex gap-1">
               <!--  20% Share -->
               <div
-                class="h-full bg-gradient-to-r from-emerald-400 to-teal-300 rounded-lg flex items-center justify-between px-2 text-surface font-mono font-bold text-xs shadow-inner transition-all duration-500"
+                class="h-full bg-gradient-to-r from-primary-dim to-primary rounded-lg flex items-center justify-between px-2 text-white font-mono font-bold text-xs shadow-inner transition-all duration-500"
                 style="width: 20%">
                 <span class="truncate"> (2 oz)</span>
                 <span class="text-[10px] hidden sm:inline">20%</span>
@@ -500,21 +500,21 @@
           <div class="bg-surface-container p-5 rounded-2xl border-2 border-emerald-400/70 relative overflow-hidden shadow-lg transition-all animate-in fade-in duration-300">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
               <div class="flex items-center space-x-3">
-                <div class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-amber-600 to-amber-400 text-on-primary font-bold font-mono text-xs flex items-center gap-1 shadow-md">
+                <div class="px-3 py-1.5 rounded-lg bg-primary-dim text-white font-bold font-mono text-xs flex items-center gap-1 shadow-sm">
                   <span class="material-symbols-outlined text-sm">splitscreen</span>
                   <span>PHYSICAL BAR #${nextIdx}</span>
                 </div>
                 <span class="font-mono text-xs font-bold text-on-surface">Serial: LBMA-CH-9948${nextIdx}</span>
                 <span class="text-[10px] font-mono text-outline">(10.00 oz Bar)</span>
               </div>
-              <span class="px-2.5 py-0.5 rounded-full bg-emerald-400/20 text-emerald-400 border border-emerald-400/40 font-mono text-xs font-bold flex items-center gap-1 w-fit">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface border border-outline-variant font-mono text-xs font-bold flex items-center gap-1 w-fit">
+                <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
                 ${remainderPct}%  (${remainderOz.toFixed(2)} oz)
               </span>
             </div>
 
             <div class="w-full h-9 bg-surface-container-high rounded-xl overflow-hidden p-1 border border-surface-container-highest flex gap-1">
-              <div class="h-full bg-gradient-to-r from-emerald-400 to-teal-300 rounded-lg flex items-center justify-between px-2 text-surface font-mono font-bold text-xs shadow-inner" style="width: ${remainderPct}%">
+              <div class="h-full bg-gradient-to-r from-primary-dim to-primary rounded-lg flex items-center justify-between px-2 text-white font-mono font-bold text-xs shadow-inner" style="width: ${remainderPct}%">
                 <span class="truncate"> (${remainderOz} oz)</span>
                 <span class="text-[10px] hidden sm:inline">${remainderPct}%</span>
               </div>
