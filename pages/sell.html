@@ -241,6 +241,62 @@
 
   </main>
 
+  <!-- Liquidation Success Modal -->
+  <div id="liquidationSuccessModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
+    <div
+      class="bg-surface-container-low border-2 border-emerald-500/80 rounded-2xl max-w-lg w-full p-8 shadow-2xl relative space-y-6 text-center animate-in fade-in zoom-in duration-200">
+      <div class="absolute -top-16 -right-16 w-40 h-40 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Icon -->
+      <div class="w-16 h-16 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+        <span class="material-symbols-outlined text-3xl">check_circle</span>
+      </div>
+
+      <div>
+        <span class="font-mono text-[11px] text-emerald-400 uppercase tracking-widest block font-bold">Liquidation Settlement Completed</span>
+        <h3 class="text-2xl font-serif font-bold text-on-surface mt-1">sGold Liquidated Successfully</h3>
+        <p class="text-xs text-outline mt-1 font-mono" id="modal-sell-txid">Tx Hash # 0x8849...29FE</p>
+      </div>
+
+      <div class="p-4 bg-surface rounded-xl border border-surface-container-high text-xs font-mono text-left space-y-2.5">
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Liquidated Quantity:</span>
+          <span class="text-error font-bold text-sm" id="modal-sell-oz">-5.00 oz sGold</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Total Payout Settled:</span>
+          <span class="text-emerald-400 font-bold text-sm" id="modal-sell-amount">$0.00</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Payout Destination:</span>
+          <span class="text-on-surface font-bold uppercase" id="modal-sell-channel">PREFUNDED USD</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Settlement Status:</span>
+          <span class="text-emerald-400 font-bold flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Completed & Verified
+          </span>
+        </div>
+        <div class="flex justify-between items-center pt-1 border-t border-surface-container-high/60">
+          <span class="text-outline">Updated Balance:</span>
+          <span class="text-primary font-bold" id="modal-sell-new-balance">20.80 oz sGold</span>
+        </div>
+      </div>
+
+      <div class="flex space-x-3">
+        <button onclick="closeModal('liquidationSuccessModal')"
+          class="w-1/2 py-2.5 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg text-xs font-mono transition-colors">
+          Close
+        </button>
+        <a href="dashboard.html"
+          class="w-1/2 py-2.5 bg-primary text-on-primary hover:brightness-110 font-bold rounded-lg text-xs font-mono inline-flex items-center justify-center transition-all">
+          View Dashboard
+        </a>
+      </div>
+    </div>
+  </div>
+
   <script src="../assets/js/app-state.js"></script>
   <script src="../assets/js/shared-ui.js"></script>
   <script>
@@ -321,18 +377,28 @@
 
           // Update State
           state.portfolio.ownedGoldOz -= oz;
+          const txId = `TXN-${Math.floor(10000 + Math.random() * 90000)}`;
+          const netPrice = document.getElementById('sell-net-price').innerText;
           state.activities.unshift({
-            id: `TXN-${Math.floor(10000 + Math.random() * 90000)}`,
+            id: txId,
             date: new Date().toISOString().replace('T', ' ').substring(0, 19) + " UTC",
             action: "Sell sGold",
             quantity: `-${oz}.0 oz`,
-            price: document.getElementById('sell-net-price').innerText,
+            price: netPrice,
             status: "Completed",
             mode: mode.toUpperCase()
           });
           saveSGoldState(state);
           document.getElementById('sell-avail-balance').innerText = formatOz(state.portfolio.ownedGoldOz) + " sGold";
-          alert(`Successfully liquidated ${oz} sGold! Funds transferred successfully to your ${mode.toUpperCase()} account.`);
+
+          // Populate and show success modal
+          document.getElementById('modal-sell-txid').innerText = `Tx Ref # ${txId}`;
+          document.getElementById('modal-sell-oz').innerText = `-${oz}.00 oz sGold`;
+          document.getElementById('modal-sell-amount').innerText = netPrice;
+          document.getElementById('modal-sell-channel').innerText = mode.toUpperCase() + " ACCOUNT";
+          document.getElementById('modal-sell-new-balance').innerText = formatOz(state.portfolio.ownedGoldOz) + " sGold";
+
+          openModal('liquidationSuccessModal');
         }, 2400);
       };
 
@@ -346,6 +412,14 @@
       } else {
         proceedWithSimulation();
       }
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
     }
   </script>
 </body>
