@@ -72,8 +72,8 @@
       </div>
     </div>
 
-    <!-- Main Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- Flow Container: Individual / Retail Flow -->
+    <div id="individual-buy-flow" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
       <!-- Left Column: Buy Order Form (7 cols) -->
       <div class="lg:col-span-7 space-y-6">
@@ -270,7 +270,6 @@
               <span class="material-symbols-outlined text-primary text-sm">sync_alt</span>
               <h3 class="font-serif font-bold text-lg text-on-surface">Order Lifecycle</h3>
             </div>
-            <!-- <span class="text-[10px] font-mono text-outline uppercase">Simulated Status</span> -->
           </div>
 
           <!-- 4 Lifecycle Steps -->
@@ -309,7 +308,6 @@
                 locked 24h.</p>
             </div>
 
-            <!-- Step 4: Completion & Certificate -->
             <!-- Step 4: Completion -->
             <div id="step-complete" class="p-3 bg-surface rounded-xl border border-surface-container-high space-y-1">
               <div class="flex justify-between items-center">
@@ -336,9 +334,590 @@
 
     </div>
 
+    <!-- ================= INSTITUTIONAL OTC BUY FLOW ================= -->
+    <div id="institutional-buy-flow" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start hidden">
+
+      <!-- Left Column: Step Views (7 cols) -->
+      <div class="lg:col-span-7 space-y-6">
+
+        <!-- Flow Progress Header Stepper -->
+        <div
+          class="bg-surface-container-low p-4 rounded-2xl border border-surface-container-high flex items-center justify-between">
+          <div class="flex items-center space-x-2.5">
+            <span
+              class="px-2.5 py-1 rounded bg-primary/10 border border-primary/30 text-primary text-[11px] font-mono font-bold uppercase tracking-wider">
+              Institutional Gold Purchase
+            </span>
+          </div>
+          <div id="inst-step-indicator" class="text-xs font-mono font-bold text-primary">
+            Step 1 of 6
+          </div>
+        </div>
+
+        <!-- 1. ORDER CREATION STEP -->
+        <div id="inst-step-1"
+          class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-6">
+          <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+            <div>
+              <span class="text-[15px] font-mono text-primary uppercase font-bold tracking-widest block">Phase 1: Order
+                Initiation</span>
+            </div>
+            <span
+              class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 font-mono text-xs font-bold">
+              <span class="material-symbols-outlined text-sm">verified</span>
+              <span>Client: Verified ✓</span>
+            </span>
+          </div>
+
+          <!-- Client & Account Overview Card -->
+          <div class="p-4 bg-surface rounded-xl border border-surface-container-high space-y-3 text-xs font-mono">
+            <div class="flex justify-between items-center">
+              <span class="text-outline">Institutional Client:</span>
+              <span class="text-on-surface font-bold text-sm" id="inst-client-name">Global Trust Fund (Tier-1)</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-outline">KYB / Compliance Tier:</span>
+              <span class="text-emerald-400 font-bold">Tier-1 Institutional (Liechtenstein TVTG)</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-outline">Settlement:</span>
+              <span class="text-primary font-bold">USD (United States Dollar)</span>
+            </div>
+          </div>
+
+          <!-- Purchase Order Amount Input -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs font-mono">
+              <label class="text-outline uppercase font-bold">Enter Purchase Order Amount (USD)</label>
+              <span class="text-primary">Min Order: $1,000,000</span>
+            </div>
+            <div class="relative flex items-center">
+              <span class="absolute left-4 font-serif text-2xl font-bold text-primary">$</span>
+              <input type="text" id="inst-order-amount-input" value="5,000,000" oninput="onInstAmountInput(this.value)"
+                class="w-full bg-surface border border-outline-variant/50 rounded-xl pl-9 pr-24 py-4 text-2xl font-mono font-bold text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+              <div class="absolute right-4 flex items-center space-x-2">
+                <span
+                  class="font-mono text-xs font-bold text-primary px-2.5 py-1 rounded bg-surface-container">USD</span>
+              </div>
+            </div>
+            <p class="text-[11px] text-outline font-mono">
+              Direct LBMA wholesale spot execution with segregated vault custody allocation.
+            </p>
+          </div>
+
+          <!-- Custody Facility Dropdown (1 of 4 Vaults) -->
+          <div class="space-y-2">
+            <label class="block text-xs font-mono text-outline uppercase font-bold">Custody Facility</label>
+            <div class="relative">
+              <select id="inst-vault-select" onchange="onInstVaultChange(this.value)"
+                class="w-full bg-surface border border-outline-variant/50 rounded-xl px-4 py-3 text-xs font-mono font-bold text-on-surface focus:outline-none focus:border-primary appearance-none cursor-pointer">
+                <option value="Gotthard & Zurich LBMA Depository (Switzerland)">Zurich Vault (Switzerland - Gotthard
+                  LBMA Depository)</option>
+                <option value="Dallas High-Security LBMA Vault (USA)">Dallas Vault (USA - LBMA High-Security Depository)
+                </option>
+                <option value="London Bullion Market Vault (UK - Brink's)">London Vault (UK - Brink's LBMA Bullion
+                  Depository)</option>
+                <option value="Singapore Freeport Depository (Singapore - Le Freeport)">Singapore Vault (Singapore - Le
+                  Freeport Depository)</option>
+              </select>
+              <span
+                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-base">expand_more</span>
+            </div>
+            <p class="text-[11px] text-outline font-mono">
+              Select segregated LBMA accredited depository partner for physical bar custody & verification.
+            </p>
+          </div>
+
+          <button onclick="instGoToStep(2)"
+            class="w-full py-4 bg-primary text-on-primary font-bold font-mono text-base rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
+            <span>Continue to Quote</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </div>
+
+        <!-- 2. EXECUTABLE QUOTE STEP -->
+        <div id="inst-step-2"
+          class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-6 hidden">
+          <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+            <div>
+              <span class="text-[15px] font-mono text-primary uppercase font-bold tracking-widest block">Phase 2:
+                Executable Institutional Quote</span>
+            </div>
+            <!-- 2:00 Countdown Timer -->
+            <div
+              class="flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-primary/10 border border-primary/30 text-primary font-mono text-xs font-bold">
+              <span class="material-symbols-outlined text-sm animate-spin">timer</span>
+              <span>Valid: <span id="inst-quote-timer">02:00</span></span>
+            </div>
+          </div>
+
+          <div class="p-5 bg-surface rounded-xl border border-surface-container-high space-y-4 text-xs font-mono">
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+              <span class="text-outline">Execution Spot Price:</span>
+              <span class="text-on-surface font-bold text-base text-primary">$4,520.00 / oz</span>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+              <span class="text-outline">Order Consideration:</span>
+              <span class="text-on-surface font-bold text-base" id="inst-quote-notional">$5,000,000.00 USD</span>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+              <span class="text-outline">Gold Quantity:</span>
+              <span class="text-emerald-400 font-bold text-lg" id="inst-quote-oz">1,106.195 oz</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-outline">Custody Facility:</span>
+              <span class="text-on-surface font-bold" id="inst-quote-vault">Zurich Vault (Switzerland - Gotthard LBMA
+                Depository)</span>
+            </div>
+          </div>
+
+          <div
+            class="p-3.5 bg-surface-container rounded-xl border border-primary/30 text-xs text-on-surface-variant flex items-center space-x-2">
+            <span class="material-symbols-outlined text-primary text-base">lock_clock</span>
+            <span>Accepting will lock execution price for settlement authorization and custody reserve
+              verification.</span>
+          </div>
+
+          <div class="flex space-x-3">
+            <button onclick="instGoToStep(1)"
+              class="w-1/3 py-4 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-xl font-mono text-sm font-semibold transition-colors">
+              Back
+            </button>
+            <button onclick="instAcceptQuote()"
+              class="w-2/3 py-4 bg-primary text-on-primary font-bold font-mono text-base rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
+              <span class="material-symbols-outlined text-sm">check_circle</span>
+              <span>Accept Quote & Lock</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. SETTLEMENT SECURITY (CREDIT CHECK) STEP -->
+        <div id="inst-step-3"
+          class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-6 hidden">
+          <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+            <div>
+              <span class="text-[15px] font-mono text-primary uppercase font-bold tracking-widest block">Phase 3:
+                Settlement Security</span>
+            </div>
+            <span
+              class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 font-mono text-xs font-bold">
+              <span class="material-symbols-outlined text-sm">shield</span>
+              <span>APPROVED ✓</span>
+            </span>
+          </div>
+
+          <div class="p-5 bg-surface rounded-xl border border-surface-container-high space-y-3.5 text-xs font-mono">
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+              <span class="text-outline">Client Credit Limit:</span>
+              <span class="text-on-surface font-bold text-sm" id="inst-credit-limit">$10.0M</span>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+              <span class="text-outline">Available Credit Limit:</span>
+              <span class="text-emerald-400 font-bold text-sm" id="inst-credit-avail">$7.5M</span>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+              <span class="text-outline">Order Exposure (This Order):</span>
+              <span class="text-primary font-bold text-sm" id="inst-credit-exposure">$5.0M</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-outline">Credit & Risk Status:</span>
+              <span class="text-emerald-400 font-bold flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span id="inst-credit-status">APPROVED ✓</span>
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="p-3.5 bg-surface-container rounded-xl border border-emerald-400/30 text-xs text-on-surface-variant flex items-center space-x-2">
+            <span class="material-symbols-outlined text-emerald-400 text-base">check_circle</span>
+            <span>Institutional liquidity line verified. Zero slippage guarantee activated.</span>
+          </div>
+
+          <button onclick="instGoToStep(4)"
+            class="w-full py-4 bg-primary text-on-primary font-bold font-mono text-base rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
+            <span class="material-symbols-outlined text-sm">lock</span>
+            <span>Approve Settlement</span>
+          </button>
+        </div>
+
+        <!-- 4. PRICE LOCKED CONFIRMATION STEP -->
+        <div id="inst-step-4"
+          class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-6 hidden">
+          <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+            <div>
+              <span class="text-[15px] font-mono text-primary uppercase font-bold tracking-widest block">Phase 4: Lock
+                Confirmation</span>
+            </div>
+            <span
+              class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 font-mono text-xs font-bold">
+              <span class="material-symbols-outlined text-sm">lock</span>
+              <span>PRICE LOCKED ✓</span>
+            </span>
+          </div>
+
+          <div class="p-5 bg-surface rounded-xl border border-primary/40 space-y-3.5 text-xs font-mono">
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+              <span class="text-outline">Execution Price:</span>
+              <span class="text-primary font-bold text-base">$4,520 / oz</span>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+              <span class="text-outline">Gold Quantity:</span>
+              <span class="text-on-surface font-bold text-base" id="inst-lock-oz">1,106.195 oz</span>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+              <span class="text-outline">Total Value:</span>
+              <span class="text-on-surface font-bold text-base" id="inst-lock-val">$5.000M ($5,000,000.00)</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-outline">Lock Guarantee Nonce:</span>
+              <span class="text-primary font-bold">0xSG-OTC-LOCKED-8849</span>
+            </div>
+          </div>
+
+          <button onclick="instGoToStep(5)"
+            class="w-full py-4 bg-primary text-on-primary font-bold font-mono text-base rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
+            <span>Continue to Payment</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </div>
+
+        <!-- 5. PAYMENT STEP -->
+        <div id="inst-step-5"
+          class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-6 hidden">
+          <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+            <div>
+              <span class="text-[15px] font-mono text-primary uppercase font-bold tracking-widest block">Phase 5:
+                Settlement Payment</span>
+            </div>
+            <span class="text-xs font-mono text-outline">Order #SG-I-10584</span>
+          </div>
+
+          <!-- Payment Switcher -->
+          <div class="grid grid-cols-2 gap-3">
+            <button type="button" onclick="instSetPaymentTab('fiat')" id="inst-tab-btn-fiat"
+              class="py-3 px-4 rounded-xl font-mono text-xs font-bold transition-all border bg-primary text-on-primary border-primary shadow-sm flex items-center justify-center space-x-2">
+              <span class="material-symbols-outlined text-sm">account_balance</span>
+              <span>Fiat Wire (USD)</span>
+            </button>
+            <button type="button" onclick="instSetPaymentTab('crypto')" id="inst-tab-btn-crypto"
+              class="py-3 px-4 rounded-xl font-mono text-xs font-bold transition-all border bg-surface text-outline border-surface-container-high hover:text-on-surface flex items-center justify-center space-x-2">
+              <span class="material-symbols-outlined text-sm">currency_bitcoin</span>
+              <span>Crypto (USDT / USDC)</span>
+            </button>
+          </div>
+
+          <!-- Fiat Wire Details Sub-Panel -->
+          <div id="inst-pay-fiat-panel" class="space-y-4">
+            <div class="p-4 bg-surface rounded-xl border border-surface-container-high space-y-2.5 text-xs font-mono">
+              <div class="text-[11px] font-bold text-primary uppercase mb-1">Destination Bank Account:</div>
+              <div class="flex justify-between"><span class="text-outline">Beneficiary Name:</span><span
+                  class="text-on-surface font-bold">sGold Technology Inc. (US)</span></div>
+              <div class="flex justify-between"><span class="text-outline">Bank Name:</span><span
+                  class="text-on-surface font-bold">JPMorgan Chase Bank, N.A.</span></div>
+              <div class="flex justify-between"><span class="text-outline">Account Number:</span><span
+                  class="text-primary font-bold">884920048192</span></div>
+              <div class="flex justify-between"><span class="text-outline">Routing Number (Fedwire):</span><span
+                  class="text-on-surface font-bold">021000021</span></div>
+              <div class="flex justify-between"><span class="text-outline">SWIFT Code:</span><span
+                  class="text-primary font-bold">CHASUS33XXX</span></div>
+              <div class="flex justify-between"><span class="text-outline">Payment Reference:</span><span
+                  class="text-emerald-400 font-bold">SG-I-10584-SETTLE</span></div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-xs font-mono text-outline uppercase font-bold">Upload Payment Receipt PDF</label>
+              <input type="file" accept="application/pdf"
+                class="w-full text-xs text-outline file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-mono file:bg-primary file:text-on-primary file:font-bold hover:file:brightness-110 cursor-pointer bg-surface p-2 rounded-xl border border-outline-variant/40">
+            </div>
+          </div>
+
+          <!-- Crypto Details Sub-Panel -->
+          <div id="inst-pay-crypto-panel" class="space-y-4 hidden">
+            <div class="p-4 bg-surface rounded-xl border border-surface-container-high space-y-3 text-xs font-mono">
+              <div class="flex justify-between items-center">
+                <span class="text-outline">Accepted Tokens:</span>
+                <span class="text-emerald-400 font-bold">USDT / USDC</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-outline">Supported Networks:</span>
+                <span class="text-on-surface font-bold">BEP-20 / ERC-20</span>
+              </div>
+              <div class="pt-2 flex flex-col items-center space-y-2">
+                <div class="p-2.5 bg-white rounded-xl border border-primary inline-block">
+                  <img
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ethereum:0x71C8395B293129849201948B842"
+                    alt="Institutional Deposit QR" class="w-32 h-32 object-contain">
+                </div>
+                <div class="w-full text-center">
+                  <span class="text-[10px] text-outline uppercase block mb-1">Destination Wallet Address:</span>
+                  <div
+                    class="p-2 bg-surface-container-low rounded-lg border border-surface-container-high font-mono text-xs text-primary font-bold break-all select-all">
+                    0x71C8395B293129849201948B842
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button onclick="instSubmitPayment()" id="btn-inst-submit-pay"
+            class="w-full py-4 bg-primary text-on-primary font-bold font-mono text-base rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
+            <span class="material-symbols-outlined text-sm">send</span>
+            <span>Submit Payment Confirmation</span>
+          </button>
+        </div>
+
+        <!-- 6. PAYMENT PENDING / RECEIPT SIMULATION STEP -->
+        <div id="inst-step-6"
+          class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-6 hidden">
+          <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+            <div>
+              <span class="text-[15px] font-mono text-primary uppercase font-bold tracking-widest block">Phase 6:
+                Payment Verification</span>
+            </div>
+            <span class="text-xs font-mono text-outline">Order #SG-I-10584</span>
+          </div>
+
+          <div
+            class="py-8 bg-surface rounded-xl border border-surface-container-high flex flex-col items-center justify-center space-y-4 text-center">
+            <!-- Animated Icon / Status -->
+            <div id="inst-pay-status-icon"
+              class="w-16 h-16 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center text-primary relative">
+              <span class="material-symbols-outlined text-3xl animate-pulse">hourglass_top</span>
+            </div>
+
+            <div class="space-y-1">
+              <div id="inst-pay-status-title"
+                class="font-mono font-bold text-base text-primary uppercase flex items-center justify-center gap-2">
+                <span>SETTLEMENT PENDING</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+              </div>
+              <div id="inst-pay-status-badge"
+                class="font-mono text-xs text-outline flex items-center justify-center gap-1">
+                <span>TOKEN RELEASE BLOCKED</span>
+                <span class="material-symbols-outlined text-xs text-error">lock</span>
+              </div>
+            </div>
+
+            <p class="text-xs text-outline max-w-md font-mono" id="inst-pay-countdown-note">
+              Institutional Payment Validation
+            </p>
+          </div>
+        </div>
+
+        <!-- 7. MERGED GOLD ALLOCATION & TOKEN SETTLEMENT STEP (FINAL STATE) -->
+        <div id="inst-step-7"
+          class="bg-surface-container-low p-6 rounded-2xl border-2 border-emerald-500/80 space-y-6 hidden">
+          <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+            <div class="flex items-center space-x-2">
+              <div
+                class="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <span class="material-symbols-outlined text-xl">verified</span>
+              </div>
+              <div>
+                <span class="text-[15px] font-mono text-emerald-400 uppercase font-bold tracking-widest block">Phase 7:
+                  Gold Allocation & Token Settlement</span>
+              </div>
+            </div>
+            <span
+              class="px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 font-mono text-xs font-bold">
+              SETTLED ✓
+            </span>
+          </div>
+
+          <!-- Section 1: Physical Gold Vault Allocation Audit -->
+          <div class="space-y-2">
+            <div class="text-[10px] font-mono text-outline uppercase font-bold tracking-wider">1. Physical Vault
+              Allocation Verification</div>
+            <div class="p-4 bg-surface rounded-xl border border-surface-container-high space-y-2.5 text-xs font-mono">
+              <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+                <span class="text-outline">Allocated Vault Facility:</span>
+                <span class="text-on-surface font-bold" id="inst-final-vault">Zurich Vault (Switzerland)</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+                <span class="text-outline">Custody Verification:</span>
+                <span class="text-emerald-400 font-bold">Verified ✓ (Segregated Depository)</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+                <span class="text-outline">Physical Bar Allocation:</span>
+                <span class="text-emerald-400 font-bold">Verified ✓ (LBMA Good Delivery Standard)</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+                <span class="text-outline">Reserve Coverage:</span>
+                <span class="text-emerald-400 font-bold">Verified ✓ (100% Fully Backed)</span>
+              </div>
+              <div class="flex justify-between items-center py-1">
+                <span class="text-outline">Tokenisation Status:</span>
+                <span class="text-emerald-400 font-bold">Success ✓</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Token Issuance & Settlement Details -->
+          <div class="space-y-2">
+            <div class="text-[10px] font-mono text-outline uppercase font-bold tracking-wider">2. Digital Token Issuance
+              & Treasury Settlement</div>
+            <div class="p-4 bg-surface rounded-xl border border-surface-container-high space-y-2.5 text-xs font-mono">
+              <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+                <span class="text-outline">Order Reference:</span>
+                <span class="text-primary font-bold text-sm">#SG-I-10584</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+                <span class="text-outline">Settled Value:</span>
+                <span class="text-on-surface font-bold text-sm" id="inst-final-value">$5,000,000 USD</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+                <span class="text-outline">Gold Tokens Issued:</span>
+                <span class="text-emerald-400 font-bold text-sm" id="inst-final-tokens">1,106.195 sGold</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+                <span class="text-outline">Physical Gold Backing:</span>
+                <span class="text-on-surface font-bold" id="inst-final-backing">1,106.195 oz</span>
+              </div>
+              <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+                <span class="text-outline">Backing Ratio:</span>
+                <span class="text-emerald-400 font-bold">100.00%</span>
+              </div>
+              <div class="flex justify-between items-center py-1">
+                <span class="text-outline">Token Release Status:</span>
+                <span class="text-emerald-400 font-bold">TOKENS RELEASED ✓</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex space-x-3">
+            <button onclick="openModal('certImageModal')"
+              class="w-1/2 py-4 bg-primary text-on-primary font-bold font-mono text-sm rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
+              <span class="material-symbols-outlined text-sm">workspace_premium</span>
+              <span>View SGold Certificate</span>
+            </button>
+            <a href="my-gold.html"
+              class="w-1/2 py-4 bg-surface-container hover:bg-surface-container-high text-on-surface font-bold font-mono text-sm rounded-xl transition-colors flex items-center justify-center">
+              View My Gold Portfolio
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Persistent Transaction Tracker (5 cols) -->
+      <div class="lg:col-span-5 space-y-6">
+
+        <div
+          class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-5 sticky top-28">
+          <div class="flex justify-between items-center pb-3 border-b border-surface-container-high">
+            <div class="flex items-center space-x-2">
+              <span class="material-symbols-outlined text-primary text-base">receipt_long</span>
+              <div>
+                <h3 class="font-serif font-bold text-base text-on-surface">Transaction Tracker</h3>
+                <span class="text-[11px] font-mono text-primary font-bold">ORDER #SG-I-10584</span>
+              </div>
+            </div>
+            <span id="tracker-main-badge"
+              class="text-[10px] font-mono px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
+              Drafting
+            </span>
+          </div>
+
+          <!-- Order Metric Summary -->
+          <div class="p-3.5 bg-surface rounded-xl border border-surface-container-high space-y-2 text-xs font-mono">
+            <div class="flex justify-between items-center">
+              <span class="text-outline">Order Value:</span>
+              <span class="text-on-surface font-bold" id="tracker-val">$5,000,000</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-outline">Gold Quantity:</span>
+              <span class="text-primary font-bold" id="tracker-oz">1,106.195 oz</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-outline">Locked Price:</span>
+              <span class="text-on-surface font-bold" id="tracker-rate">$4,520 / oz</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-outline">Custody Vault:</span>
+              <span class="text-on-surface font-bold text-right text-[11px] truncate max-w-[170px]"
+                id="tracker-vault">Zurich Vault</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-outline">Client Entity:</span>
+              <span class="text-on-surface font-bold" id="tracker-entity">Global Trust Fund</span>
+            </div>
+          </div>
+
+          <!-- Milestone Audit Steps -->
+          <div class="space-y-2.5 text-xs font-mono">
+            <div class="text-[10px] font-mono text-outline uppercase font-bold tracking-wider">Audit Milestones</div>
+
+            <!-- Milestone 1 -->
+            <div id="m-step-1"
+              class="flex items-center justify-between p-2 rounded-lg bg-surface border border-primary/40">
+              <span class="flex items-center gap-2 text-on-surface">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                <span>1. Order Creation</span>
+              </span>
+              <span class="text-[10px] text-primary font-bold" id="m-badge-1">Active</span>
+            </div>
+
+            <!-- Milestone 2 -->
+            <div id="m-step-2"
+              class="flex items-center justify-between p-2 rounded-lg bg-surface border border-surface-container-high opacity-60">
+              <span class="flex items-center gap-2 text-on-surface">
+                <span class="w-2 h-2 rounded-full bg-outline"></span>
+                <span>2. Executable Quote</span>
+              </span>
+              <span class="text-[10px] text-outline" id="m-badge-2">Pending</span>
+            </div>
+
+            <!-- Milestone 3 -->
+            <div id="m-step-3"
+              class="flex items-center justify-between p-2 rounded-lg bg-surface border border-surface-container-high opacity-60">
+              <span class="flex items-center gap-2 text-on-surface">
+                <span class="w-2 h-2 rounded-full bg-outline"></span>
+                <span>3. Settlement Security</span>
+              </span>
+              <span class="text-[10px] text-outline" id="m-badge-3">Pending</span>
+            </div>
+
+            <!-- Milestone 4 -->
+            <div id="m-step-4"
+              class="flex items-center justify-between p-2 rounded-lg bg-surface border border-surface-container-high opacity-60">
+              <span class="flex items-center gap-2 text-on-surface">
+                <span class="w-2 h-2 rounded-full bg-outline"></span>
+                <span>4. Price Locked</span>
+              </span>
+              <span class="text-[10px] text-outline" id="m-badge-4">Pending</span>
+            </div>
+
+            <!-- Milestone 5 & 6 -->
+            <div id="m-step-5"
+              class="flex items-center justify-between p-2 rounded-lg bg-surface border border-surface-container-high opacity-60">
+              <span class="flex items-center gap-2 text-on-surface">
+                <span class="w-2 h-2 rounded-full bg-outline"></span>
+                <span>5. Payment Settlement</span>
+              </span>
+              <span class="text-[10px] text-outline" id="m-badge-5">Pending</span>
+            </div>
+
+            <!-- Milestone 7 (Merged Allocation & Settlement) -->
+            <div id="m-step-7"
+              class="flex items-center justify-between p-2 rounded-lg bg-surface border border-surface-container-high opacity-60">
+              <span class="flex items-center gap-2 text-on-surface">
+                <span class="w-2 h-2 rounded-full bg-outline"></span>
+                <span>6. Allocation & Settlement</span>
+              </span>
+              <span class="text-[10px] text-outline" id="m-badge-7">Pending</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </main>
 
-  <!-- Payment Success Modal -->
+  <!-- Payment Success Modal (For retail flow) -->
   <div id="buySuccessModal"
     class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
     <div
@@ -576,13 +1155,352 @@
     </div>
   </div>
 
+  <!-- SGold Certificate Lightbox Modal (For Institutional Flow) -->
+  <div id="certImageModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
+    <div
+      class="bg-surface-container-low border-2 border-primary rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative space-y-4 animate-in fade-in zoom-in duration-200">
+      <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+        <div class="flex items-center space-x-2">
+          <span class="material-symbols-outlined text-primary text-base">workspace_premium</span>
+          <h3 class="font-serif font-bold text-lg text-on-surface">sGold Institutional Ownership Certificate</h3>
+        </div>
+        <button onclick="closeModal('certImageModal')" class="text-outline hover:text-on-surface p-1">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+
+      <div
+        class="rounded-xl overflow-hidden border border-surface-container-high bg-surface flex items-center justify-center max-h-[70vh]">
+        <img src="../assets/images/cert.png" alt="Ownership Certificate"
+          class="w-full h-auto max-h-[65vh] object-contain">
+      </div>
+
+      <div class="flex justify-between items-center pt-2">
+        <a href="../assets/images/cert.png" download="sGold-Ownership-Certificate.png"
+          class="px-4 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg text-xs font-mono inline-flex items-center space-x-1.5 transition-colors">
+          <span class="material-symbols-outlined text-sm">download</span>
+          <span>Download Certificate</span>
+        </a>
+        <button onclick="closeModal('certImageModal')"
+          class="px-6 py-2 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono hover:brightness-110 transition-all">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="../assets/js/app-state.js"></script>
   <script src="../assets/js/shared-ui.js"></script>
   <script>
+    let isInstitutional = false;
+    let quoteTimerInterval = null;
+    const INST_EXEC_PRICE = 4520.00;
+    let currentInstOrderAmount = 5000000.00;
+    let currentInstVault = "Zurich Vault (Switzerland - Gotthard LBMA Depository)";
+
     document.addEventListener('DOMContentLoaded', () => {
       renderSharedNav('buy');
-      calculateBuyQuote();
+
+      const state = getSGoldState();
+      // Check entity classification
+      const entity = state.user && state.user.entityType ? state.user.entityType : "Organisation";
+      isInstitutional = (entity.toLowerCase() === 'organisation' || entity.toLowerCase() === 'institution');
+
+      const indFlow = document.getElementById('individual-buy-flow');
+      const instFlow = document.getElementById('institutional-buy-flow');
+
+      if (isInstitutional) {
+        if (indFlow) indFlow.classList.add('hidden');
+        if (instFlow) instFlow.classList.remove('hidden');
+        initInstitutionalFlow(state);
+      } else {
+        if (indFlow) indFlow.classList.remove('hidden');
+        if (instFlow) instFlow.classList.add('hidden');
+        calculateBuyQuote();
+      }
     });
+
+    // ================== INSTITUTIONAL FLOW LOGIC ==================
+
+    function initInstitutionalFlow(state) {
+      if (state.user && state.user.name) {
+        const clientEl = document.getElementById('inst-client-name');
+        const trackerEntityEl = document.getElementById('tracker-entity');
+        if (clientEl) clientEl.innerText = `${state.user.name} (${state.user.tier || 'Tier-1'})`;
+        if (trackerEntityEl) trackerEntityEl.innerText = state.user.name;
+      }
+
+      const vaultEl = document.getElementById('inst-vault-select');
+      if (vaultEl) currentInstVault = vaultEl.value;
+
+      updateInstCalculations();
+      instUpdateTrackerStep(1);
+    }
+
+    function onInstAmountInput(val) {
+      const cleanVal = parseFloat(val.replace(/,/g, ''));
+      currentInstOrderAmount = isNaN(cleanVal) || cleanVal <= 0 ? 0 : cleanVal;
+      updateInstCalculations();
+    }
+
+    function onInstVaultChange(val) {
+      currentInstVault = val;
+      updateInstCalculations();
+    }
+
+    function formatNumberWithCommas(n, decimals = 2) {
+      if (isNaN(n)) return "0.00";
+      return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    }
+
+    function updateInstCalculations() {
+      const oz = currentInstOrderAmount > 0 ? (currentInstOrderAmount / INST_EXEC_PRICE) : 0;
+      const formattedNotional = "$" + formatNumberWithCommas(currentInstOrderAmount, 2) + " USD";
+      const formattedOz = formatNumberWithCommas(oz, 3) + " oz";
+
+      // 1. Step 2 Quotes
+      const quoteNotionalEl = document.getElementById('inst-quote-notional');
+      const quoteOzEl = document.getElementById('inst-quote-oz');
+      const quoteVaultEl = document.getElementById('inst-quote-vault');
+      if (quoteNotionalEl) quoteNotionalEl.innerText = formattedNotional;
+      if (quoteOzEl) quoteOzEl.innerText = formattedOz;
+      if (quoteVaultEl) quoteVaultEl.innerText = currentInstVault;
+
+      // 2. Step 3 Settlement Security (Credit check)
+      const creditExposureEl = document.getElementById('inst-credit-exposure');
+      const creditAvailEl = document.getElementById('inst-credit-avail');
+      const creditStatusEl = document.getElementById('inst-credit-status');
+      const expMillions = (currentInstOrderAmount / 1000000).toFixed(2);
+      if (creditExposureEl) creditExposureEl.innerText = `$${expMillions}M`;
+      if (creditAvailEl) creditAvailEl.innerText = "$7.5M";
+      if (creditStatusEl) {
+        if (currentInstOrderAmount > 7500000) {
+          creditStatusEl.innerText = "EXPEDITED APPROVAL REQUIRED";
+          creditStatusEl.className = "text-primary font-bold";
+        } else {
+          creditStatusEl.innerText = "APPROVED ✓";
+          creditStatusEl.className = "text-emerald-400 font-bold";
+        }
+      }
+
+      // 3. Step 4 Lock Confirmation
+      const lockOzEl = document.getElementById('inst-lock-oz');
+      const lockValEl = document.getElementById('inst-lock-val');
+      if (lockOzEl) lockOzEl.innerText = formattedOz;
+      if (lockValEl) lockValEl.innerText = `$${expMillions}M ($${formatNumberWithCommas(currentInstOrderAmount, 2)})`;
+
+      // 4. Step 7 Merged Final Settlement
+      const finalVaultEl = document.getElementById('inst-final-vault');
+      const finalValueEl = document.getElementById('inst-final-value');
+      const finalTokensEl = document.getElementById('inst-final-tokens');
+      const finalBackingEl = document.getElementById('inst-final-backing');
+      if (finalVaultEl) finalVaultEl.innerText = currentInstVault;
+      if (finalValueEl) finalValueEl.innerText = formattedNotional;
+      if (finalTokensEl) finalTokensEl.innerText = `${formatNumberWithCommas(oz, 3)} sGold`;
+      if (finalBackingEl) finalBackingEl.innerText = formattedOz;
+
+      // 5. Transaction Tracker (Sticky Sidebar)
+      const trackerValEl = document.getElementById('tracker-val');
+      const trackerOzEl = document.getElementById('tracker-oz');
+      const trackerVaultEl = document.getElementById('tracker-vault');
+      if (trackerValEl) trackerValEl.innerText = "$" + formatNumberWithCommas(currentInstOrderAmount, 0);
+      if (trackerOzEl) trackerOzEl.innerText = formattedOz;
+      if (trackerVaultEl) {
+        let shortVault = currentInstVault.split('(')[0].trim();
+        trackerVaultEl.innerText = shortVault || currentInstVault;
+      }
+    }
+
+    function instGoToStep(step) {
+      for (let i = 1; i <= 7; i++) {
+        const el = document.getElementById(`inst-step-${i}`);
+        if (el) el.classList.add('hidden');
+      }
+      const target = document.getElementById(`inst-step-${step}`);
+      if (target) target.classList.remove('hidden');
+
+      const indicator = document.getElementById('inst-step-indicator');
+      if (indicator) {
+        const displayStep = step === 7 ? 6 : (step === 6 ? 5 : step);
+        indicator.innerText = `Step ${displayStep} of 6`;
+      }
+
+      instUpdateTrackerStep(step);
+
+      if (step === 2) {
+        startQuoteTimer();
+      } else {
+        if (quoteTimerInterval) clearInterval(quoteTimerInterval);
+      }
+    }
+
+    function startQuoteTimer() {
+      if (quoteTimerInterval) clearInterval(quoteTimerInterval);
+      let seconds = 120;
+      const timerEl = document.getElementById('inst-quote-timer');
+
+      quoteTimerInterval = setInterval(() => {
+        seconds--;
+        if (seconds <= 0) {
+          clearInterval(quoteTimerInterval);
+          if (timerEl) timerEl.innerText = "00:00 (Expired)";
+          return;
+        }
+        const m = String(Math.floor(seconds / 60)).padStart(2, '0');
+        const s = String(seconds % 60).padStart(2, '0');
+        if (timerEl) timerEl.innerText = `${m}:${s}`;
+      }, 1000);
+    }
+
+    function instAcceptQuote() {
+      if (quoteTimerInterval) clearInterval(quoteTimerInterval);
+      instGoToStep(3);
+    }
+
+    function instSetPaymentTab(tab) {
+      const fiatBtn = document.getElementById('inst-tab-btn-fiat');
+      const cryptoBtn = document.getElementById('inst-tab-btn-crypto');
+      const fiatPanel = document.getElementById('inst-pay-fiat-panel');
+      const cryptoPanel = document.getElementById('inst-pay-crypto-panel');
+
+      if (tab === 'fiat') {
+        fiatBtn.className = "py-3 px-4 rounded-xl font-mono text-xs font-bold transition-all border bg-primary text-on-primary border-primary shadow-sm flex items-center justify-center space-x-2";
+        cryptoBtn.className = "py-3 px-4 rounded-xl font-mono text-xs font-bold transition-all border bg-surface text-outline border-surface-container-high hover:text-on-surface flex items-center justify-center space-x-2";
+        fiatPanel.classList.remove('hidden');
+        cryptoPanel.classList.add('hidden');
+      } else {
+        cryptoBtn.className = "py-3 px-4 rounded-xl font-mono text-xs font-bold transition-all border bg-primary text-on-primary border-primary shadow-sm flex items-center justify-center space-x-2";
+        fiatBtn.className = "py-3 px-4 rounded-xl font-mono text-xs font-bold transition-all border bg-surface text-outline border-surface-container-high hover:text-on-surface flex items-center justify-center space-x-2";
+        cryptoPanel.classList.remove('hidden');
+        fiatPanel.classList.add('hidden');
+      }
+    }
+
+    function instSubmitPayment() {
+      instGoToStep(6);
+
+      const titleEl = document.getElementById('inst-pay-status-title');
+      const badgeEl = document.getElementById('inst-pay-status-badge');
+      const noteEl = document.getElementById('inst-pay-countdown-note');
+      const iconEl = document.getElementById('inst-pay-status-icon');
+
+      titleEl.innerHTML = `<span>SETTLEMENT PENDING</span><span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>`;
+      badgeEl.innerHTML = `<span>TOKEN RELEASE BLOCKED</span><span class="material-symbols-outlined text-xs text-error">lock</span>`;
+      noteEl.innerText = "Institutional Automated Payment Validation";
+
+      // 5 Seconds simulation
+      setTimeout(() => {
+        titleEl.innerHTML = `<span class="text-emerald-400">SETTLEMENT RECEIVED ✓</span>`;
+        badgeEl.innerHTML = `<span class="text-emerald-400 font-bold">SETTLEMENT CONFIRMED</span><span class="material-symbols-outlined text-xs text-emerald-400">check_circle</span>`;
+        iconEl.className = "w-16 h-16 rounded-full bg-emerald-500/10 border-2 border-emerald-500/80 flex items-center justify-center text-emerald-400";
+        iconEl.innerHTML = `<span class="material-symbols-outlined text-3xl">check_circle</span>`;
+        noteEl.innerText = "Proceeding directly to physical gold allocation and token settlement...";
+
+        setTimeout(() => {
+          instGoToStep(7);
+
+          // Persist order in app-state with custom amount & vault
+          const state = getSGoldState();
+          const oz = currentInstOrderAmount / INST_EXEC_PRICE;
+          state.portfolio.ownedGoldOz += oz;
+          state.activities.unshift({
+            id: "SG-I-10584",
+            date: new Date().toISOString().replace('T', ' ').substring(0, 19) + " UTC",
+            action: "Buy sGold (Institutional OTC)",
+            quantity: `+${formatNumberWithCommas(oz, 3)} oz`,
+            price: `$${formatNumberWithCommas(currentInstOrderAmount, 2)}`,
+            status: "Completed",
+            mode: "OTC Treasury (" + currentInstVault.split('(')[0].trim() + ")"
+          });
+          saveSGoldState(state);
+
+        }, 1500);
+
+      }, 5000);
+    }
+
+    function instUpdateTrackerStep(step) {
+      const mainBadge = document.getElementById('tracker-main-badge');
+
+      const setMilestone = (id, badgeId, statusText, state) => {
+        const el = document.getElementById(id);
+        const b = document.getElementById(badgeId);
+        if (!el || !b) return;
+
+        if (state === 'done') {
+          el.className = "flex items-center justify-between p-2 rounded-lg bg-surface border border-emerald-400/50";
+          el.querySelector('span:first-child').className = "flex items-center gap-2 text-on-surface font-semibold";
+          el.querySelector('span:first-child span:first-child').className = "w-2 h-2 rounded-full bg-emerald-400";
+          b.className = "text-[10px] text-emerald-400 font-bold";
+          b.innerText = statusText || "Completed ✓";
+        } else if (state === 'active') {
+          el.className = "flex items-center justify-between p-2 rounded-lg bg-surface border border-primary";
+          el.querySelector('span:first-child').className = "flex items-center gap-2 text-on-surface font-bold";
+          el.querySelector('span:first-child span:first-child').className = "w-2 h-2 rounded-full bg-primary animate-pulse";
+          b.className = "text-[10px] text-primary font-bold";
+          b.innerText = statusText || "Active";
+        } else {
+          el.className = "flex items-center justify-between p-2 rounded-lg bg-surface border border-surface-container-high opacity-50";
+          el.querySelector('span:first-child').className = "flex items-center gap-2 text-outline";
+          el.querySelector('span:first-child span:first-child').className = "w-2 h-2 rounded-full bg-outline";
+          b.className = "text-[10px] text-outline";
+          b.innerText = statusText || "Pending";
+        }
+      };
+
+      if (step === 1) {
+        if (mainBadge) { mainBadge.innerText = "1. Order Creation"; mainBadge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20"; }
+        setMilestone('m-step-1', 'm-badge-1', 'Active', 'active');
+        setMilestone('m-step-2', 'm-badge-2', 'Pending', 'pending');
+        setMilestone('m-step-3', 'm-badge-3', 'Pending', 'pending');
+        setMilestone('m-step-4', 'm-badge-4', 'Pending', 'pending');
+        setMilestone('m-step-5', 'm-badge-5', 'Pending', 'pending');
+        setMilestone('m-step-7', 'm-badge-7', 'Pending', 'pending');
+      } else if (step === 2) {
+        if (mainBadge) { mainBadge.innerText = "2. Executable Quote"; mainBadge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20"; }
+        setMilestone('m-step-1', 'm-badge-1', 'Created ✓', 'done');
+        setMilestone('m-step-2', 'm-badge-2', 'Quoting (2:00)', 'active');
+        setMilestone('m-step-3', 'm-badge-3', 'Pending', 'pending');
+        setMilestone('m-step-4', 'm-badge-4', 'Pending', 'pending');
+        setMilestone('m-step-5', 'm-badge-5', 'Pending', 'pending');
+        setMilestone('m-step-7', 'm-badge-7', 'Pending', 'pending');
+      } else if (step === 3) {
+        if (mainBadge) { mainBadge.innerText = "3. Security Clearance"; mainBadge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 border border-emerald-400/20"; }
+        setMilestone('m-step-1', 'm-badge-1', 'Created ✓', 'done');
+        setMilestone('m-step-2', 'm-badge-2', 'Accepted ✓', 'done');
+        setMilestone('m-step-3', 'm-badge-3', 'Approved ✓', 'active');
+        setMilestone('m-step-4', 'm-badge-4', 'Pending', 'pending');
+        setMilestone('m-step-5', 'm-badge-5', 'Pending', 'pending');
+        setMilestone('m-step-7', 'm-badge-7', 'Pending', 'pending');
+      } else if (step === 4) {
+        if (mainBadge) { mainBadge.innerText = "4. Price Locked"; mainBadge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 border border-emerald-400/20"; }
+        setMilestone('m-step-1', 'm-badge-1', 'Created ✓', 'done');
+        setMilestone('m-step-2', 'm-badge-2', 'Accepted ✓', 'done');
+        setMilestone('m-step-3', 'm-badge-3', 'Approved ✓', 'done');
+        setMilestone('m-step-4', 'm-badge-4', 'Locked ✓', 'active');
+        setMilestone('m-step-5', 'm-badge-5', 'Pending', 'pending');
+        setMilestone('m-step-7', 'm-badge-7', 'Pending', 'pending');
+      } else if (step === 5 || step === 6) {
+        if (mainBadge) { mainBadge.innerText = "5. Payment Settlement"; mainBadge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20"; }
+        setMilestone('m-step-1', 'm-badge-1', 'Created ✓', 'done');
+        setMilestone('m-step-2', 'm-badge-2', 'Accepted ✓', 'done');
+        setMilestone('m-step-3', 'm-badge-3', 'Approved ✓', 'done');
+        setMilestone('m-step-4', 'm-badge-4', 'Locked ✓', 'done');
+        setMilestone('m-step-5', 'm-badge-5', step === 5 ? 'Awaiting Pay' : 'Verifying...', 'active');
+        setMilestone('m-step-7', 'm-badge-7', 'Pending', 'pending');
+      } else if (step === 7) {
+        if (mainBadge) { mainBadge.innerText = "SETTLED ✓"; mainBadge.className = "text-[10px] font-mono px-2.5 py-1 rounded bg-emerald-400 text-on-surface font-bold shadow-sm"; }
+        setMilestone('m-step-1', 'm-badge-1', 'Created ✓', 'done');
+        setMilestone('m-step-2', 'm-badge-2', 'Accepted ✓', 'done');
+        setMilestone('m-step-3', 'm-badge-3', 'Approved ✓', 'done');
+        setMilestone('m-step-4', 'm-badge-4', 'Locked ✓', 'done');
+        setMilestone('m-step-5', 'm-badge-5', 'Received ✓', 'done');
+        setMilestone('m-step-7', 'm-badge-7', 'Settled & Issued ✓', 'done');
+      }
+    }
+
+    // ================== INDIVIDUAL RETAIL FLOW LOGIC ==================
 
     function onPaymentModeChange() {
       const mode = document.getElementById('buy-payment-mode').value;
