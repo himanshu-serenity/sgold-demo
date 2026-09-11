@@ -45,10 +45,12 @@
   <main class="pt-24 pb-16 px-6 max-w-[1440px] mx-auto space-y-6">
 
     <!-- Admin Breadcrumb & Top Bar -->
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-surface-container-low p-6 rounded-2xl border border-surface-container-high shadow-md">
+    <div
+      class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-surface-container-low p-6 rounded-2xl border border-surface-container-high shadow-md">
       <div>
         <div class="flex items-center space-x-2 mb-1">
-          <span class="px-2.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary text-[10px] font-mono uppercase tracking-wider font-bold">
+          <span
+            class="px-2.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary text-[10px] font-mono uppercase tracking-wider font-bold">
             sGold Admin Suite
           </span>
           <span class="px-2 py-0.5 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-mono">
@@ -57,23 +59,28 @@
           <span class="text-xs text-outline font-mono">TVTG Node #ZH-09</span>
         </div>
         <h1 class="text-3xl font-serif font-bold text-on-surface">Institutional Token Ledger</h1>
-        <p class="text-xs text-outline mt-1">Real-time cryptographic audit trail of all Mint (Buy), Burn (Sell), Bullion Redemption, and USD-S Currency Conversions.</p>
+        <p class="text-xs text-outline mt-1">Real-time cryptographic audit trail of all Mint (Buy), Burn (Sell), Bullion
+          Redemption, and Currency Conversions.</p>
       </div>
 
       <div class="flex flex-wrap items-center gap-3">
-        <a href="admin-snapshot.html" class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-primary/40 text-xs font-mono flex items-center gap-2 transition-all">
+        <a href="admin-snapshot.html"
+          class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-primary/40 text-xs font-mono flex items-center gap-2 transition-all">
           <span class="material-symbols-outlined text-sm text-primary">pie_chart</span>
           <span>View Owners Snapshot</span>
         </a>
-        <a href="admin-allocation.html" class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-primary/40 text-xs font-mono flex items-center gap-2 transition-all">
+        <a href="admin-allocation.html"
+          class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-primary/40 text-xs font-mono flex items-center gap-2 transition-all">
           <span class="material-symbols-outlined text-sm text-primary">grain</span>
           <span>Bar Allocation Deck</span>
         </a>
-        <a href="security.html" class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-emerald-400/40 text-xs font-mono flex items-center gap-2 transition-all">
+        <a href="security.html"
+          class="px-3.5 py-2 rounded-xl bg-surface-container border border-surface-container-high hover:border-emerald-400/40 text-xs font-mono flex items-center gap-2 transition-all">
           <span class="material-symbols-outlined text-sm text-emerald-400">shield</span>
           <span>Security Framework</span>
         </a>
-        <button onclick="exportLedgerCSV()" class="px-3.5 py-2 rounded-xl bg-primary text-on-primary font-bold text-xs font-mono flex items-center gap-2 hover:brightness-110 shadow-md">
+        <button onclick="exportLedgerCSV()"
+          class="px-3.5 py-2 rounded-xl bg-primary text-on-primary font-bold text-xs font-mono flex items-center gap-2 hover:brightness-110 shadow-md">
           <span class="material-symbols-outlined text-sm">download</span>
           <span>Export Audit CSV</span>
         </button>
@@ -82,10 +89,11 @@
 
     <!-- Live Aggregated Stats Ribbons -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+      <div
+        class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
         <div class="flex justify-between items-start mb-2">
-          <span class="font-mono text-xs text-outline uppercase">Total Mint Volume (Buys)</span>
-          <span class="material-symbols-outlined text-emerald-400 text-sm">add_circle</span>
+          <span class="font-mono text-sm text-outline uppercase font-semibold">Total Mint Volume (Buys)</span>
+          <span class="material-symbols-outlined text-emerald-400 text-base">add_circle</span>
         </div>
         <div class="text-2xl font-serif font-bold text-on-surface mb-1">28,450.00 oz</div>
         <div class="flex items-center space-x-2 text-xs font-mono text-emerald-400">
@@ -94,10 +102,11 @@
         </div>
       </div>
 
-      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+      <div
+        class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
         <div class="flex justify-between items-start mb-2">
-          <span class="font-mono text-xs text-outline uppercase">Total Burn Volume (Sells)</span>
-          <span class="material-symbols-outlined text-error text-sm">remove_circle</span>
+          <span class="font-mono text-sm text-outline uppercase font-semibold">Total Burn Volume (Sells)</span>
+          <span class="material-symbols-outlined text-error text-base">remove_circle</span>
         </div>
         <div class="text-2xl font-serif font-bold text-on-surface mb-1">4,210.50 oz</div>
         <div class="flex items-center space-x-2 text-xs font-mono text-error">
@@ -106,10 +115,11 @@
         </div>
       </div>
 
-      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+      <div
+        class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
         <div class="flex justify-between items-start mb-2">
-          <span class="font-mono text-xs text-outline uppercase">Physical Redeemed</span>
-          <span class="material-symbols-outlined text-primary text-sm">local_shipping</span>
+          <span class="font-mono text-sm text-outline uppercase font-semibold">Physical Redeemed</span>
+          <span class="material-symbols-outlined text-primary text-base">local_shipping</span>
         </div>
         <div class="text-2xl font-serif font-bold text-on-surface mb-1">1,850.00 oz</div>
         <div class="flex items-center space-x-2 text-xs font-mono text-primary">
@@ -118,10 +128,11 @@
         </div>
       </div>
 
-      <div class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
+      <div
+        class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high relative overflow-hidden">
         <div class="flex justify-between items-start mb-2">
-          <span class="font-mono text-xs text-outline uppercase">USD-S Swap Conversions</span>
-          <span class="material-symbols-outlined text-sky-400 text-sm">currency_exchange</span>
+          <span class="font-mono text-sm text-outline uppercase font-semibold">Settlement Swap Conversions</span>
+          <span class="material-symbols-outlined text-sky-400 text-base">currency_exchange</span>
         </div>
         <div class="text-2xl font-serif font-bold text-on-surface mb-1">$34,810,400</div>
         <div class="flex items-center space-x-2 text-xs font-mono text-sky-400">
@@ -132,20 +143,32 @@
     </div>
 
     <!-- Filter & Search Terminal Bar -->
-    <div class="bg-surface-container-low p-4 rounded-xl border border-surface-container-high flex flex-wrap items-center justify-between gap-4">
+    <div
+      class="bg-surface-container-low p-4 rounded-xl border border-surface-container-high flex flex-wrap items-center justify-between gap-4">
       <div class="flex flex-wrap items-center gap-2">
         <span class="text-xs font-mono text-outline uppercase mr-2">Filter Txn Type:</span>
-        <button onclick="filterType('ALL')" id="tab-ALL" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono bg-primary text-on-primary font-bold shadow-sm">ALL (2,065)</button>
-        <button onclick="filterType('BUY')" id="tab-BUY" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">BUY / MINT</button>
-        <button onclick="filterType('SELL')" id="tab-SELL" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">SELL / BURN</button>
-        <button onclick="filterType('REDEEM')" id="tab-REDEEM" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">PHYSICAL REDEMPTION</button>
-        <button onclick="filterType('CONVERSION')" id="tab-CONVERSION" class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">USD-S CONVERSION</button>
+        <button onclick="filterType('ALL')" id="tab-ALL"
+          class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono bg-primary text-on-primary font-bold shadow-sm">ALL
+          (2,065)</button>
+        <button onclick="filterType('BUY')" id="tab-BUY"
+          class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">BUY
+          / MINT</button>
+        <button onclick="filterType('SELL')" id="tab-SELL"
+          class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">SELL
+          / BURN</button>
+        <button onclick="filterType('REDEEM')" id="tab-REDEEM"
+          class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">PHYSICAL
+          REDEMPTION</button>
+        <button onclick="filterType('CONVERSION')" id="tab-CONVERSION"
+          class="filter-tab px-3 py-1.5 rounded-lg text-xs font-mono text-outline hover:text-on-surface bg-surface-container">USD-S
+          CONVERSION</button>
       </div>
 
       <div class="flex items-center gap-3 flex-1 max-w-md justify-end">
         <div class="relative w-full">
           <span class="material-symbols-outlined absolute left-3 top-2.5 text-outline text-sm">search</span>
-          <input type="text" id="ledgerSearchInput" oninput="handleSearch()" placeholder="Search by Txn Hash, Entity name, Bar ID, or Wallet..."
+          <input type="text" id="ledgerSearchInput" oninput="handleSearch()"
+            placeholder="Search by Txn Hash, Entity name, Bar ID, or Wallet..."
             class="w-full bg-surface-container border border-surface-container-high focus:border-primary rounded-lg pl-9 pr-4 py-2 text-xs text-on-surface font-mono outline-none">
         </div>
       </div>
@@ -157,7 +180,9 @@
         <div class="flex items-center space-x-3">
           <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
           <h2 class="font-serif font-bold text-lg text-on-surface">Verified Global Ledger Transactions</h2>
-          <span class="text-xs font-mono text-outline bg-surface-container px-2.5 py-0.5 rounded border border-outline-variant/30">Showing 10 Most Recent Verified Blocks</span>
+          <span
+            class="text-xs font-mono text-outline bg-surface-container px-2.5 py-0.5 rounded border border-outline-variant/30">Showing
+            10 Most Recent Verified Blocks</span>
         </div>
         <div class="text-xs font-mono text-outline">
           Synced with Ethereum / TVTG Node: <span class="text-primary font-bold">Block #20,891,421</span>
@@ -167,7 +192,8 @@
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse text-xs">
           <thead>
-            <tr class="border-b border-surface-container-high bg-surface-container/60 text-outline font-mono uppercase text-[11px]">
+            <tr
+              class="border-b border-surface-container-high bg-surface-container/60 text-outline font-mono uppercase text-[11px]">
               <th class="py-3 px-4">Txn Hash / Timestamp</th>
               <th class="py-3 px-4">Type</th>
               <th class="py-3 px-4">Entity & Category</th>
@@ -185,12 +211,16 @@
       </div>
 
       <!-- Pagination / Footer info -->
-      <div class="p-4 border-t border-surface-container-high flex flex-col sm:flex-row items-center justify-between text-xs text-outline font-mono gap-3 bg-surface-container/30">
-        <div>Showing <span id="displayedCount" class="text-on-surface font-bold">10</span> of <span class="text-primary font-bold">2,065</span> Total Recorded Transactions</div>
+      <div
+        class="p-4 border-t border-surface-container-high flex flex-col sm:flex-row items-center justify-between text-xs text-outline font-mono gap-3 bg-surface-container/30">
+        <div>Showing <span id="displayedCount" class="text-on-surface font-bold">10</span> of <span
+            class="text-primary font-bold">2,065</span> Total Recorded Transactions</div>
         <div class="flex items-center space-x-2">
-          <button class="px-3 py-1 rounded bg-surface-container border border-surface-container-high text-outline hover:text-on-surface cursor-pointer">Previous</button>
+          <button
+            class="px-3 py-1 rounded bg-surface-container border border-surface-container-high text-outline hover:text-on-surface cursor-pointer">Previous</button>
           <span class="px-2 py-1 text-primary font-bold">Page 1 of 207</span>
-          <button class="px-3 py-1 rounded bg-surface-container border border-surface-container-high text-on-surface hover:border-primary cursor-pointer">Next</button>
+          <button
+            class="px-3 py-1 rounded bg-surface-container border border-surface-container-high text-on-surface hover:border-primary cursor-pointer">Next</button>
         </div>
       </div>
     </div>
@@ -256,7 +286,8 @@
           <span class="text-[11px] font-mono text-emerald-400">100% AUDITED</span>
         </div>
         <div class="space-y-3 font-mono text-xs">
-          <div class="p-3 bg-surface-container rounded-xl flex items-center justify-between border border-surface-container-high">
+          <div
+            class="p-3 bg-surface-container rounded-xl flex items-center justify-between border border-surface-container-high">
             <div class="flex items-center space-x-3">
               <span class="material-symbols-outlined text-primary">domain</span>
               <div>
@@ -264,10 +295,12 @@
                 <div class="text-[11px] text-outline">12,500 oz Physical Reserves • 0 Pending Inspections</div>
               </div>
             </div>
-            <span class="px-2.5 py-1 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-bold">ACTIVE ALLOCATION</span>
+            <span class="px-2.5 py-1 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-bold">ACTIVE
+              ALLOCATION</span>
           </div>
 
-          <div class="p-3 bg-surface-container rounded-xl flex items-center justify-between border border-surface-container-high">
+          <div
+            class="p-3 bg-surface-container rounded-xl flex items-center justify-between border border-surface-container-high">
             <div class="flex items-center space-x-3">
               <span class="material-symbols-outlined text-primary">domain</span>
               <div>
@@ -275,10 +308,12 @@
                 <div class="text-[11px] text-outline">10,250 oz Physical Reserves • 1 Courier in transit</div>
               </div>
             </div>
-            <span class="px-2.5 py-1 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-bold">ACTIVE ALLOCATION</span>
+            <span class="px-2.5 py-1 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-bold">ACTIVE
+              ALLOCATION</span>
           </div>
 
-          <div class="p-3 bg-surface-container rounded-xl flex items-center justify-between border border-surface-container-high">
+          <div
+            class="p-3 bg-surface-container rounded-xl flex items-center justify-between border border-surface-container-high">
             <div class="flex items-center space-x-3">
               <span class="material-symbols-outlined text-primary">domain</span>
               <div>
@@ -286,7 +321,8 @@
                 <div class="text-[11px] text-outline">7,270 oz Physical Reserves • Bi-Weekly Assay OK</div>
               </div>
             </div>
-            <span class="px-2.5 py-1 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-bold">ACTIVE ALLOCATION</span>
+            <span class="px-2.5 py-1 rounded bg-emerald-400/10 text-emerald-400 text-[10px] font-bold">ACTIVE
+              ALLOCATION</span>
           </div>
         </div>
       </div>
@@ -295,8 +331,10 @@
   </main>
 
   <!-- Txn Details Modal -->
-  <div id="txnModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md">
-    <div class="bg-surface-container-low border border-primary/40 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative overflow-hidden">
+  <div id="txnModal"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md">
+    <div
+      class="bg-surface-container-low border border-primary/40 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative overflow-hidden">
       <div class="flex items-center justify-between pb-4 border-b border-surface-container-high mb-4">
         <div class="flex items-center space-x-2">
           <span class="material-symbols-outlined text-primary">verified</span>
@@ -313,7 +351,8 @@
 
       <div class="mt-6 pt-4 border-t border-surface-container-high flex justify-between items-center">
         <span class="text-[11px] text-outline font-mono">TVTG Cryptographic Seal ID: 0x88F...BC12</span>
-        <button onclick="closeModal('txnModal')" class="px-4 py-2 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono hover:brightness-110">
+        <button onclick="closeModal('txnModal')"
+          class="px-4 py-2 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono hover:brightness-110">
           Close Record
         </button>
       </div>
@@ -536,7 +575,7 @@
       const tbody = document.getElementById('ledgerTableBody');
       const filtered = LEDGER_TXNS.filter(tx => {
         const matchesFilter = (currentFilter === 'ALL' || tx.type === currentFilter);
-        const matchesSearch = !searchQuery || 
+        const matchesSearch = !searchQuery ||
           tx.hash.toLowerCase().includes(searchQuery) ||
           tx.entity.toLowerCase().includes(searchQuery) ||
           tx.wallet.toLowerCase().includes(searchQuery) ||
@@ -707,4 +746,5 @@
     }
   </script>
 </body>
+
 </html>

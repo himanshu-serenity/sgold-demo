@@ -60,14 +60,14 @@
       <div
         class="flex items-center space-x-4 bg-surface-container-low p-3.5 rounded-xl border border-surface-container-high">
         <div>
-          <div class="text-[10px] font-mono text-outline">CURRENT INDEX PRICE</div>
-          <div class="text-xl font-serif font-bold text-primary">$4,950.20 <span
+          <div class="text-xs font-mono text-outline">CURRENT INDEX PRICE</div>
+          <div class="text-2xl font-serif font-bold text-primary">$4,950.20 <span
               class="text-xs text-emerald-400 font-mono font-normal">+0.42%</span></div>
         </div>
         <div class="h-8 w-px bg-surface-container-high"></div>
         <div>
-          <div class="text-[10px] font-mono text-outline">PREFUNDED USD</div>
-          <div class="text-base font-serif font-bold text-on-surface">$20,499</div>
+          <div class="text-xs font-mono text-outline">PREFUNDED USD</div>
+          <div class="text-lg font-serif font-bold text-on-surface">$20,499</div>
         </div>
       </div>
     </div>
@@ -107,25 +107,25 @@
               <span class="text-[10px] font-mono text-primary font-bold uppercase block">Target Vault Depository</span>
               <select
                 class="bg-surface-container border border-surface-container-high rounded-lg px-2.5 py-1 text-xs text-on-surface font-mono focus:outline-none focus:border-primary">
-                <option>Zurich, Switzerland (Gotthard Vault)</option>
-                <option>Dallas, USA (Sovereign Depository)</option>
-                <option>Singapore (Le Freeport Changi)</option>
-                <option>Vaduz, Liechtenstein (St. Anna Vault)</option>
+                <option>Zurich, Switzerland</option>
+                <option>Dallas, USA</option>
+                <option>Singapore</option>
+                <option>Vaduz, Liechtenstein</option>
               </select>
             </div>
           </div>
 
-          <!-- Quantity Input (Whole number of oz) -->
+          <!-- Quantity Input (Fractional oz allowed) -->
           <div class="space-y-1.5">
             <div class="flex justify-between text-xs font-mono">
-              <span class="text-outline uppercase font-bold">Purchase Quantity (Whole Ounces)</span>
-              <span class="text-primary">Min: 1 oz | Balance: 25.80 oz</span>
+              <span class="text-outline uppercase font-bold">Purchase Quantity (Ounces)</span>
+              <span class="text-primary">Min: 0.01 oz | Balance: 25.80 oz</span>
             </div>
             <div class="relative flex items-center">
-              <input type="number" id="gold-oz-input" value="5" min="1" step="1" oninput="calculateBuyQuote()"
+              <input type="number" id="gold-oz-input" value="5.00" min="0.01" step="0.01" oninput="calculateBuyQuote()"
                 class="w-full bg-surface border border-outline-variant/50 rounded-xl px-4 py-3.5 text-2xl font-mono font-bold text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
               <div class="absolute right-4 flex items-center space-x-2">
-                <span class="font-mono text-xs font-bold text-primary px-2 py-1 rounded bg-surface-container">WHOLE
+                <span class="font-mono text-xs font-bold text-primary px-2 py-1 rounded bg-surface-container">sGold
                   OZ</span>
               </div>
             </div>
@@ -143,22 +143,70 @@
             </select>
           </div>
 
-          <!-- Fiat Receipt Upload Box (Conditional) -->
+          <!-- Fiat Receipt Upload Box & Bank Details Link (Conditional) -->
           <div id="fiat-receipt-box"
-            class="p-3.5 bg-surface rounded-xl border border-outline-variant/40 space-y-2 hidden">
+            class="p-3.5 bg-surface rounded-xl border border-outline-variant/40 space-y-3 hidden">
             <div class="flex justify-between items-center text-xs font-mono">
               <span class="text-primary font-bold uppercase">Fiat Wire Confirmation Receipt Upload (PDF)</span>
-              <span class="text-outline">SWIFT Wire MT103</span>
+              <button type="button" onclick="openModal('bankDetailsModal')"
+                class="text-primary hover:underline font-bold inline-flex items-center gap-1 text-xs">
+                <span class="material-symbols-outlined text-sm">account_balance</span>
+                <span>View Bank Transfer Details</span>
+              </button>
             </div>
+            <p class="text-[11px] text-outline">
+              Transfer funds to sGold Technology Inc. via US Wire/Fedwire. Upload your SWIFT/Wire confirmation receipt
+              below.
+            </p>
             <input type="file" accept="application/pdf"
               class="w-full text-xs text-outline file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-mono file:bg-primary file:text-on-primary file:font-bold hover:file:brightness-110 cursor-pointer">
+          </div>
+
+          <!-- Crypto QR Code & Wallet Box (Conditional) -->
+          <div id="crypto-qr-box"
+            class="p-3.5 bg-surface rounded-xl border border-outline-variant/40 space-y-2.5 hidden">
+            <div class="flex justify-between items-center text-xs font-mono">
+              <span class="text-primary font-bold uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">currency_bitcoin</span>
+                <span>Crypto Payment (USDC / USDT)</span>
+              </span>
+              <button type="button" onclick="openModal('cryptoQrModal')"
+                class="text-primary hover:underline font-bold inline-flex items-center gap-1 text-xs">
+                <span class="material-symbols-outlined text-sm">qr_code_2</span>
+                <span>Show Payment QR</span>
+              </button>
+            </div>
+            <p class="text-[11px] text-outline">
+              Send supported ERC-20 / BEP-20 stablecoins. Click <strong>Show Payment QR</strong> for recipient address
+              and supported network specifications.
+            </p>
+          </div>
+
+          <!-- Settlement Token QR Code Box (Conditional) -->
+          <div id="settlement-qr-box"
+            class="p-3.5 bg-surface rounded-xl border border-outline-variant/40 space-y-2.5 hidden">
+            <div class="flex justify-between items-center text-xs font-mono">
+              <span class="text-emerald-400 font-bold uppercase flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">token</span>
+                <span>Settlement Token</span>
+              </span>
+              <button type="button" onclick="openModal('settlementQrModal')"
+                class="text-primary hover:underline font-bold inline-flex items-center gap-1 text-xs">
+                <span class="material-symbols-outlined text-sm">qr_code_2</span>
+                <span>Show Token QR</span>
+              </button>
+            </div>
+            <p class="text-[11px] text-outline">
+              Settle instantly with Settlement tokens at 15% discount. Click <strong>Show Token QR</strong> for vault
+              contract address.
+            </p>
           </div>
 
           <!-- Checkboxes: T&C and Biometrics -->
           <div class="space-y-2 pt-1 text-xs">
             <label class="flex items-center space-x-2.5 cursor-pointer text-on-surface-variant">
               <input type="checkbox" id="tc-checkbox" checked class="accent-primary w-4 h-4 rounded">
-              <span>I accept the Institutional Terms & Conditions and Vault Custody Agreement.</span>
+              <span>I accept the Token Purchase Agreement and Custody Mandate.</span>
             </label>
             <label class="flex items-center space-x-2.5 cursor-pointer text-on-surface-variant">
               <input type="checkbox" id="bio-checkbox" checked class="accent-primary w-4 h-4 rounded">
@@ -182,23 +230,23 @@
           <!-- Dynamic Quote Breakdown -->
           <div class="p-4 rounded-xl bg-surface space-y-2 border border-surface-container-high font-mono text-xs">
             <div class="flex justify-between text-outline">
-              <span>Spot Execution Rate</span>
+              <span>Spot Execution Price</span>
               <span class="text-on-surface">$4,950.20 / oz</span>
             </div>
             <div class="flex justify-between text-outline">
-              <span>Base Consideration (<span id="quote-oz-count">5</span> oz)</span>
+              <span>Base Consideration (<span id="quote-oz-count">5.00</span> oz)</span>
               <span class="text-on-surface" id="quote-base-price">$24,751.00</span>
             </div>
             <div class="flex justify-between text-outline">
-              <span>Settlement Discount (15% on Fee)</span>
+              <span>Settlement Token 15% Fee Discount</span>
               <span class="text-emerald-400" id="quote-discount">-$0.00</span>
             </div>
             <div class="flex justify-between text-outline">
-              <span>Platform Fee (0.25%)</span>
+              <span>Custody & Minting Fee (0.25%)</span>
               <span class="text-emerald-400" id="platform-fee">$247</span>
             </div>
             <div class="pt-3 border-t border-surface-container-high flex justify-between items-center text-sm">
-              <span class="font-serif font-bold text-on-surface text-base">Total Consideration</span>
+              <span class="font-serif font-bold text-on-surface text-base">Total Order Amount</span>
               <span class="text-2xl font-serif font-bold text-primary" id="quote-total-price">$24,751.00</span>
             </div>
           </div>
@@ -206,8 +254,8 @@
           <!-- Get Quote & Submit Button -->
           <button onclick="submitBuyOrder()"
             class="w-full py-4 bg-primary text-on-primary font-bold font-mono text-base rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
-            <span class="material-symbols-outlined text-sm">lock</span>
-            <span>Initiate Payment</span>
+            <span class="material-symbols-outlined text-sm">payments</span>
+            <span>Execute Purchase</span>
           </button>
 
         </div>
@@ -219,10 +267,10 @@
         <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-5">
           <div class="flex justify-between items-center pb-3 border-b border-surface-container-high">
             <div class="flex items-center space-x-2">
-              <span class="material-symbols-outlined text-primary text-sm">mail</span>
+              <span class="material-symbols-outlined text-primary text-sm">sync_alt</span>
               <h3 class="font-serif font-bold text-lg text-on-surface">Order Lifecycle</h3>
             </div>
-            <!-- <span class="text-[10px] font-mono text-outline uppercase"></span> -->
+            <!-- <span class="text-[10px] font-mono text-outline uppercase">Simulated Status</span> -->
           </div>
 
           <!-- 4 Lifecycle Steps -->
@@ -235,8 +283,7 @@
                 </span>
                 <span id="badge-placed" class="text-outline text-[10px]">Awaiting Submit</span>
               </div>
-              <p class="text-outline text-[11px]">User receives instantaneous confirmation of order parameters & wire
-                instructions.</p>
+              <p class="text-outline text-[11px]">User receives automated confirmation email with order details.</p>
             </div>
 
             <!-- Step 2: Admin Confirmation -->
@@ -247,37 +294,37 @@
                 </span>
                 <span id="badge-admin" class="text-outline text-[10px]">Pending Payment</span>
               </div>
-              <p class="text-outline text-[11px]">Admin processes bank wire / crypto settlement & validates custody
-                allocation.</p>
+              <p class="text-outline text-[11px]">Admin confirms fiat receipt or prefunded settlement debit.</p>
             </div>
 
-            <!-- Step 3: Order Execution -->
+            <!-- Step 3: Execution & Lock -->
             <div id="step-exec" class="p-3 bg-surface rounded-xl border border-surface-container-high space-y-1">
               <div class="flex justify-between items-center">
                 <span class="font-bold text-on-surface flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-outline"></span> 3. Order Execution Email
+                  <span class="w-2 h-2 rounded-full bg-outline"></span> 3. Execution & 24h Lock
                 </span>
                 <span id="badge-exec" class="text-outline text-[10px]">Queued</span>
               </div>
-              <p class="text-outline text-[11px]">User receives execution notification with ownership certificate to be
-                released in 24 hr.</p>
+              <p class="text-outline text-[11px]">Admin executes physical gold purchase on open spot market. Tokens
+                locked 24h.</p>
             </div>
 
             <!-- Step 4: Completion & Certificate -->
+            <!-- Step 4: Completion -->
             <div id="step-complete" class="p-3 bg-surface rounded-xl border border-surface-container-high space-y-1">
               <div class="flex justify-between items-center">
                 <span class="font-bold text-on-surface flex items-center gap-1.5">
                   <span class="w-2 h-2 rounded-full bg-outline"></span> 4. Order Completion Email
                 </span>
-                <span id="badge-complete" class="text-outline text-[10px]">Queued</span>
+                <span id="badge-complete" class="text-outline text-[10px]">Waiting</span>
               </div>
-              <p class="text-outline text-[11px]">User receives final completion email with official notarized sGold
-                Ownership Certificate.</p>
-              <div id="cert-btn-container" class="hidden pt-2">
-                <button onclick="openModal('certificateModal')"
-                  class="w-full py-2 bg-primary/20 border border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-on-primary transition-all flex items-center justify-center space-x-1">
-                  <span class="material-symbols-outlined text-sm">workspace_premium</span>
-                  <span>View sGold Ownership Certificate</span>
+              <p class="text-outline text-[11px]">User receives execution notification and confirmed payment settlement
+                receipt.</p>
+              <div id="cert-btn-container" class="pt-2 hidden">
+                <button onclick="openModal('buySuccessModal')"
+                  class="w-full py-2 bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 font-bold rounded-lg text-xs hover:bg-emerald-500 hover:text-white transition-all flex items-center justify-center space-x-1.5 font-mono">
+                  <span class="material-symbols-outlined text-sm">receipt_long</span>
+                  <span>View Payment Receipt</span>
                 </button>
               </div>
             </div>
@@ -291,50 +338,240 @@
 
   </main>
 
-  <!-- Certificate Modal -->
-  <div id="certificateModal"
+  <!-- Payment Success Modal -->
+  <div id="buySuccessModal"
     class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
     <div
-      class="bg-surface-container-low border-2 border-primary rounded-2xl max-w-lg w-full p-8 shadow-2xl relative space-y-6 text-center">
-      <div class="absolute -top-16 -right-16 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
-
-      <img src="../assets/images/sgold-coin-flat.png" alt="sGold Seal" class="w-16 h-16 mx-auto object-contain">
-
-      <div>
-        <span class="font-mono text-xs text-primary uppercase tracking-widest block">LIECHTENSTEIN CONFEDERATION
-          NOTARIZED</span>
-        <h3 class="text-2xl font-serif font-bold text-on-surface">Certificate of Allocated Gold Ownership</h3>
-        <p class="text-xs text-outline mt-1 font-mono">Certificate Serial # SG-2026-99482-CH</p>
+      class="bg-surface-container-low border-2 border-emerald-500/80 rounded-2xl max-w-lg w-full p-8 shadow-2xl relative space-y-6 text-center animate-in fade-in zoom-in duration-200">
+      <div class="absolute -top-16 -right-16 w-40 h-40 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none">
       </div>
 
-      <div class="p-4 bg-surface rounded-xl border border-surface-container-high text-xs font-mono text-left space-y-2">
-        <div class="flex justify-between">
-          <span class="text-outline">Beneficiary Holder:</span>
-          <span class="text-on-surface font-bold">Global Trust Fund (Tier-1)</span>
+      <!-- Icon -->
+      <div
+        class="w-16 h-16 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+        <span class="material-symbols-outlined text-3xl">check_circle</span>
+      </div>
+
+      <div>
+        <span class="font-mono text-[11px] text-emerald-400 uppercase tracking-widest block font-bold">Payment
+          Completed</span>
+        <h3 class="text-2xl font-serif font-bold text-on-surface mt-1">Payment Done Successfully</h3>
+        <p class="text-xs text-outline mt-1 font-mono" id="modal-buy-txid">Tx Ref # TXN-99842</p>
+      </div>
+
+      <div
+        class="p-4 bg-surface rounded-xl border border-surface-container-high text-xs font-mono text-left space-y-2.5">
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Purchased Quantity:</span>
+          <span class="text-primary font-bold text-sm" id="modal-buy-oz">+5.00 oz sGold</span>
         </div>
-        <div class="flex justify-between">
-          <span class="text-outline">Allocated Quantity:</span>
-          <span class="text-primary font-bold" id="cert-oz-val">5.000 Troy Ounces</span>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Total Payment Settled:</span>
+          <span class="text-emerald-400 font-bold text-sm" id="modal-buy-amount">$24,751.00</span>
         </div>
-        <div class="flex justify-between">
-          <span class="text-outline">Purity Standard:</span>
-          <span class="text-on-surface font-bold">99.99% Fine Gold (.9999)</span>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Payment Method:</span>
+          <span class="text-on-surface font-bold uppercase" id="modal-buy-channel">PREFUNDED USD</span>
         </div>
-        <div class="flex justify-between">
-          <span class="text-outline">Vault Facility:</span>
-          <span class="text-on-surface font-bold">Gotthard High Security Vault, Zurich</span>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Payment Status:</span>
+          <span class="text-emerald-400 font-bold flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Confirmed
+          </span>
         </div>
-        <div class="flex justify-between">
-          <span class="text-outline">Custodian Bar ID:</span>
-          <span class="text-primary font-bold">LBMA-ZUR-8849-05</span>
+        <div class="flex justify-between items-center pt-1 border-t border-surface-container-high/60">
+          <span class="text-outline">Updated Balance:</span>
+          <span class="text-primary font-bold" id="modal-buy-new-balance">30.80 oz sGold</span>
         </div>
       </div>
 
       <div class="flex space-x-3">
-        <button onclick="closeModal('certificateModal')"
-          class="w-1/2 py-2.5 bg-surface-container rounded-lg text-xs font-mono">Close</button>
-        <a href="../assets/images/cert.png" download="cert.png" onclick="closeModal('certificateModal')"
-          class="w-1/2 py-2.5 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono inline-flex items-center justify-center">Download PDF</a>
+        <button onclick="closeModal('buySuccessModal')"
+          class="w-1/2 py-2.5 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg text-xs font-mono transition-colors">
+          Close
+        </button>
+        <a href="my-gold.html"
+          class="w-1/2 py-2.5 bg-primary text-on-primary hover:brightness-110 font-bold rounded-lg text-xs font-mono inline-flex items-center justify-center transition-all">
+          View Holdings
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bank Details Modal -->
+  <div id="bankDetailsModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
+    <div
+      class="bg-surface-container-low border-2 border-primary rounded-2xl max-w-lg w-full p-6 shadow-2xl relative space-y-5 animate-in fade-in zoom-in duration-200">
+      <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+        <div class="flex items-center space-x-2">
+          <span class="material-symbols-outlined text-primary text-xl">account_balance</span>
+          <div>
+            <h3 class="font-serif font-bold text-lg text-on-surface">sGold Wire Transfer Instructions</h3>
+            <span class="text-[10px] font-mono text-outline uppercase">Beneficiary Corporate Account</span>
+          </div>
+        </div>
+        <button onclick="closeModal('bankDetailsModal')" class="text-outline hover:text-on-surface p-1">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-2.5 text-xs font-mono">
+        <div class="p-3 bg-surface rounded-xl border border-surface-container-high flex justify-between items-center">
+          <span class="text-outline">Beneficiary Name:</span>
+          <span class="text-on-surface font-bold">sGold Technology Inc. (US)</span>
+        </div>
+        <div class="p-3 bg-surface rounded-xl border border-surface-container-high flex justify-between items-center">
+          <span class="text-outline">Bank Name:</span>
+          <span class="text-on-surface font-bold">JPMorgan Chase Bank, N.A.</span>
+        </div>
+        <div class="p-3 bg-surface rounded-xl border border-surface-container-high flex justify-between items-center">
+          <span class="text-outline">Account Number:</span>
+          <span class="text-primary font-bold">884920048192</span>
+        </div>
+        <div class="p-3 bg-surface rounded-xl border border-surface-container-high flex justify-between items-center">
+          <span class="text-outline">Routing Number (ABA / Fedwire):</span>
+          <span class="text-on-surface font-bold">021000021</span>
+        </div>
+        <div class="p-3 bg-surface rounded-xl border border-surface-container-high flex justify-between items-center">
+          <span class="text-outline">SWIFT / BIC Code:</span>
+          <span class="text-primary font-bold">CHASUS33XXX</span>
+        </div>
+        <div class="p-3 bg-surface rounded-xl border border-surface-container-high flex justify-between items-center">
+          <span class="text-outline">Bank Address:</span>
+          <span class="text-on-surface font-bold text-right text-[11px]">270 Park Ave, New York, NY 10017, USA</span>
+        </div>
+        <div class="p-3 bg-surface-container rounded-xl border border-primary/20 flex justify-between items-center">
+          <span class="text-outline">Reference / Memo:</span>
+          <span class="text-primary font-bold">SGOLD-BUY-2026-US</span>
+        </div>
+      </div>
+
+      <div class="flex justify-end pt-1">
+        <button onclick="closeModal('bankDetailsModal')"
+          class="w-full py-2.5 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono hover:brightness-110 transition-all">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Crypto Payment QR Modal -->
+  <div id="cryptoQrModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
+    <div
+      class="bg-surface-container-low border-2 border-primary rounded-2xl max-w-md w-full p-6 shadow-2xl relative space-y-5 text-center animate-in fade-in zoom-in duration-200">
+      <div class="flex items-center justify-between pb-3 border-b border-surface-container-high text-left">
+        <div class="flex items-center space-x-2">
+          <span class="material-symbols-outlined text-primary text-xl">qr_code_2</span>
+          <div>
+            <h3 class="font-serif font-bold text-lg text-on-surface">Crypto Deposit Terminal</h3>
+            <span class="text-[10px] font-mono text-outline uppercase">USDC & USDT Deposit</span>
+          </div>
+        </div>
+        <button onclick="closeModal('cryptoQrModal')" class="text-outline hover:text-on-surface p-1">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+
+      <!-- QR Code & Address Display -->
+      <div class="flex flex-col items-center justify-center space-y-3">
+        <div class="p-3 bg-white rounded-xl border-2 border-primary shadow-md inline-block">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=ethereum:0x71C8395B293129849201948B842"
+            alt="Crypto Deposit QR" class="w-40 h-40 object-contain">
+        </div>
+        <div class="w-full space-y-1">
+          <span class="text-[10px] font-mono text-outline uppercase block">Custody Deposit Address</span>
+          <div
+            class="p-2.5 bg-surface rounded-lg border border-surface-container-high font-mono text-xs text-primary font-bold break-all select-all">
+            0x71C8395B293129849201948B842
+          </div>
+        </div>
+      </div>
+
+      <!-- Allowed Tokens & Networks -->
+      <div
+        class="p-3.5 bg-surface rounded-xl border border-surface-container-high text-left space-y-2 text-xs font-mono">
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Accepted Tokens:</span>
+          <span class="text-emerald-400 font-bold">USDC, USDT</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Supported Networks:</span>
+          <span class="text-on-surface font-bold">Ethereum (ERC-20), (BEP-20)</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Confirmation Speed:</span>
+          <span class="text-primary font-bold">12 Block Confirmations (~2 mins)</span>
+        </div>
+      </div>
+
+      <div class="flex justify-end pt-1">
+        <button onclick="closeModal('cryptoQrModal')"
+          class="w-full py-2.5 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono hover:brightness-110 transition-all">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settlement Token QR Modal -->
+  <div id="settlementQrModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
+    <div
+      class="bg-surface-container-low border-2 border-emerald-500/80 rounded-2xl max-w-md w-full p-6 shadow-2xl relative space-y-5 text-center animate-in fade-in zoom-in duration-200">
+      <div class="flex items-center justify-between pb-3 border-b border-surface-container-high text-left">
+        <div class="flex items-center space-x-2">
+          <span class="material-symbols-outlined text-emerald-400 text-xl">token</span>
+          <div>
+            <h3 class="font-serif font-bold text-lg text-on-surface"> Settlement Transfer</h3>
+            <span class="text-[10px] font-mono text-outline uppercase">Instant Liquidity Contract</span>
+          </div>
+        </div>
+        <button onclick="closeModal('settlementQrModal')" class="text-outline hover:text-on-surface p-1">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+
+      <!-- QR Code & Address Display -->
+      <div class="flex flex-col items-center justify-center space-y-3">
+        <div class="p-3 bg-white rounded-xl border-2 border-emerald-500/80 shadow-md inline-block">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=ethereum:0x99482SettlementTokenVault0029FE"
+            alt="Settlement Token QR" class="w-40 h-40 object-contain">
+        </div>
+        <div class="w-full space-y-1">
+          <span class="text-[10px] font-mono text-outline uppercase block">Vault Settlement Contract</span>
+          <div
+            class="p-2.5 bg-surface rounded-lg border border-surface-container-high font-mono text-xs text-emerald-400 font-bold break-all select-all">
+            0x99482SettlementTokenVault0029FE
+          </div>
+        </div>
+      </div>
+
+      <!-- Allowed Tokens & Networks -->
+      <div
+        class="p-3.5 bg-surface rounded-xl border border-surface-container-high text-left space-y-2 text-xs font-mono">
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Token Standard:</span>
+          <span class="text-emerald-400 font-bold">Settlement Token</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Fee Benefit:</span>
+          <span class="text-emerald-400 font-bold">15% Discount on Platform Fees</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Settlement Speed:</span>
+          <span class="text-primary font-bold">Instant (0 Blocks)</span>
+        </div>
+      </div>
+
+      <div class="flex justify-end pt-1">
+        <button onclick="closeModal('settlementQrModal')"
+          class="w-full py-2.5 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono hover:brightness-110 transition-all">
+          Done
+        </button>
       </div>
     </div>
   </div>
@@ -350,16 +587,19 @@
     function onPaymentModeChange() {
       const mode = document.getElementById('buy-payment-mode').value;
       const fiatBox = document.getElementById('fiat-receipt-box');
-      if (mode === 'fiat') {
-        fiatBox.classList.remove('hidden');
-      } else {
-        fiatBox.classList.add('hidden');
-      }
+      const cryptoBox = document.getElementById('crypto-qr-box');
+      const settlementBox = document.getElementById('settlement-qr-box');
+
+      if (fiatBox) fiatBox.classList.toggle('hidden', mode !== 'fiat');
+      if (cryptoBox) cryptoBox.classList.toggle('hidden', mode !== 'crypto');
+      if (settlementBox) settlementBox.classList.toggle('hidden', mode !== 'settlement');
+
       calculateBuyQuote();
     }
 
     function calculateBuyQuote() {
-      const oz = Math.max(1, parseInt(document.getElementById('gold-oz-input').value) || 1);
+      const rawVal = parseFloat(document.getElementById('gold-oz-input').value);
+      const oz = isNaN(rawVal) ? 0 : Math.max(0, rawVal);
       const rate = 4950.20;
       const base = oz * rate;
       const mode = document.getElementById('buy-payment-mode').value;
@@ -371,7 +611,7 @@
 
       const total = base - discount;
 
-      document.getElementById('quote-oz-count').innerText = oz;
+      document.getElementById('quote-oz-count').innerText = oz.toFixed(2);
       document.getElementById('quote-base-price').innerText = formatUSD(base);
       document.getElementById('platform-fee').innerText = formatUSD(base * 0.0025)
       document.getElementById('quote-discount').innerText = discount > 0 ? `-${formatUSD(discount)} (15% Off)` : '-$0.00';
@@ -385,7 +625,12 @@
         return;
       }
 
-      const oz = parseInt(document.getElementById('gold-oz-input').value) || 1;
+      const oz = parseFloat(document.getElementById('gold-oz-input').value) || 0;
+      if (oz <= 0) {
+        alert("Please enter a valid purchase quantity greater than 0.");
+        return;
+      }
+
       const mode = document.getElementById('buy-payment-mode').value;
       const requireBio = document.getElementById('bio-checkbox').checked;
 
@@ -415,39 +660,47 @@
           badge3.innerText = "Executed (Release in 24h)";
         }, 2000);
 
-        // Step 4: Completion & Certificate
+        // Step 4: Completion
         setTimeout(() => {
           const step4 = document.getElementById('step-complete');
           const badge4 = document.getElementById('badge-complete');
           step4.className = "p-3 bg-surface rounded-xl border border-emerald-400 space-y-1";
           badge4.className = "text-emerald-400 font-bold text-[10px]";
-          badge4.innerText = "Certificate Ready";
+          badge4.innerText = "Payment Done";
           document.getElementById('cert-btn-container').classList.remove('hidden');
 
           // Update State
           const state = getSGoldState();
           state.portfolio.ownedGoldOz += oz;
+          const txId = `TXN-${Math.floor(10000 + Math.random() * 90000)}`;
+          const totalPaid = document.getElementById('quote-total-price').innerText;
           state.activities.unshift({
-            id: `TXN-${Math.floor(10000 + Math.random() * 90000)}`,
+            id: txId,
             date: new Date().toISOString().replace('T', ' ').substring(0, 19) + " UTC",
             action: "Buy sGold",
-            quantity: `+${oz}.0 oz`,
-            price: document.getElementById('quote-total-price').innerText,
+            quantity: `+${oz.toFixed(2)} oz`,
+            price: totalPaid,
             status: "Completed",
             mode: mode.toUpperCase()
           });
           saveSGoldState(state);
 
-          document.getElementById('cert-oz-val').innerText = `${oz}.000 Troy Ounces`;
-          openModal('certificateModal');
+          // Populate Payment Success Modal
+          document.getElementById('modal-buy-txid').innerText = `Tx Ref # ${txId}`;
+          document.getElementById('modal-buy-oz').innerText = `+${oz.toFixed(2)} oz sGold`;
+          document.getElementById('modal-buy-amount').innerText = totalPaid;
+          document.getElementById('modal-buy-channel').innerText = mode.toUpperCase() + " ACCOUNT";
+          document.getElementById('modal-buy-new-balance').innerText = formatOz(state.portfolio.ownedGoldOz) + " sGold";
+
+          openModal('buySuccessModal');
         }, 3200);
       };
 
       if (requireBio) {
         triggerSaxessProBiometrics({
           title: "Approve sGold Purchase",
-          subtitle: `Authorize allocation of ${oz} whole ounces of sGold via Saxess Pro.`,
-          challenge: `0xBUY-${oz}OZ-CONFIRM`,
+          subtitle: `Authorize allocation of ${oz.toFixed(2)} ounces of sGold via Saxess Pro.`,
+          challenge: `0xBUY-${oz.toFixed(2)}OZ-CONFIRM`,
           onApproved: proceedWithSimulation
         });
       } else {

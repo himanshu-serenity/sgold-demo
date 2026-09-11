@@ -14,11 +14,11 @@ function renderSharedNav(activePage = 'dashboard') {
         <a href="dashboard.html" class="flex items-center space-x-3 group">
           <img src="../assets/images/sgold-coin.webp" alt="sGold" class="w-9 h-9 object-contain drop-shadow-[0_0_12px_rgba(184,138,16,0.3)] group-hover:scale-105 transition-transform" />
           <div class="flex flex-col">
-            <span class="font-bold text-2xl text-primary tracking-tight font-serif">sGold</span>
+            <span class="font-bold text-3xl text-primary tracking-tight font-serif">sGold</span>
           </div>
         </a>
 
-        <nav class="hidden md:flex items-center space-x-1 font-medium text-sm">
+        <nav class="hidden md:flex items-center space-x-1 font-medium text-base">
           <a href="dashboard.html" class="px-3.5 py-2 rounded-lg transition-all ${activePage === 'dashboard' ? 'bg-primary text-on-primary font-semibold shadow-sm' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'}">
             Dashboard
           </a>
@@ -42,8 +42,8 @@ function renderSharedNav(activePage = 'dashboard') {
       
 
         <div class="hidden sm:flex flex-col items-end">
-          <span class="text-[10px] font-mono text-outline uppercase tracking-wider">Portfolio Holdings</span>
-          <span class="text-sm font-mono font-bold text-on-surface">${formatUSD(portfolioVal)}</span>
+          <span class="text-xs font-mono text-outline uppercase tracking-wider">Portfolio Holdings</span>
+          <span class="text-base font-mono font-bold text-on-surface">${formatUSD(portfolioVal)}</span>
         </div>
 
         <!-- User Profile Dropdown Toggle -->
@@ -52,7 +52,7 @@ function renderSharedNav(activePage = 'dashboard') {
             <div class="w-8 h-8 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary font-bold text-xs">
               GT
             </div>
-            <span class="hidden md:inline text-xs font-medium text-on-surface">${state.user.name}</span>
+            <span class="hidden md:inline text-sm font-medium text-on-surface">${state.user.name}</span>
             <span class="material-symbols-outlined text-sm text-outline">expand_more</span>
           </button>
 
@@ -180,7 +180,7 @@ function triggerSaxessProBiometrics({ title, subtitle, challenge, onApproved }) 
       <!-- Processing state -->
       <div class="py-6 space-y-4 hidden" id="bio-state-processing">
         <div class="text-center space-y-1">
-          <h3 class="text-xl font-serif font-bold text-primary">Cryptographic Proof Verified</h3>
+          <h3 class="text-xl font-serif font-bold text-primary">Biometric Proof Verified</h3>
           <p class="text-sm text-outline">Executing atomic signature on-chain...</p>
         </div>
         <div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">

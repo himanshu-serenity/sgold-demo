@@ -53,7 +53,7 @@ const DEFAULT_SGOLD_STATE = {
   },
   activities: [
     { id: "TXN-99842", date: "2026-09-07 14:22 UTC", action: "Buy", quantity: "+5.0 oz", price: "$4,950.00", status: "Completed", mode: "Prefunded USD" },
-    { id: "TXN-99821", date: "2026-09-05 09:15 UTC", action: "Swap", quantity: "-2.0 oz -> $9,909 USD-S", price: "$4,954.50", status: "Completed", mode: "Settlement Token" },
+    { id: "TXN-99821", date: "2026-09-05 09:15 UTC", action: "Swap", quantity: "-2.0 oz -> $9,909 Settlement Token", price: "$4,954.50", status: "Completed", mode: "Settlement Token" },
     { id: "TXN-99818", date: "2026-09-02 18:40 UTC", action: "Redeem", quantity: "-4.0 oz (Bullion)", price: "Melt Equiv", status: "Pending Vault Release", mode: "Physical Delivery" },
     { id: "TXN-99792", date: "2026-08-28 11:05 UTC", action: "Sell", quantity: "-2.5 oz", price: "$4,920.00", status: "Completed", mode: "Fiat Wire" },
     { id: "TXN-99754", date: "2026-08-20 16:30 UTC", action: "Buy", quantity: "+10.0 oz", price: "$4,890.00", status: "Completed", mode: "Crypto USDC" }

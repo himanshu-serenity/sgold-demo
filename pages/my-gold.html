@@ -112,8 +112,8 @@
       <div
         class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all">
         <div class="flex justify-between items-start">
-          <span class="font-mono text-xs text-outline uppercase">Owned Gold</span>
-          <span class="material-symbols-outlined text-primary text-sm">savings</span>
+          <span class="font-mono text-sm text-outline uppercase font-semibold">Owned Gold</span>
+          <span class="material-symbols-outlined text-primary text-base">savings</span>
         </div>
         <div>
           <div class="text-3xl font-serif font-bold text-on-surface" id="stat-owned-gold">25.80 oz</div>
@@ -125,8 +125,8 @@
       <div
         class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all">
         <div class="flex justify-between items-start">
-          <span class="font-mono text-xs text-outline uppercase">Avg Acquisition Price</span>
-          <span class="material-symbols-outlined text-primary text-sm">analytics</span>
+          <span class="font-mono text-sm text-outline uppercase font-semibold">Avg Acquisition Price</span>
+          <span class="material-symbols-outlined text-primary text-base">analytics</span>
         </div>
         <div>
           <div class="text-3xl font-serif font-bold text-on-surface">$4,500</div>
@@ -138,8 +138,8 @@
       <div
         class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all">
         <div class="flex justify-between items-start">
-          <span class="font-mono text-xs text-outline uppercase">Current Spot Price</span>
-          <span class="material-symbols-outlined text-primary text-sm">trending_up</span>
+          <span class="font-mono text-sm text-outline uppercase font-semibold">Current Spot Price</span>
+          <span class="material-symbols-outlined text-primary text-base">trending_up</span>
         </div>
         <div>
           <div class="text-3xl font-serif font-bold text-on-surface">$4,950</div>
@@ -151,8 +151,8 @@
       <div
         class="bg-surface-container-low p-5 rounded-xl border border-surface-container-high flex flex-col justify-between space-y-3 hover:border-primary/40 transition-all">
         <div class="flex justify-between items-start">
-          <span class="font-mono text-xs text-outline uppercase">Portfolio Gains</span>
-          <span class="material-symbols-outlined text-emerald-400 text-sm">verified</span>
+          <span class="font-mono text-sm text-outline uppercase font-semibold">Portfolio Gains</span>
+          <span class="material-symbols-outlined text-emerald-400 text-base">verified</span>
         </div>
         <div>
           <div class="text-3xl font-serif font-bold text-emerald-400">+$18,500</div>
@@ -316,8 +316,24 @@
           <span>ONE-WAY SETTLEMENT MECHANISM</span>
         </div>
         <h3 class="text-2xl font-serif font-bold text-on-surface">Gold Token to Settlement Token Conversion</h3>
-        <p class="text-xs text-outline">Convert sGold into Settlement tokens with instant liquidity (Note:
-          One way only).</p>
+        <p class="text-xs text-outline">Convert sGold into Settlement tokens with instant liquidity (Note: One way
+          only).</p>
+
+        <!-- Conversion Formula & Rate Details -->
+        <div
+          class="mt-3 p-3 bg-surface rounded-xl border border-surface-container-high flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs font-mono">
+          <div class="flex items-center space-x-2 text-on-surface">
+            <span class="text-primary font-bold">Formula:</span>
+            <span class="text-[11px] text-outline">Settlement Token Quantity = (sGold Quantity &times; sGold Price)
+              &divide; Settlement Token Price</span>
+          </div>
+          <div class="flex items-center space-x-3 text-[11px] shrink-0">
+            <span class="text-outline">sGold: <span class="text-primary font-bold"
+                id="swap-sgold-price-display">$4,950.00</span></span>
+            <span class="text-outline">|</span>
+            <span class="text-outline">Settlement Token: <span class="text-emerald-400 font-bold">$2.00</span></span>
+          </div>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
@@ -336,9 +352,9 @@
         <div class="space-y-1.5">
           <label class="font-mono text-xs text-outline">Settlement Token Quantity</label>
           <div class="relative flex items-center">
-            <input type="text" id="usd-s-swap-output" value="1000" readonly
+            <input type="text" id="usd-s-swap-output" value="2,475.00" readonly
               class="w-full bg-surface border border-surface-container-high rounded-xl px-4 py-3 font-mono text-lg font-bold text-primary focus:outline-none">
-            <span class="absolute right-4 font-mono text-xs text-emerald-400 font-bold">ATOMIC SWAP</span>
+            <span class="absolute right-4 font-mono text-xs text-emerald-400 font-bold">SWAP</span>
           </div>
         </div>
       </div>
@@ -356,7 +372,7 @@
     <div class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-4">
       <div class="flex justify-between items-center">
         <div>
-          <span class="font-mono text-xs text-primary uppercase">Audit Trail</span>
+          <!-- <span class="font-mono text-xs text-primary uppercase">Audit Trail</span> -->
           <h3 class="text-xl font-serif font-bold text-on-surface">Recent Activity</h3>
         </div>
         <span class="text-xs font-mono text-outline">Tx History</span>
@@ -371,6 +387,7 @@
               <th class="pb-3 font-normal">Action (Buy/Sell/Redeem)</th>
               <th class="pb-3 font-normal">Quantity</th>
               <th class="pb-3 font-normal">Payment Mode</th>
+              <th class="pb-3 font-normal">Ownership Certificate</th>
               <th class="pb-3 font-normal text-right">Status</th>
             </tr>
           </thead>
@@ -425,12 +442,100 @@
     </div>
   </div>
 
+  <!-- Swap Success Modal -->
+  <div id="swapSuccessModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
+    <div
+      class="bg-surface-container-low border-2 border-emerald-500/80 rounded-2xl max-w-lg w-full p-8 shadow-2xl relative space-y-6 text-center animate-in fade-in zoom-in duration-200">
+      <div class="absolute -top-16 -right-16 w-40 h-40 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none">
+      </div>
+
+      <!-- Icon -->
+      <div
+        class="w-16 h-16 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+        <span class="material-symbols-outlined text-3xl">swap_horiz</span>
+      </div>
+
+      <div>
+        <span class="font-mono text-[11px] text-emerald-400 uppercase tracking-widest block font-bold">Swap Execution
+          Completed</span>
+        <h3 class="text-2xl font-serif font-bold text-on-surface mt-1">Tokens Converted Successfully</h3>
+        <p class="text-xs text-outline mt-1 font-mono" id="modal-swap-txid">Tx Ref # TXN-00000</p>
+      </div>
+
+      <div
+        class="p-4 bg-surface rounded-xl border border-surface-container-high text-xs font-mono text-left space-y-2.5">
+        <div class="flex justify-between items-center">
+          <span class="text-outline">sGold Converted:</span>
+          <span class="text-error font-bold text-sm" id="modal-swap-sgold-amount">-1.00 oz</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Settlement Tokens Received:</span>
+          <span class="text-emerald-400 font-bold text-sm" id="modal-swap-tokens-amount">+2,475.00 Tokens</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Conversion Rate:</span>
+          <span class="text-on-surface font-bold">1 sGold ($4,950) = 2,475 Tokens (@ $2.00)</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Total USD Value:</span>
+          <span class="text-primary font-bold" id="modal-swap-usd-value">$4,950.00</span>
+        </div>
+        <div class="flex justify-between items-center pt-1 border-t border-surface-container-high/60">
+          <span class="text-outline">Updated sGold Balance:</span>
+          <span class="text-on-surface font-bold" id="modal-swap-new-balance">24.80 oz sGold</span>
+        </div>
+      </div>
+
+      <div class="flex space-x-3">
+        <button onclick="closeModal('swapSuccessModal')"
+          class="w-full py-2.5 bg-primary text-on-primary hover:brightness-110 font-bold rounded-lg text-xs font-mono transition-all">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certificate Image Modal -->
+  <div id="certImageModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
+    <div
+      class="bg-surface-container-low border-2 border-primary rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative space-y-4 animate-in fade-in zoom-in duration-200">
+      <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+        <div class="flex items-center space-x-2">
+          <span class="material-symbols-outlined text-primary text-base">workspace_premium</span>
+          <h3 class="font-serif font-bold text-lg text-on-surface">sGold Ownership Certificate</h3>
+        </div>
+        <button onclick="closeModal('certImageModal')" class="text-outline hover:text-on-surface p-1">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+
+      <div class="rounded-xl overflow-hidden border border-surface-container-high bg-surface flex items-center justify-center max-h-[70vh]">
+        <img src="../assets/images/cert.png" alt="Ownership Certificate" class="w-full h-auto max-h-[65vh] object-contain">
+      </div>
+
+      <div class="flex justify-between items-center pt-2">
+        <a href="../assets/images/cert.png" download="sGold-Ownership-Certificate.png"
+          class="px-4 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg text-xs font-mono inline-flex items-center space-x-1.5 transition-colors">
+          <span class="material-symbols-outlined text-sm">download</span>
+          <span>Download Certificate</span>
+        </a>
+        <button onclick="closeModal('certImageModal')"
+          class="px-6 py-2 bg-primary text-on-primary font-bold rounded-lg text-xs font-mono hover:brightness-110 transition-all">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="../assets/js/app-state.js"></script>
   <script src="../assets/js/shared-ui.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       renderSharedNav('my-gold');
       renderActivityTable();
+      calculateSettlementOutput();
     });
 
     function togglePortfolioActivityMenu() {
@@ -438,11 +543,24 @@
       if (el) el.classList.toggle('hidden');
     }
 
+    const SETTLEMENT_TOKEN_PRICE = 2.00;
+
     function calculateSettlementOutput() {
       const input = parseFloat(document.getElementById('sgold-swap-input').value) || 0;
-      // const rate = 4950.00;
-      const total = input * 1000;
-      document.getElementById('usd-s-swap-output').value = total;
+      const state = getSGoldState();
+      const sGoldPrice = state.market.spotPrice || 4950.00;
+
+      const priceDisplay = document.getElementById('swap-sgold-price-display');
+      if (priceDisplay) {
+        priceDisplay.innerText = formatUSD(sGoldPrice);
+      }
+
+      // Formula: Settlement Token Quantity = (sGold token quantity * sgold token price) / settlement token price
+      const settlementQty = (input * sGoldPrice) / SETTLEMENT_TOKEN_PRICE;
+      document.getElementById('usd-s-swap-output').value = settlementQty.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
     }
 
     function executeOneWaySwap() {
@@ -452,21 +570,31 @@
         return;
       }
 
+      const state = getSGoldState();
+      if (input > state.portfolio.ownedGoldOz) {
+        alert(`Insufficient sGold balance. You own ${formatOz(state.portfolio.ownedGoldOz)}.`);
+        return;
+      }
+
+      const sGoldPrice = state.market.spotPrice || 4950.00;
+      const settlementQty = (input * sGoldPrice) / SETTLEMENT_TOKEN_PRICE;
+      const totalUsdValue = input * sGoldPrice;
+
       triggerSaxessProBiometrics({
         title: "Approve One-Way sGold Swap",
-        subtitle: `Confirm swap of ${input} sGold for ${formatUSD(input * 4950)} USD-S settlement tokens.`,
-        challenge: "0xSWAP-SGOLD-TO-USDS",
+        subtitle: `Confirm swap of ${input} sGold for ${settlementQty.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Settlement tokens (@ $${SETTLEMENT_TOKEN_PRICE.toFixed(2)} / token).`,
+        challenge: "0xSWAP-SGOLD-TO-SETTLEMENT",
         onApproved: () => {
-          const state = getSGoldState();
           state.portfolio.ownedGoldOz = Math.max(0, state.portfolio.ownedGoldOz - input);
-          state.portfolio.prefundedUsd += (input * 4950);
+          state.portfolio.prefundedUsd += totalUsdValue;
 
+          const txId = `TXN-${Math.floor(10000 + Math.random() * 90000)}`;
           state.activities.unshift({
-            id: `TXN-${Math.floor(10000 + Math.random() * 90000)}`,
+            id: txId,
             date: new Date().toISOString().replace('T', ' ').substring(0, 19) + " UTC",
-            action: "Swap (sGold -> USD-S)",
-            quantity: `-${input} oz`,
-            price: formatUSD(input * 4950),
+            action: "Swap (sGold -> Settlement)",
+            quantity: `-${input} oz (${settlementQty.toLocaleString('en-US', { maximumFractionDigits: 2 })} tokens)`,
+            price: formatUSD(totalUsdValue),
             status: "Completed",
             mode: "Settlement Token"
           });
@@ -475,7 +603,15 @@
           document.getElementById('stat-owned-gold').innerText = formatOz(state.portfolio.ownedGoldOz);
           document.getElementById('stat-prefunded-usd').innerText = formatUSD(state.portfolio.prefundedUsd);
           renderActivityTable();
-          alert(`Successfully swapped ${input} sGold for ${formatUSD(input * 4950)} USD-S Settlement Tokens!`);
+
+          // Populate and show Swap Success Modal
+          document.getElementById('modal-swap-txid').innerText = `Tx Ref # ${txId}`;
+          document.getElementById('modal-swap-sgold-amount').innerText = `-${input.toFixed(2)} oz`;
+          document.getElementById('modal-swap-tokens-amount').innerText = `+${settlementQty.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} Tokens`;
+          document.getElementById('modal-swap-usd-value').innerText = formatUSD(totalUsdValue);
+          document.getElementById('modal-swap-new-balance').innerText = formatOz(state.portfolio.ownedGoldOz) + " sGold";
+
+          openModal('swapSuccessModal');
         }
       });
     }
@@ -483,16 +619,27 @@
     function renderActivityTable() {
       const state = getSGoldState();
       const tbody = document.getElementById('activity-table-body');
-      tbody.innerHTML = state.activities.map(act => `
+      tbody.innerHTML = state.activities.map(act => {
+        const isBuy = act.action.toLowerCase().includes('buy');
+        const certCell = isBuy
+          ? `<button onclick="openModal('certImageModal')" class="inline-flex items-center space-x-1 text-primary hover:underline font-bold py-0.5 px-2 rounded bg-surface-container border border-primary/20 hover:border-primary/40 transition-colors">
+               <span class="material-symbols-outlined text-[13px]">workspace_premium</span>
+               <span>View Cert</span>
+             </button>`
+          : `<span class="text-outline text-[11px]">—</span>`;
+
+        return `
         <tr class="hover:bg-surface-container transition-colors">
           <td class="py-3 text-primary font-bold">${act.id}</td>
           <td class="py-3 text-outline">${act.date}</td>
           <td class="py-3 font-semibold ${act.action.includes('Buy') ? 'text-primary' : act.action.includes('Sell') || act.action.includes('Redeem') ? 'text-error' : 'text-emerald-400'}">${act.action}</td>
           <td class="py-3 text-on-surface">${act.quantity}</td>
           <td class="py-3 text-outline">${act.mode}</td>
+          <td class="py-3">${certCell}</td>
           <td class="py-3 text-right ${act.status === 'Completed' ? 'text-emerald-400' : 'text-primary'} font-bold">${act.status}</td>
         </tr>
-      `).join('');
+      `;
+      }).join('');
     }
 
     function openModal(id) {
