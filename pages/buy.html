@@ -65,7 +65,7 @@
               class="text-xs text-emerald-400 font-mono font-normal">+0.42%</span></div>
         </div>
         <div class="h-8 w-px bg-surface-container-high"></div>
-        <div>
+        <div id="prefunded-usd-balance">
           <div class="text-xs font-mono text-outline">PREFUNDED USD</div>
           <div class="text-lg font-serif font-bold text-on-surface">$20,499</div>
         </div>
@@ -430,17 +430,73 @@
 
           <button onclick="instGoToStep(2)"
             class="w-full py-4 bg-primary text-on-primary font-bold font-mono text-base rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
-            <span>Continue to Quote</span>
+            <span>Continue to Settlement Security</span>
             <span class="material-symbols-outlined text-sm">arrow_forward</span>
           </button>
         </div>
 
-        <!-- 2. EXECUTABLE QUOTE STEP -->
+        <!-- 2. SETTLEMENT SECURITY (CREDIT CHECK) STEP -->
         <div id="inst-step-2"
           class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-6 hidden">
           <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
             <div>
               <span class="text-[15px] font-mono text-primary uppercase font-bold tracking-widest block">Phase 2:
+                Settlement Security</span>
+            </div>
+            <span
+              class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 font-mono text-xs font-bold">
+              <span class="material-symbols-outlined text-sm">shield</span>
+              <span>APPROVED ✓</span>
+            </span>
+          </div>
+
+          <div class="p-5 bg-surface rounded-xl border border-surface-container-high space-y-3.5 text-xs font-mono">
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+              <span class="text-outline">Client Credit Limit:</span>
+              <span class="text-on-surface font-bold text-sm" id="inst-credit-limit">$10.0M</span>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+              <span class="text-outline">Available Credit Limit:</span>
+              <span class="text-emerald-400 font-bold text-sm" id="inst-credit-avail">$7.5M</span>
+            </div>
+            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
+              <span class="text-outline">Order Exposure (This Order):</span>
+              <span class="text-primary font-bold text-sm" id="inst-credit-exposure">$5.0M</span>
+            </div>
+            <div class="flex justify-between items-center py-1">
+              <span class="text-outline">Credit & Risk Status:</span>
+              <span class="text-emerald-400 font-bold flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span id="inst-credit-status">APPROVED ✓</span>
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="p-3.5 bg-surface-container rounded-xl border border-emerald-400/30 text-xs text-on-surface-variant flex items-center space-x-2">
+            <span class="material-symbols-outlined text-emerald-400 text-base">check_circle</span>
+            <span>Institutional liquidity line verified. Zero slippage guarantee activated.</span>
+          </div>
+
+          <div class="flex space-x-3">
+            <button onclick="instGoToStep(1)"
+              class="w-1/3 py-4 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-xl font-mono text-sm font-semibold transition-colors">
+              Back
+            </button>
+            <button onclick="instGoToStep(3)"
+              class="w-2/3 py-4 bg-primary text-on-primary font-bold font-mono text-base rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
+              <span>Continue to Quote</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. EXECUTABLE QUOTE STEP -->
+        <div id="inst-step-3"
+          class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-6 hidden">
+          <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
+            <div>
+              <span class="text-[15px] font-mono text-primary uppercase font-bold tracking-widest block">Phase 3:
                 Executable Institutional Quote</span>
             </div>
             <!-- 2:00 Countdown Timer -->
@@ -479,7 +535,7 @@
           </div>
 
           <div class="flex space-x-3">
-            <button onclick="instGoToStep(1)"
+            <button onclick="instGoToStep(2)"
               class="w-1/3 py-4 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-xl font-mono text-sm font-semibold transition-colors">
               Back
             </button>
@@ -489,56 +545,6 @@
               <span>Accept Quote & Lock</span>
             </button>
           </div>
-        </div>
-
-        <!-- 3. SETTLEMENT SECURITY (CREDIT CHECK) STEP -->
-        <div id="inst-step-3"
-          class="bg-surface-container-low p-6 rounded-2xl border border-surface-container-high space-y-6 hidden">
-          <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
-            <div>
-              <span class="text-[15px] font-mono text-primary uppercase font-bold tracking-widest block">Phase 3:
-                Settlement Security</span>
-            </div>
-            <span
-              class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-400/10 border border-emerald-400/30 text-emerald-400 font-mono text-xs font-bold">
-              <span class="material-symbols-outlined text-sm">shield</span>
-              <span>APPROVED ✓</span>
-            </span>
-          </div>
-
-          <div class="p-5 bg-surface rounded-xl border border-surface-container-high space-y-3.5 text-xs font-mono">
-            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
-              <span class="text-outline">Client Credit Limit:</span>
-              <span class="text-on-surface font-bold text-sm" id="inst-credit-limit">$10.0M</span>
-            </div>
-            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
-              <span class="text-outline">Available Credit Limit:</span>
-              <span class="text-emerald-400 font-bold text-sm" id="inst-credit-avail">$7.5M</span>
-            </div>
-            <div class="flex justify-between items-center py-1 border-b border-surface-container-high/60">
-              <span class="text-outline">Order Exposure (This Order):</span>
-              <span class="text-primary font-bold text-sm" id="inst-credit-exposure">$5.0M</span>
-            </div>
-            <div class="flex justify-between items-center py-1">
-              <span class="text-outline">Credit & Risk Status:</span>
-              <span class="text-emerald-400 font-bold flex items-center gap-1">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span id="inst-credit-status">APPROVED ✓</span>
-              </span>
-            </div>
-          </div>
-
-          <div
-            class="p-3.5 bg-surface-container rounded-xl border border-emerald-400/30 text-xs text-on-surface-variant flex items-center space-x-2">
-            <span class="material-symbols-outlined text-emerald-400 text-base">check_circle</span>
-            <span>Institutional liquidity line verified. Zero slippage guarantee activated.</span>
-          </div>
-
-          <button onclick="instGoToStep(4)"
-            class="w-full py-4 bg-primary text-on-primary font-bold font-mono text-base rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
-            <span class="material-symbols-outlined text-sm">lock</span>
-            <span>Approve Settlement</span>
-          </button>
         </div>
 
         <!-- 4. PRICE LOCKED CONFIRMATION STEP -->
@@ -588,7 +594,7 @@
           <div class="flex items-center justify-between pb-3 border-b border-surface-container-high">
             <div>
               <span class="text-[15px] font-mono text-primary uppercase font-bold tracking-widest block">Phase 5:
-                Settlement Payment</span>
+                Payment Settlement</span>
             </div>
             <span class="text-xs font-mono text-outline">Order #SG-I-10584</span>
           </div>
@@ -600,11 +606,6 @@
               <span class="material-symbols-outlined text-sm">account_balance</span>
               <span>Fiat Wire (USD)</span>
             </button>
-            <button type="button" onclick="instSetPaymentTab('crypto')" id="inst-tab-btn-crypto"
-              class="py-3 px-4 rounded-xl font-mono text-xs font-bold transition-all border bg-surface text-outline border-surface-container-high hover:text-on-surface flex items-center justify-center space-x-2">
-              <span class="material-symbols-outlined text-sm">currency_bitcoin</span>
-              <span>Crypto (USDT / USDC)</span>
-            </button>
           </div>
 
           <!-- Fiat Wire Details Sub-Panel -->
@@ -614,7 +615,7 @@
               <div class="flex justify-between"><span class="text-outline">Beneficiary Name:</span><span
                   class="text-on-surface font-bold">sGold Technology Inc. (US)</span></div>
               <div class="flex justify-between"><span class="text-outline">Bank Name:</span><span
-                  class="text-on-surface font-bold">JPMorgan Chase Bank, N.A.</span></div>
+                  class="text-on-surface font-bold">Bank of America, N.A.</span></div>
               <div class="flex justify-between"><span class="text-outline">Account Number:</span><span
                   class="text-primary font-bold">884920048192</span></div>
               <div class="flex justify-between"><span class="text-outline">Routing Number (Fedwire):</span><span
@@ -632,33 +633,7 @@
             </div>
           </div>
 
-          <!-- Crypto Details Sub-Panel -->
-          <div id="inst-pay-crypto-panel" class="space-y-4 hidden">
-            <div class="p-4 bg-surface rounded-xl border border-surface-container-high space-y-3 text-xs font-mono">
-              <div class="flex justify-between items-center">
-                <span class="text-outline">Accepted Tokens:</span>
-                <span class="text-emerald-400 font-bold">USDT / USDC</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-outline">Supported Networks:</span>
-                <span class="text-on-surface font-bold">BEP-20 / ERC-20</span>
-              </div>
-              <div class="pt-2 flex flex-col items-center space-y-2">
-                <div class="p-2.5 bg-white rounded-xl border border-primary inline-block">
-                  <img
-                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ethereum:0x71C8395B293129849201948B842"
-                    alt="Institutional Deposit QR" class="w-32 h-32 object-contain">
-                </div>
-                <div class="w-full text-center">
-                  <span class="text-[10px] text-outline uppercase block mb-1">Destination Wallet Address:</span>
-                  <div
-                    class="p-2 bg-surface-container-low rounded-lg border border-surface-container-high font-mono text-xs text-primary font-bold break-all select-all">
-                    0x71C8395B293129849201948B842
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
 
           <button onclick="instSubmitPayment()" id="btn-inst-submit-pay"
             class="w-full py-4 bg-primary text-on-primary font-bold font-mono text-base rounded-xl shadow-lg shadow-primary/20 hover:brightness-110 transition-all flex items-center justify-center space-x-2">
@@ -715,7 +690,7 @@
                 <span class="material-symbols-outlined text-xl">verified</span>
               </div>
               <div>
-                <span class="text-[15px] font-mono text-emerald-400 uppercase font-bold tracking-widest block">Phase 7:
+                <span class="text-[15px] font-mono text-emerald-400 uppercase font-bold tracking-widest block">Phase 6:
                   Gold Allocation & Token Settlement</span>
               </div>
             </div>
@@ -863,7 +838,7 @@
               class="flex items-center justify-between p-2 rounded-lg bg-surface border border-surface-container-high opacity-60">
               <span class="flex items-center gap-2 text-on-surface">
                 <span class="w-2 h-2 rounded-full bg-outline"></span>
-                <span>2. Executable Quote</span>
+                <span>2. Settlement Security</span>
               </span>
               <span class="text-[10px] text-outline" id="m-badge-2">Pending</span>
             </div>
@@ -873,7 +848,7 @@
               class="flex items-center justify-between p-2 rounded-lg bg-surface border border-surface-container-high opacity-60">
               <span class="flex items-center gap-2 text-on-surface">
                 <span class="w-2 h-2 rounded-full bg-outline"></span>
-                <span>3. Settlement Security</span>
+                <span>3. Executable Quote</span>
               </span>
               <span class="text-[10px] text-outline" id="m-badge-3">Pending</span>
             </div>
@@ -1213,6 +1188,7 @@
       if (isInstitutional) {
         if (indFlow) indFlow.classList.add('hidden');
         if (instFlow) instFlow.classList.remove('hidden');
+        document.getElementById('prefunded-usd-balance').classList.add('hidden');
         initInstitutionalFlow(state);
       } else {
         if (indFlow) indFlow.classList.remove('hidden');
@@ -1328,7 +1304,7 @@
 
       instUpdateTrackerStep(step);
 
-      if (step === 2) {
+      if (step === 3) { // Start timer on Executable Quote step after swap
         startQuoteTimer();
       } else {
         if (quoteTimerInterval) clearInterval(quoteTimerInterval);
@@ -1355,7 +1331,32 @@
 
     function instAcceptQuote() {
       if (quoteTimerInterval) clearInterval(quoteTimerInterval);
-      instGoToStep(3);
+
+      // Populate Treasury Coverage modal with live order values
+      const EXEC_PRICE = 4520;
+      const amount = currentInstOrderAmount > 0 ? currentInstOrderAmount : 2000000;
+      const totalOz = amount / EXEC_PRICE;
+      const allocOz = totalOz * 0.50;
+      const liqOz = totalOz * 0.40;
+      const hedgeOz = totalOz * 0.10;
+
+      const fmt = (n) => n.toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 });
+      const fmtUSD = (n) => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+      const set = (id, v) => { const el = document.getElementById(id); if (el) el.innerText = v; };
+      set('tc-order-amount', fmtUSD(amount));
+      set('tc-gold-oz', fmt(totalOz) + ' oz');
+      set('tc-alloc-oz', fmt(allocOz) + ' oz');
+      set('tc-liq-oz', fmt(liqOz) + ' oz');
+      set('tc-hedge-oz', fmt(hedgeOz) + ' oz');
+      set('tc-total-oz', fmt(totalOz) + ' oz');
+
+      openModal('treasury-coverage-modal');
+    }
+
+    function instConfirmTreasuryCoverage() {
+      closeModal('treasury-coverage-modal');
+      instGoToStep(4);
     }
 
     function instSetPaymentTab(tab) {
@@ -1634,6 +1635,188 @@
       document.getElementById(id).classList.add('hidden');
     }
   </script>
+
+  <!-- ====== TREASURY COVERAGE MODAL ====== -->
+  <div id="treasury-coverage-modal" class="hidden fixed inset-0 z-[999] flex items-center justify-center p-4"
+    style="background: rgba(15,20,30,0.60); backdrop-filter: blur(6px);">
+    <div class="relative w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl border border-gray-200"
+      style="background: #ffffff; animation: treasurySlideIn .35s cubic-bezier(.22,1,.36,1) both;">
+
+      <!-- Gold top accent -->
+      <div class="absolute top-0 left-0 right-0 h-[3px]"
+        style="background: linear-gradient(90deg, transparent, #C9A84C, transparent);"></div>
+
+      <!-- Header -->
+      <div class="px-6 pt-6 pb-4 border-b border-gray-100">
+        <div class="flex items-center justify-between mb-1">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center"
+              style="background: linear-gradient(135deg, #C9A84C22, #C9A84C44); border: 1px solid #C9A84C44;">
+              <span class="material-symbols-outlined text-lg" style="color:#C9A84C;">shield</span>
+            </div>
+            <div>
+              <p class="font-mono font-bold text-xs tracking-[0.2em] uppercase" style="color:#C9A84C;">Treasury Coverage
+              </p>
+              <p class="text-[10px] font-mono tracking-widest uppercase mt-0.5" style="color:#9ca3af;">Institutional
+                Risk Management</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 px-3 py-1 rounded-full font-mono text-[10px] font-bold tracking-wider"
+            style="background:#dcfce7; border:1px solid #86efac; color:#16a34a;">
+            <span class="w-1.5 h-1.5 rounded-full animate-pulse" style="background:#16a34a;"></span>
+            100% COVERED
+          </div>
+        </div>
+        <p class="text-[11px] font-mono mt-2" style="color:#B8922A;">100% of the locked gold exposure secured</p>
+      </div>
+
+      <!-- Body -->
+      <div class="px-6 py-5 space-y-5">
+
+        <!-- Order summary row -->
+        <div class="grid grid-cols-3 gap-3">
+          <div class="rounded-xl p-3 text-center" style="background:#fafafa; border:1px solid #e5e7eb;">
+            <p class="text-[9px] font-mono uppercase tracking-widest mb-1" style="color:#4b5563;">Institutional Order
+            </p>
+            <p class="font-mono font-bold text-sm" id="tc-order-amount" style="color:#C9A84C;">$2,000,000</p>
+          </div>
+          <div class="rounded-xl p-3 text-center" style="background:#fafafa; border:1px solid #e5e7eb;">
+            <p class="text-[9px] font-mono uppercase tracking-widest mb-1" style="color:#4b5563;">Locked Exec. Price</p>
+            <p class="font-mono font-bold text-sm" style="color:#111827;">$4,520 / oz</p>
+          </div>
+          <div class="rounded-xl p-3 text-center" style="background:#fafafa; border:1px solid #e5e7eb;">
+            <p class="text-[9px] font-mono uppercase tracking-widest mb-1" style="color:#4b5563;">Gold Exposure</p>
+            <p class="font-mono font-bold text-sm" style="color:#111827;" id="tc-gold-oz">442.478 oz</p>
+          </div>
+        </div>
+
+        <!-- Coverage Allocation Table -->
+        <div class="rounded-xl overflow-hidden" style="border:1px solid #e5e7eb;">
+          <div class="px-4 py-2.5" style="background:#fffbeb; border-bottom:1px solid #fde68a;">
+            <p class="font-mono font-bold text-[10px] tracking-[0.2em] uppercase" style="color:#C9A84C;">Coverage
+              Allocation</p>
+          </div>
+          <div>
+            <!-- Header row -->
+            <div class="grid grid-cols-3 px-4 py-2" style="background:#f9fafb; border-bottom:1px solid #e5e7eb;">
+              <span class="font-mono text-[9px] uppercase tracking-widest" style="color:#4b5563;">Source</span>
+              <span class="font-mono text-[9px] uppercase tracking-widest text-center"
+                style="color:#374151;">Coverage</span>
+              <span class="font-mono text-[9px] uppercase tracking-widest text-right" style="color:#4b5563;">Gold</span>
+            </div>
+            <!-- Row 1 -->
+            <div class="grid grid-cols-3 px-4 py-3 items-center" style="border-bottom:1px solid #f3f4f6;">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#4ade80;"></span>
+                <span class="font-mono text-[10px]" style="color:#111827;">Project Gold</span>
+              </div>
+              <div class="text-center">
+                <span class="font-mono text-[10px] font-bold" style="color:#16a34a;">50%</span>
+                <div class="mt-1 h-1 rounded-full mx-4" style="background:#e5e7eb;">
+                  <div class="h-1 rounded-full" style="width:50%; background:#16a34a;"></div>
+                </div>
+              </div>
+              <span class="font-mono text-[10px] text-right" style="color:#111827;" id="tc-alloc-oz">221.239 oz</span>
+            </div>
+            <!-- Row 2 -->
+            <div class="grid grid-cols-3 px-4 py-3 items-center" style="border-bottom:1px solid #f3f4f6;">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#60a5fa;"></span>
+                <span class="font-mono text-[10px]" style="color:#111827;">Committed Liquidity</span>
+              </div>
+              <div class="text-center">
+                <span class="font-mono text-[10px] font-bold" style="color:#60a5fa;">40%</span>
+                <div class="mt-1 h-1 rounded-full mx-4" style="background:#e5e7eb;">
+                  <div class="h-1 rounded-full" style="width:40%; background:#60a5fa;"></div>
+                </div>
+              </div>
+              <span class="font-mono text-[10px] text-right" style="color:#111827;" id="tc-liq-oz">176.991 oz</span>
+            </div>
+            <!-- Row 3 -->
+            <div class="grid grid-cols-3 px-4 py-3 items-center" style="border-bottom:1px solid #f3f4f6;">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#f59e0b;"></span>
+                <span class="font-mono text-[10px]" style="color:#111827;">Temp. Price Hedge</span>
+              </div>
+              <div class="text-center">
+                <span class="font-mono text-[10px] font-bold" style="color:#f59e0b;">10%</span>
+                <div class="mt-1 h-1 rounded-full mx-4" style="background:#e5e7eb;">
+                  <div class="h-1 rounded-full" style="width:10%; background:#f59e0b;"></div>
+                </div>
+              </div>
+              <span class="font-mono text-[10px] text-right" style="color:#111827;" id="tc-hedge-oz">44.248 oz</span>
+            </div>
+            <!-- Total row -->
+            <div class="grid grid-cols-3 px-4 py-3 items-center"
+              style="background:#fffbeb; border-top:1px solid #fde68a;">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider" style="color:#C9A84C;">Total
+                Covered</span>
+              <span class="font-mono text-[10px] font-bold text-center" style="color:#C9A84C;">100%</span>
+              <span class="font-mono text-[10px] font-bold text-right" style="color:#C9A84C;" id="tc-total-oz">442.478
+                oz</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Price Risk Protection -->
+        <div class="rounded-xl p-4 space-y-3" style="background:#f9fafb; border:1px solid #e5e7eb;">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="material-symbols-outlined text-sm" style="color:#C9A84C;">security</span>
+            <p class="font-mono font-bold text-[10px] tracking-[0.2em] uppercase" style="color:#C9A84C;">Price Risk
+              Protection</p>
+          </div>
+          <p class="font-mono text-[10px] font-bold" style="color:#111827;">Gold price locked at $4,520/oz</p>
+          <p class="text-[10px] font-mono leading-relaxed" style="color:#374151;">
+            Treasury coverage is established against the locked exposure while fiat settlement is pending.
+            Allocated inventory and committed liquidity provide the underlying coverage, while the temporary
+            hedge is used to mitigate residual gold-price exposure during the settlement window.
+          </p>
+          <div class="grid grid-cols-3 gap-2 pt-1">
+            <div class="rounded-lg px-2 py-2 text-center" style="background:#f3f4f6; border:1px solid #e5e7eb;">
+              <p class="text-[9px] font-mono uppercase tracking-widest mb-0.5" style="color:#4b5563;">Settlement Window
+              </p>
+              <p class="font-mono text-[10px] font-bold" style="color:#111827;">T+2 / T+3</p>
+            </div>
+            <div class="rounded-lg px-2 py-2 text-center" style="background:#dcfce7; border:1px solid #86efac;">
+              <p class="text-[9px] font-mono uppercase tracking-widest mb-0.5" style="color:#374151;">Treasury Exposure
+              </p>
+              <p class="font-mono text-[10px] font-bold" style="color:#16a34a;">100% COVERED ✓</p>
+            </div>
+            <div class="rounded-lg px-2 py-2 text-center" style="background:#dcfce7; border:1px solid #86efac;">
+              <p class="text-[9px] font-mono uppercase tracking-widest mb-0.5" style="color:#374151;">Price Protection
+              </p>
+              <p class="font-mono text-[10px] font-bold" style="color:#16a34a;">ACTIVE ✓</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer / CTA -->
+      <div class="px-6 pb-6">
+        <button onclick="instConfirmTreasuryCoverage()"
+          class="w-full py-4 rounded-xl font-mono font-bold text-sm tracking-wider transition-all flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98]"
+          style="background: linear-gradient(135deg, #C9A84C, #a8843c); color:#ffffff; box-shadow: 0 4px 24px #C9A84C40;">
+          <span class="material-symbols-outlined text-base">check_circle</span>
+          Acknowledged
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes treasurySlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+  </style>
+
 </body>
 
 </html>
