@@ -109,7 +109,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <label
                 class="p-3 bg-surface border-2 border-primary rounded-xl flex items-center space-x-3 cursor-pointer">
-                <input type="radio" name="source-vault" checked class="accent-primary">
+                <input type="radio" name="source-vault" value="Zurich, Switzerland" checked class="accent-primary">
                 <div>
                   <div class="text-xs font-bold text-on-surface">Zurich, Switzerland</div>
                   <div class="text-[10px] text-outline font-mono">Gotthard Subterranean Depository</div>
@@ -117,7 +117,7 @@
               </label>
               <label
                 class="p-3 bg-surface border border-outline-variant/40 rounded-xl flex items-center space-x-3 cursor-pointer">
-                <input type="radio" name="source-vault" class="accent-primary">
+                <input type="radio" name="source-vault" value="Singapore Freeport" class="accent-primary">
                 <div>
                   <div class="text-xs font-bold text-on-surface">Singapore Freeport</div>
                   <div class="text-[10px] text-outline font-mono">Changi High-Security Bullion Hub</div>
@@ -254,6 +254,69 @@
 
   </main>
 
+  <!-- Redemption Success Modal -->
+  <div id="redeemSuccessModal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-surface/85 backdrop-blur-md hidden">
+    <div
+      class="bg-surface-container-low border-2 border-emerald-500/80 rounded-2xl max-w-lg w-full p-8 shadow-2xl relative space-y-6 text-center animate-in fade-in zoom-in duration-200">
+      <div class="absolute -top-16 -right-16 w-40 h-40 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none">
+      </div>
+
+      <div
+        class="w-16 h-16 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+        <span class="material-symbols-outlined text-3xl">local_shipping</span>
+      </div>
+
+      <div>
+        <span class="font-mono text-[11px] text-emerald-400 uppercase tracking-widest block font-bold">Redemption
+          Dispatched</span>
+        <h3 class="text-2xl font-serif font-bold text-on-surface mt-1">Physical Transfer Confirmed</h3>
+        <p class="text-xs text-outline mt-1 font-mono" id="modal-redeem-txid">Tx Ref # TXN-00000</p>
+      </div>
+
+      <div
+        class="p-4 bg-surface rounded-xl border border-surface-container-high text-xs font-mono text-left space-y-2.5">
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Redeemed Quantity:</span>
+          <span class="text-error font-bold text-sm" id="modal-redeem-qty">-1 Kg (32.15 oz)</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Handling Fee Settled:</span>
+          <span class="text-emerald-400 font-bold text-sm" id="modal-redeem-fee">$500.00</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Source Vault:</span>
+          <span class="text-on-surface font-bold" id="modal-redeem-vault">Zurich, Switzerland</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Courier Tracking:</span>
+          <span class="text-primary font-bold" id="modal-redeem-tracking">#BRK-9921-CH</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-outline">Delivery Status:</span>
+          <span class="text-emerald-400 font-bold flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> In Transit
+          </span>
+        </div>
+        <div class="flex justify-between items-center pt-1 border-t border-surface-container-high/60">
+          <span class="text-outline">Updated Balance:</span>
+          <span class="text-primary font-bold" id="modal-redeem-new-balance">0.00 oz sGold</span>
+        </div>
+      </div>
+
+      <div class="flex space-x-3">
+        <button onclick="closeModal('redeemSuccessModal')"
+          class="w-1/2 py-2.5 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg text-xs font-mono transition-colors">
+          Close
+        </button>
+        <a href="my-gold.html"
+          class="w-1/2 py-2.5 bg-primary text-on-primary hover:brightness-110 font-bold rounded-lg text-xs font-mono inline-flex items-center justify-center transition-all">
+          View Holdings
+        </a>
+      </div>
+    </div>
+  </div>
+
   <script src="../assets/js/app-state.js"></script>
   <script src="../assets/js/shared-ui.js"></script>
   <script>
@@ -325,18 +388,32 @@
           badge3.innerText = "Tracking Dispatched: BRK-9921-CH";
 
           // Update State
+          const txId = `TXN-${Math.floor(10000 + Math.random() * 90000)}`;
+          const trackingId = "BRK-9921-CH";
+          const selectedVault = document.querySelector('input[name="source-vault"]:checked');
+          const vaultLabel = selectedVault ? selectedVault.value : "Zurich, Switzerland";
+          const feePaid = document.getElementById('redeem-total-fee').innerText;
+
           state.portfolio.ownedGoldOz -= ozEquiv;
           state.activities.unshift({
-            id: `TXN-${Math.floor(10000 + Math.random() * 90000)}`,
+            id: txId,
             date: new Date().toISOString().replace('T', ' ').substring(0, 19) + " UTC",
             action: "Physical Bullion Redeem",
             quantity: `-${kg} Kg (${ozEquiv.toFixed(1)} oz)`,
-            price: document.getElementById('redeem-total-fee').innerText + " Fee",
+            price: feePaid + " Fee",
             status: "Pending Delivery",
             mode: "Armored Transport"
           });
           saveSGoldState(state);
-          alert(`Redemption initiated! Armored courier tracking number #BRK-9921-CH dispatched to your email.`);
+
+          document.getElementById('modal-redeem-txid').innerText = `Tx Ref # ${txId}`;
+          document.getElementById('modal-redeem-qty').innerText = `-${kg} Kg (${ozEquiv.toFixed(2)} oz)`;
+          document.getElementById('modal-redeem-fee').innerText = feePaid;
+          document.getElementById('modal-redeem-vault').innerText = vaultLabel;
+          document.getElementById('modal-redeem-tracking').innerText = `#${trackingId}`;
+          document.getElementById('modal-redeem-new-balance').innerText = formatOz(state.portfolio.ownedGoldOz) + " sGold";
+
+          openModal('redeemSuccessModal');
         }, 2500);
       };
 
@@ -350,6 +427,14 @@
       } else {
         proceedWithSimulation();
       }
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
     }
   </script>
 </body>
