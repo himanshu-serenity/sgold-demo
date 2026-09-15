@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dual Layer Infrastructure | sGold Platform</title>
+  <meta name="description"
+    content="Dual Layer Infrastructure: Two layers. One unified settlement ecosystem. sGold represents the asset. The Settlement Token moves and settles value.">
+
+
+    
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#b88a10",
+            "primary-dim": "#9a710a",
+            "primary-light": "#fff8e4",
+            "on-primary": "#ffffff",
+            surface: "#faf8f3",
+            "surface-card": "#ffffff",
+          },
+          fontFamily: {
+            serif: ["Newsreader", "Georgia", "serif"],
+            mono: ["JetBrains Mono", "monospace"],
+            sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+</head>
+
+<body
+  class="bg-[#faf8f3] text-[#0f1115] font-sans h-screen flex flex-col justify-between antialiased overflow-hidden p-4 sm:p-6 lg:p-8 selection:bg-amber-100 selection:text-amber-900 relative">
+
+  <!-- Ambient institutional background lighting -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute -top-32 left-1/4 w-[500px] h-[500px] bg-amber-200/25 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-32 right-1/4 w-[500px] h-[500px] bg-blue-100/35 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="max-w-6xl w-full mx-auto h-full flex flex-col justify-between relative z-10">
+
+    <!-- Center Hero Title Block -->
+    <div class="text-center pt-2 pb-4 flex-shrink-0 space-y-1.5">
+      <h1 class="font-serif text-3xl sm:text-4xl lg:text-4xl font-bold text-[#14151a] tracking-tight uppercase">
+        Dual Layer Infrastructure
+      </h1>
+      <p class="font-serif italic text-lg sm:text-2xl text-primary font-medium tracking-wide">
+        Two layers. One unified settlement ecosystem.
+      </p>
+    </div>
+
+    <!-- The Two Core Layers: Side-by-Side In 1 Screen -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-7 my-auto flex-1 items-stretch max-h-[72vh]">
+
+      <!-- LAYER 1: 🟡 Asset Layer / Gold Token -->
+      <div
+        class="bg-white/95 backdrop-blur-sm rounded-2xl border border-amber-200/90 p-6 sm:p-7 shadow-[0_4px_24px_-4px_rgba(184,138,16,0.08)] flex flex-col justify-between transition-all hover:shadow-[0_8px_32px_-4px_rgba(184,138,16,0.14)] hover:border-amber-300">
+        <div>
+          <!-- Title & Subtitle -->
+          <div class="flex items-center justify-between border-b border-amber-100 pb-4 mb-5">
+            <div class="flex items-center space-x-3.5">
+              <div
+                class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white shadow-sm ring-4 ring-amber-100/70 flex-shrink-0">
+                <span class="text-lg leading-none font-bold">🟡</span>
+              </div>
+              <div>
+                <h2 class="font-serif text-2xl sm:text-[26px] font-bold text-[#0f1115] tracking-tight leading-tight">
+                  Asset Layer - Gold Token
+                </h2>
+                <span class="font-mono text-[11px] font-bold text-primary uppercase tracking-wider block mt-0.5">
+                  Physical Gold Allocation
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 Value Pillars -->
+          <div class="space-y-3.5">
+            <div
+              class="flex items-center justify-between px-4 sm:px-5 py-3.5 rounded-xl bg-gradient-to-r from-[#faf7ef] to-[#fcfbf7] border border-amber-100/90 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-colors hover:border-amber-200">
+              <span class="font-serif font-bold text-base text-[#0f1115]">Easy to Buy</span>
+              <span class="font-mono text-xs sm:text-sm font-semibold text-primary">→ Settlement Liquidity</span>
+            </div>
+            <div
+              class="flex items-center justify-between px-4 sm:px-5 py-3.5 rounded-xl bg-gradient-to-r from-[#faf7ef] to-[#fcfbf7] border border-amber-100/90 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-colors hover:border-amber-200">
+              <span class="font-serif font-bold text-base text-[#0f1115]">Easy to Sell</span>
+              <span class="font-mono text-xs sm:text-sm font-semibold text-primary">→ Distribution Liquidity</span>
+            </div>
+            <div
+              class="flex items-center justify-between px-4 sm:px-5 py-3.5 rounded-xl bg-gradient-to-r from-[#faf7ef] to-[#fcfbf7] border border-amber-100/90 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-colors hover:border-amber-200">
+              <span class="font-serif font-bold text-base text-[#0f1115]">Easy to Finance</span>
+              <span class="font-mono text-xs sm:text-sm font-semibold text-primary">→ Financing Liquidity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LAYER 2: 🔵 Network Layer / Settlement Token -->
+      <div
+        class="bg-white/95 backdrop-blur-sm rounded-2xl border border-blue-200/90 p-6 sm:p-7 shadow-[0_4px_24px_-4px_rgba(37,99,235,0.08)] flex flex-col justify-between transition-all hover:shadow-[0_8px_32px_-4px_rgba(37,99,235,0.14)] hover:border-blue-300">
+        <div>
+          <!-- Title & Subtitle -->
+          <div class="flex items-center justify-between border-b border-blue-100 pb-4 mb-5">
+            <div class="flex items-center space-x-3.5">
+              <div
+                class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white shadow-sm ring-4 ring-blue-100/70 flex-shrink-0">
+                <span class="text-lg leading-none font-bold">🔵</span>
+              </div>
+              <div>
+                <h2 class="font-serif text-2xl sm:text-[26px] font-bold text-[#0f1115] tracking-tight leading-tight">
+                  Network Layer - Settlement Token
+                </h2>
+                <span class="font-mono text-[11px] font-bold text-blue-700 uppercase tracking-wider block mt-0.5">
+                  Execution & Liquidity Rails
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 Network Functions -->
+          <div class="space-y-2.5">
+            <div
+              class="flex items-center space-x-3 px-4 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#f8fbff] to-[#fbfdff] border border-blue-100/90 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-colors hover:border-blue-200">
+              <span class="w-2 h-2 rounded-full bg-blue-600 ring-2 ring-blue-200 flex-shrink-0"></span>
+              <span class="font-serif font-semibold text-[15px] text-[#0f1115]">Network Fees</span>
+            </div>
+            <div
+              class="flex items-center space-x-3 px-4 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#f8fbff] to-[#fbfdff] border border-blue-100/90 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-colors hover:border-blue-200">
+              <span class="w-2 h-2 rounded-full bg-blue-600 ring-2 ring-blue-200 flex-shrink-0"></span>
+              <span class="font-serif font-semibold text-[15px] text-[#0f1115]">Payments</span>
+            </div>
+            <div
+              class="flex items-center space-x-3 px-4 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#f8fbff] to-[#fbfdff] border border-blue-100/90 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-colors hover:border-blue-200">
+              <span class="w-2 h-2 rounded-full bg-blue-600 ring-2 ring-blue-200 flex-shrink-0"></span>
+              <span class="font-serif font-semibold text-[15px] text-[#0f1115]">Connects Different Assets</span>
+            </div>
+            <div
+              class="flex items-center space-x-3 px-4 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#f8fbff] to-[#fbfdff] border border-blue-100/90 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-colors hover:border-blue-200">
+              <span class="w-2 h-2 rounded-full bg-blue-600 ring-2 ring-blue-200 flex-shrink-0"></span>
+              <span class="font-serif font-semibold text-[15px] text-[#0f1115]">Enables Settlement & Liquidity
+                Routing</span>
+            </div>
+            <div
+              class="flex items-center space-x-3 px-4 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#f8fbff] to-[#fbfdff] border border-blue-100/90 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-colors hover:border-blue-200">
+              <span class="w-2 h-2 rounded-full bg-blue-600 ring-2 ring-blue-200 flex-shrink-0"></span>
+              <span class="font-serif font-semibold text-[15px] text-[#0f1115]">Scales Network Capacity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Micro Footer -->
+    <footer
+      class="pt-3 pb-1 border-t border-[#e8e2d4]/70 flex items-center justify-between text-[11px] font-mono text-[#736e64] flex-shrink-0">
+      <span>sGold Technology AG &copy; 2026. TVTG Regulated.</span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        Proof of Reserves: 107% • Merkle Root Audited
+      </span>
+    </footer>
+
+  </div>
+
+</body>
+
+</html>
